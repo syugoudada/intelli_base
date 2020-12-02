@@ -1,6 +1,6 @@
 <?php
 header('Content-type:application/json; charset=utf8');
-require_once('../Repository/Search_Like.php');
+require_once('../Repository/Search_Like_Repository.php');
 require_once('../Repository/db_config.php');
 
 $myself = new Search_Like_Repository(DB_USER,DB_PASS);

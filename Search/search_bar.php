@@ -49,7 +49,7 @@
         });
 
         function make_obj(content, index) {
-          $('#product_content').append(' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../images/book1.jpg" height="200px" width="200px"></a><input type="text" name = product_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["name"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><input type="submit" name="cart" value="Cart"></div></div>');
+          $('#product_content').append(' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = product_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["name"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><input type="submit" name="cart" value="Cart"></div></div>');
           star(content, index);
         }
 
