@@ -1,7 +1,6 @@
 <?php
 session_start();
 $_SESSION['user'] = $_SESSION['user'];
-$_SESSION['password'] = $_SESSION['password'];
 #クッキーを書くuser
 ?>
 

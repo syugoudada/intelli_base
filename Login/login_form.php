@@ -22,7 +22,7 @@
 
       <div>
         <label for="pass">パスワード
-          <input type="password" name="pass" required>
+          <input type="password" name="password" required>
         </lable>
       </div>
 
