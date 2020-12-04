@@ -1,3 +1,11 @@
+<?php
+  require_once('../Repository/Product_Registration_Repository.php');
+  require_once('../Repository/db_config.php');
+  $myself = new Product_Registration_Repository(DB_USER, DB_PASS);
+  $myself->login();
+  $genre = $myself->genre();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -27,11 +35,26 @@
   </header>
 
   <div class="contents">
-
+    <div class="main_contents">
+      <div class="genre">
+        <ul>
+        <?php
+          foreach($genre as $value){
+            print("<li value='$value[id]'><a href='#'>$value[name]</a></li>");
+          }
+        ?>
+        </ul>
+      </div>
+      <div class="">
+          
+      </div>
+    </div>
   </div>
 
   <footer>
+    <div class="footer_contents">
 
+    </div>
   </footer>
 
 </body>
