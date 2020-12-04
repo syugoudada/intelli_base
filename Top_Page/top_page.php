@@ -45,7 +45,7 @@
         ?>
         </ul>
       </div>
-      <div class="">
+      <div class="book_contents">
           
       </div>
     </div>
