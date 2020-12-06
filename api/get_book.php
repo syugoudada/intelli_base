@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->getBook($ids);
+    $value = $db->getBook($id);
     $response['content'] = $value;
 } else {
     $response['error'] = true;
