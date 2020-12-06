@@ -45,7 +45,7 @@ class Repository implements IuserRepository{
    */
   
   public function encrypt(string $password){
-    $hash_password = password_hash($password,PASSWORD_DEFAULT);
+    $hash_password = password_hash($password,PASSWORD_BCRYPT);
     return $hash_password;
   }
 
