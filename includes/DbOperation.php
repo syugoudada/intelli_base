@@ -103,7 +103,19 @@ class DbOparation
      */
     function getBook(int $bookId)
     {
-        $res = $this->select('SELECT book.id, book.name, author.id, author.name, FORMAT(modification_datetime , \'yyyyMMddHHmmss\') FROM product book, author WHERE author.id = book.author_id AND book.id = ?', array($bookId));
+        $res = $this->select('SELECT book.id, book.name, author.id, author.name FROM product book, author WHERE author.id = book.author_id AND book.id = ?', array($bookId));
+        return $res;
+    }
+
+    /**
+     * Get modify datetime check modify book date.
+     *
+     * @param integer $bookId
+     * @return array
+     */
+    function getBookModifyDate(int $bookId)
+    {
+        $res = $this->select('SELECT FORMAT(modification_datetime , \'yyyyMMddHHmmss\') as datetime FROM product WHERE id = ?', array($bookId));
         return $res;
     }
 
