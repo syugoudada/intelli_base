@@ -22,7 +22,7 @@ class DbOparation
      * @param array $input_parameters
      * @return array
      */
-    private function select(String $sql, $input_parameters = null)
+    function select(String $sql, $input_parameters = null)
     {
         $stmt = $this->conn->prepare($sql);
 
@@ -42,7 +42,7 @@ class DbOparation
      * @param array $input_parameters
      * @return bool
      */
-    private function insert(String $sql, $input_parameters = null)
+    function insert(String $sql, $input_parameters = null)
     {
         $stmt = $this->conn->prepare($sql);
         $flag = $stmt->execute($input_parameters);
