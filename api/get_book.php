@@ -22,7 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->getBook($id);
+    $value = $db->select('SELECT book.id, book.name, author.id, author.name FROM product book, author WHERE author.id = book.author_id AND book.id = ?', array($bookId));
+    if (!$value) {
+        $response['error'] = true;
+        $response['message'] = 'Statement error.';
+    }
     $response['content'] = $value;
 } else {
     $response['error'] = true;

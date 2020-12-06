@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->getCategories($alreadyGet);
+    $value = $db->select('SELECT * FROM category WHERE id > ? ORDER BY id', array($alreadyGet));
     $response['content'] = $value;
 } else {
     $response['error'] = true;

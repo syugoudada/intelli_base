@@ -18,11 +18,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         $response['message'] = 'post parameter error';
     }
 
-    //DBファイルの操作
+    // DBファイルの操作
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->getNote($id);
+    // 共有されているか確認
+    $share = $db->select('SELECT share FROM note WHERE id = ?', array($id));
+    if (!$share) {
+        $response['error'] = true;
+        $response['message'] = 'Statement error.';
+    } else if ($share[0]['share']) {
+        $value = $db->select('SELECT id, account_id, book_id FROM note WHERE id = ?', array($id));
+        if (!$value) {
+            $response['error'] = true;
+            $response['message'] = 'Statement error.';
+        }
+    } else {
+        $value = false;
+        $response['message'] = 'Enterd noteId does not exist.';
+    }
     $response['content'] = $value;
 } else {
     $response['error'] = true;

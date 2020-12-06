@@ -31,7 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->getPurchasedBooksData($id, $alreadyGet);
+    $value = $db->select(
+        'SELECT purchase.id, book.id, book.name, author.id, author.name FROM purchase, product book, author 
+        WHERE product_id = book.id AND author.id = author_id AND account_id = ? AND purchase.id > ?',
+        array($userId, $already_get)
+    );
+    if (!$value) {
+        $response['error'] = true;
+        $response['message'] = 'Statement error.';
+    }
     $response['content'] = $value;
 } else {
     $response['error'] = true;

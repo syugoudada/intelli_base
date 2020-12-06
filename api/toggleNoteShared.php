@@ -30,7 +30,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $flg = $db->toggleNoteShared($id, $shared);
+    // 公開設定の指定があるかどうか
+    if ($shared != null) {
+        // 指定された設定に変更
+        $flg = $this->insert('UPDATE note SET shared = ? WHERE id = ?', array($shared, $noteId));
+    } else {
+        // 指定がなければトグル
+        $flg = $this->insert('UPDATE note SET shared = !shared WHERE id = ?', array($noteId));
+    }
+    if (!$flg) {
+        $response['error'] = true;
+        $response['message'] = 'Statement error.';
+    }
     $response['content'] = $flg;
 } else {
     $response['error'] = true;

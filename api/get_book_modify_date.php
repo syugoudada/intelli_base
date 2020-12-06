@@ -22,7 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->getBookModifyDate($id);
+    $value = $db->select('SELECT FORMAT(modification_datetime , \'yyyyMMddHHmmss\') as datetime FROM product WHERE id = ?', array($id));
+    if (!$value) {
+        $response['error'] = true;
+        $response['message'] = 'Statement error.';
+    }
     $response['content'] = $value;
 } else {
     $response['error'] = true;
