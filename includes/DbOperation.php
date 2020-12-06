@@ -148,10 +148,13 @@ class DbOparation
      */
     function toggleNoteShared(int $noteId, bool $shared = null)
     {
-        if ($shared == null) {
-            $flg = $this->insert('UPDATE note SET shared = !shared WHERE id = ?', array($noteId));
-        } else {
+        // 公開設定の指定があるかどうか
+        if ($shared != null) {
+            // 指定された設定に変更
             $flg = $this->insert('UPDATE note SET shared = ? WHERE id = ?', array($shared, $noteId));
+        } else {
+            // 指定がなければトグル
+            $flg = $this->insert('UPDATE note SET shared = !shared WHERE id = ?', array($noteId));
         }
         return $flg;
     }
