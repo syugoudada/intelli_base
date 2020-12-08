@@ -1,7 +1,9 @@
 <?php
 require_once('../Repository/db_config.php');
 require_once('../Repository/Product_Display_Repository.php');
+require_once('../Repository/Product_Registration_Repository.php');
 $myself = new Product_Display_Repository(DB_USER, DB_PASS);
+$genre_self = new Product_Registration_Repository(DB_USER,DB_PASS);
 $myself->login();
 $result = $myself->search($_POST['genre_id']);
 ?>
@@ -22,11 +24,29 @@ $result = $myself->search($_POST['genre_id']);
 
 <body>
   <header>
-
+    <div class="header_contents">
+    <form action="../Search/search.php" method="POST">
+        <div class="serach_bar">
+          <input type="text" id="search_bar" name = "title" placeholder="入力してください">
+          <input type="submit" id="submit" name="submit" value="ボタン">
+        </div>
+      </form>
+    </div>
   </header>
 
   <div class="contents">
     <div class="main_contents">
+      <div class="genre">
+        <div class="sub_genre">
+          <?php
+            $genre_self->login();
+            $genre = $genre_self -> sub_genre($_POST["genre_id"]);
+            foreach ($genre as $value) {
+              print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
+            }
+          ?>
+        </div>
+      </div>
       <div class="book_contents">
           <div class="sliderArea">
             <div class="regular_3 slider">

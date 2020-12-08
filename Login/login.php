@@ -7,7 +7,9 @@
   $myself-> login();
   if($myself->exist($_POST)){
     if($myself->password_resach($_POST)){
-      $_SESSION["user"] = $_POST['user'];
+      $_SESSION["account"]["user"] = $_POST['user'];
+      $id = $myself->find($_POST);
+      $_SESSION["account"]["id"] = $id[0]["id"];
       header('Location:../Top_Page/top_page.php');
     }else{
       echo "失敗";

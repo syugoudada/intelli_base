@@ -6,8 +6,14 @@ class Password_Change_Repository extends Repository{
     parent::__construct($name,$password);
   }
 
+  /**
+   * @param array $user ユーザーのID
+   * @return array $result ユーザーパスワード
+   */
+
   public function find($user,$input_parameters=NULL){
-    $user['sql'] = "SELECT password from account where name = '$user[user]'";
+    $account_id = $user["account"]["id"];
+    $user['sql'] = "SELECT password from account where id = '$account_id'";
     $result = parent::find($user);
     return $result;
   }
@@ -23,7 +29,8 @@ class Password_Change_Repository extends Repository{
     $old_password = $this->find($user);
     if($this->decryption($old,$old_password[0]['password'])){
       $new_password = $this->encrypt($new_password);
-      $sql['sql'] = "UPDATE account SET password = '$new_password' where name = '$user[user]'";
+      $account_id = $user["account"]["id"];
+      $sql['sql'] = "UPDATE account SET password = '$new_password' where id = '$account_id'";
       $result = parent::save($sql);
       return $result;
     }else{

@@ -26,7 +26,7 @@ class Account extends Repository{
    */
 
    public function find(array $user,$input_parameters=NULL){
-    $sql['sql'] = "Select name,point from account where name = '$user[user]'";
+    $sql['sql'] = "Select id,name,point from account where name = '$user[user]'";
     $result = parent::find($sql);
     return $result;
    }

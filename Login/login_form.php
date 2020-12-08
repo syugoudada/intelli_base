@@ -37,6 +37,9 @@
       <div>
         <button type="submit">Login</button>
       </div>
+
+      <a href="sign_up.php">新規登録</a>
+
     </form>
   </body>
 </html>
