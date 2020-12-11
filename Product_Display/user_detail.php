@@ -18,7 +18,7 @@
     <div class="">
       <ul>
         <li><a href="../Password_Change/change.php">パスワード変更</a></li>
-        <li><a href="../Product_Register/register.php">商品登録</a></li>
+        <li><a href="../Product_Register/Register.php">商品登録</a></li>
         <li><a href="../Login/logout.php">ログアウト</a></li>
       </ul>
     </div>
