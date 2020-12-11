@@ -8,12 +8,12 @@ $must_login = array('user' => $_POST['user'], 'password' => $_POST['password'], 
 $myself->login();
 
 if ($must_login['user'] != "" && $must_login['password'] != "" && $must_login['password'] == $must_login['confirm']) {
-  if($myself->exist($must_login)){
+  if($myself->exist($must_login['user'])){
     $_SESSION['message'] = "既に登録されています";
     setcookie('user',$must_login['user'],Cookie_Ticket);
     header("Location:login_form.php");
   }else{
-    if($myself->save($must_login)){
+    if($myself->account_save($must_login['password'],$must_login['user'])){
       print("登録完了");
     }else{
       print("失敗");

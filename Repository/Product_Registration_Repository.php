@@ -13,7 +13,7 @@ class Product_Registration_Repository extends Repository{
    */
 
   function author_exist(array $author){
-    $sql['sql'] = "SELECT COUNT(*) from author where name = '$author[name]'";
+    $sql = "SELECT COUNT(*) from author where name = '$author[name]'";
     $result = parent::exist($sql);
     return $result;
   }
@@ -31,9 +31,9 @@ class Product_Registration_Repository extends Repository{
     }else{
       if(isset($author['name']) && $author['name'] != ""){
         if(filter_var($author['url'],FILTER_VALIDATE_URL)){
-          $sql['sql'] = "insert into author(name,url) values('$author[name]','$author[url]')";
+          $sql = "insert into author(name,url) values('$author[name]','$author[url]')";
         }else{  
-          $sql['sql'] = "INSERT into author(name) values('$author[name]')";
+          $sql = "INSERT into author(name) values('$author[name]')";
         }
       }else{
         return false;
@@ -49,7 +49,7 @@ class Product_Registration_Repository extends Repository{
 
   function author_update($author){
     if(filter_var($author['url'],FILTER_VALIDATE_URL)){
-      $sql['sql'] = "UPDATE author set url = '$author[url]' where name = '$author[name]'";
+      $sql = "UPDATE author set url = '$author[url]' where name = '$author[name]'";
       $result = parent::save($sql);
       return $result;
     }
@@ -58,7 +58,7 @@ class Product_Registration_Repository extends Repository{
   function register_genre($genre){
     if(isset($genre['new_genre']) && $genre['sub_genre'] == "add" && $genre['new_genre'] != ""){
       if(!$this->exits_genre($genre['new_genre'])){
-        $sql['sql'] = "Insert into category(name,parent_id) values('$genre[new_genre]',$genre[genre])";
+        $sql = "Insert into category(name,parent_id) values('$genre[new_genre]',$genre[genre])";
         $result = parent::save($sql);
         return $result;
       }
@@ -73,7 +73,7 @@ class Product_Registration_Repository extends Repository{
    */
 
   function genre(){
-    $sql['sql'] = "SELECT id,name from category where id <= 25";
+    $sql = "SELECT id,name from category where id <= 25";
     $result = parent::find($sql);
     return $result;
   }
@@ -85,13 +85,13 @@ class Product_Registration_Repository extends Repository{
    */
 
   function sub_genre($id){
-    $sql['sql'] = "SELECT id,name from category where parent_id = $id";
+    $sql = "SELECT id,name from category where parent_id = $id";
     $result = parent::find($sql);
     return $result;
   }
 
  function exits_genre($genre){
-   $sql['sql'] = "SELECT COUNT(*) FROM category where name = '$genre'";
+   $sql = "SELECT COUNT(*) FROM category where name = '$genre'";
    $result = parent::exist($sql);
    return $result;
  }
@@ -104,18 +104,18 @@ class Product_Registration_Repository extends Repository{
 
  function book_save($book_info){
   if(is_numeric($book_info['price']) && !$this->find_id($book_info)){
-    $author['sql'] = "Select id from author where name = '$book_info[name]'";
-    $book['author'] = parent::find($author);
+    $author_sql = "Select id from author where name = '$book_info[name]'";
+    $book['author'] = parent::find($author_sql);
     $author_id = $book['author'][0]['id'];
     //サブジャンル選択状態
     if($book_info['sub_genre'] != 'add'){
-      $sql['sql'] = "Insert into product(author_id,name,category_id,description,price)values('$author_id','$book_info[title]',$book_info[sub_genre],'$book_info[description]',$book_info[price])";
+      $sql = "Insert into product(author_id,name,category_id,description,price)values('$author_id','$book_info[title]',$book_info[sub_genre],'$book_info[description]',$book_info[price])";
     //新規ジャンル登録した
     }elseif($book_info['sub_genre'] == 'add'){
-      $genre['sql'] = "Select id from category where name = '$book_info[new_genre]'";
-      $book['genre'] = parent::find($genre);
+      $genre_sql = "Select id from category where name = '$book_info[new_genre]'";
+      $book['genre'] = parent::find($genre_sql);
       $genre_id = $book['genre'][0]['id'];
-      $sql['sql'] = "Insert into product(author_id,name,category_id,description,price)values('$author_id','$book_info[title]',$genre_id,'$book_info[description]',$book_info[price])";
+      $sql = "Insert into product(author_id,name,category_id,description,price)values('$author_id','$book_info[title]',$genre_id,'$book_info[description]',$book_info[price])";
     }
     $result = parent::save($sql);
     return $result;
@@ -123,7 +123,7 @@ class Product_Registration_Repository extends Repository{
  }
 
  function find_id($book_info){
-    $sql['sql'] = "SELECT id from product where name = '$book_info[title]'";
+    $sql = "SELECT id from product where name = '$book_info[title]'";
     $result = parent::find($sql);
     return $result;
  }

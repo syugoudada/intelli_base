@@ -5,7 +5,8 @@ require_once('../Repository/db_config.php');
 
 $myself = new Search_Like_Repository(DB_USER,DB_PASS);
 $myself->login();
-$result = $myself->search($_POST['title']);
+$title = $_POST['title'];
+$result = $myself->search($title);
 $book["id"] = array();
 $book["name"] = array();
 $book["price"] = array();

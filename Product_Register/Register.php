@@ -16,8 +16,8 @@
 <body>
   <div>
     <form method="POST" enctype="multipart/form-data" action="register_service.php">
-      タイトル:<input type="text" name="title">
-      著者名:<input type="text" name="name"><br>
+      タイトル:<input type="text" name="title" required>
+      著者名:<input type="text" name="name" required><br>
       説明:<textarea style="resize:none" name="description"></textarea>
       <div class="register">
         ジャンル:<select name="genre" id="genre" required>
@@ -82,10 +82,10 @@
         <input type="text" class="new_genre" name="new_genre" placeholder="新規登録してください" hidden>
         <br>
       </div>
-      価格:<input type="text" name="price"><br>
+      価格:<input type="text" name="price" required><br>
       引用:<input type="text" name="url"><br>
-      PDF:<input type="file" name="pdf" accept=".pdf">
-      画像:<input type="file" name="image" accept="image/*">
+      PDF:<input type="file" name="pdf" accept=".pdf" required>
+      画像:<input type="file" name="image" accept="image/*" required>
       <input type="submit" name="submit" value="Upload"/>
     </form>
   </div>

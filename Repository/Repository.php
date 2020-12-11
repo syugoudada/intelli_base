@@ -7,10 +7,10 @@ interface Login_Process{
 }
 
 interface IuserRepository extends Login_Process{
-  public function save(array $user);
-  public function find(array $user);
-  public function exist(array $user);
-  public function delete(array $user);
+  public function save(string $sql);
+  public function find(string $sql);
+  public function exist(string $sql);
+  public function delete(string $sql);
 }
 
 class Repository implements IuserRepository{
@@ -45,7 +45,7 @@ class Repository implements IuserRepository{
    */
   
   public function encrypt(string $password){
-    $hash_password = password_hash($password,PASSWORD_DEFAULT);
+    $hash_password = password_hash($password,PASSWORD_BCRYPT);
     return $hash_password;
   }
 
@@ -59,14 +59,14 @@ class Repository implements IuserRepository{
     return $verity_password;
   }
 
-  public function save(array $user,$input_parameters = NULL){
-    $stmt = $this->dbh->prepare($user['sql']); 
+  public function save(string $sql,$input_parameters = NULL){
+    $stmt = $this->dbh->prepare($sql); 
     $result = $stmt->execute($input_parameters);
     return $result;
   }
 
-  public function find(array $user,$input_parameters = NULL){
-    $stmt = $this->dbh->prepare($user['sql']); 
+  public function find(string $sql,$input_parameters = NULL){
+    $stmt = $this->dbh->prepare($sql); 
     $flag = $stmt->execute($input_parameters);
     if(!$flag){
       return false;
@@ -75,8 +75,8 @@ class Repository implements IuserRepository{
     return $result;
   }
 
-  public function exist(array $user,$input_parameters = NULL){
-    $stmt = $this->dbh->prepare($user['sql']); 
+  public function exist(string $sql,$input_parameters = NULL){
+    $stmt = $this->dbh->prepare($sql); 
     $flag = $stmt->execute($input_parameters);
     if(!$flag){
       return false;
@@ -89,8 +89,8 @@ class Repository implements IuserRepository{
     }
   }   
 
-  public function delete(array $user,$input_parameters=NULL){
-    $stmt = $this->dbh->prepare($user['sql']); 
+  public function delete(string $sql,$input_parameters=NULL){
+    $stmt = $this->dbh->prepare($sql); 
     $result = $stmt->execute($input_parameters);
     return $result;
   }

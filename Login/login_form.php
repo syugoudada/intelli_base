@@ -3,6 +3,8 @@
   if(isset($_SESSION['user'])){
     unset($_SESSION);
   }
+  //ページ分けで使う
+  var_dump($_SERVER['HTTP_REFERER']);
 ?>
 
 <html lang="ja">
@@ -27,14 +29,14 @@
       </div>
 
       <p>
-        <?php 
-          if (isset($_SESSION['message']) && $_SESSION['message'] != ""){ 
-          echo $_SESSION['message'] ;
-        }?>
-        </p>
+        
+      </p>
       <div>
         <button type="submit">Login</button>
       </div>
+
+      <a href="sign_up.php">新規登録</a>
+
     </form>
   </body>
 </html>
