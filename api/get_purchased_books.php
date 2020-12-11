@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     $db = new DbOparation();
 
     $value = $db->select(
-        'SELECT purchase.id, book.id, book.name, author.id, author.name FROM purchase, product book, author 
+        'SELECT purchase.id id, book.id book_id, book.title book_title, author.id author_id, author.name author_name FROM purchase, product book, author 
         WHERE product_id = book.id AND author.id = author_id AND account_id = ? AND purchase.id > ?',
         array($userId, $already_get)
     );
