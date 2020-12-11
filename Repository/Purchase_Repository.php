@@ -15,12 +15,11 @@ class Purchase_Repository extends Repository{
    * @return boolean
    */
 
-  public function save(array $user,$input_parameters=NULL){
+  public function product_save(array $user){
     $id = array('product_id' => $user['product_id'][0]['id'],'user_id' => $user['user_id'][0]['id']);
     $purchased_day = date("Y-m-d");
     $sql = "insert into parchase(account_id,product_id,date) values ('$id[product_id]','$id[user_id]','$purchased_day')";
-    $user['sql'] = $sql;
-    $result = parent::save($user);
+    $result = parent::save($sql);
     return $result;
    }
 
@@ -30,14 +29,14 @@ class Purchase_Repository extends Repository{
    * @return array $result 商品ID アカウントID
    */
 
-  public function find(array $user,$input_parameters=NULL){
-    $product_sql = "select id from product where name = '$this->value'";
-    $user_sql = "select id from account where name = 'user'";
-    $user['sql'] = $product_sql;
-    $result['product_id'] = parent::find($user);
-    $user['sql'] = $user_sql;
-    $result['user_id'] = parent::find($user);
-    return $result;
-   }
+  // public function find(array $user){
+  //   $product_sql = "select id from product where name = '$this->value'";
+  //   $user_sql = "select id from account where name = 'user'";
+  //   $user['sql'] = $product_sql;
+  //   $result['product_id'] = parent::find($user);
+  //   $user['sql'] = $user_sql;
+  //   $result['user_id'] = parent::find($user);
+  //   return $result;
+  //  }
 
 }

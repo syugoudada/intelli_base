@@ -42,7 +42,7 @@ if ($_POST['title'] == "") {
         }
       });
 
-      <?php print("var title = {\"title\":\"$_POST[title]\"};ajax(title);")?>
+      <?php if($_POST['title'] != ""){print("var title = {\"title\":\"$_POST[title]\"};ajax(title);");}?>
 
       function ajax(title_name) {
         // 非同期通信

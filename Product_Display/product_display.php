@@ -5,7 +5,8 @@ require_once('../Repository/Product_Registration_Repository.php');
 $myself = new Product_Display_Repository(DB_USER, DB_PASS);
 $genre_self = new Product_Registration_Repository(DB_USER,DB_PASS);
 $myself->login();
-$result = $myself->search($_POST['genre_id']);
+$genre_id = $_POST['genre_id'];
+$result = $myself->search($genre_id);
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +41,8 @@ $result = $myself->search($_POST['genre_id']);
         <div class="sub_genre">
           <?php
             $genre_self->login();
-            $genre = $genre_self -> sub_genre($_POST["genre_id"]);
+            $genre_id = $_POST["genre_id"];
+            $genre = $genre_self -> sub_genre($genre_id);
             foreach ($genre as $value) {
               print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
             }
@@ -48,13 +50,15 @@ $result = $myself->search($_POST['genre_id']);
         </div>
       </div>
       <div class="book_contents">
+      <!-- <form action='../Search/product_detail.php' name='product_submit11' method='POST'><a href='#' onclick='document.product_submit11.submit();'><img src='../uploadedData/thumbnail/thumbnail11.png'></a><input type='text' name = 'product_id' hidden value  = '11'></form> -->
           <div class="sliderArea">
             <div class="regular_3 slider">
               <?php
               foreach($result as $value){
-                print("<div><a href='#'><img src='../uploadedData/thumbnail/book$value[id].jpg'></a></div>");
+                print("<form action='../Search/product_detail.php' name='product_submit$value[id]' method='POST'><a href='#' onclick='document.product_submit$value[id].submit();'><img src='../uploadedData/thumbnail/thumbnail$value[id].png'></a><input type='text' name = 'product_id' hidden value  = '$value[id]'></form>");
               }
               ?>
+              
             </div>
           </div>
           <div class="index-btn-wrapper">

@@ -28,7 +28,7 @@ function image_register(string $id,array $file){
   $name = $file['image_name'];
   $tmp_file = $file['image_tmp'];
   move_uploaded_file($tmp_file,IMAGE_PATH.$name);
-  if (rename(IMAGE_PATH . $name, IMAGE_PATH . "image$id.png")) {
+  if (rename(IMAGE_PATH . $name, IMAGE_PATH . "thumbnail$id.png")) {
     image_extension($id);
     return true;
   } else {
@@ -42,7 +42,7 @@ function image_register(string $id,array $file){
  */
 
 function image_extension($id){
-  $image = (IMAGE_PATH."image$id.png");
+  $image = (IMAGE_PATH."thumbnail$id.png");
 switch(exif_imagetype($image)){
   case IMAGETYPE_JPEG :
     $img = imagecreatefromjpeg($image);
@@ -54,7 +54,30 @@ switch(exif_imagetype($image)){
     $img = imagecreatefrompng($image);
     break;
 }
-imagepng($img,IMAGE_PATH."image$id.png");
+image_resize($img,$id);
+}
+
+/**
+ * 画像サイズの変更
+ * @param $id product_id
+ * @param $img 元の画像
+ */
+
+function image_resize($img,$id){
+  list($width, $height) = getimagesize(IMAGE_PATH."thumbnail$id.png");
+  $new_width = 150;
+  $new_height = 200;
+
+  //新しい画像のサイズ
+  $image_r = imagecreatetruecolor($new_width, $new_height);
+
+  imagecopyresampled($image_r, $img, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+
+  imagepng($image_r, IMAGE_PATH."thumbnail$id.png");
+
+  //一時領域の画像を削除
+  imagedestroy($image_r);
+  imagedestroy($img);
 }
 
 ?>

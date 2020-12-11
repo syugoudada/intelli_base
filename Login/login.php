@@ -5,16 +5,19 @@
   require_once('../Repository/db_config.php');
   $myself = new Account(DB_USER,DB_PASS);
   $myself-> login();
-  if($myself->exist($_POST)){
+  $user = $_POST['user'];
+  if($myself->exist($user)){
     if($myself->password_resach($_POST)){
-      $_SESSION["account"]["user"] = $_POST['user'];
-      $id = $myself->find($_POST);
+      $_SESSION["account"]["user"] = $user;
+      $id = $myself->find($user);
       $_SESSION["account"]["id"] = $id[0]["id"];
       header('Location:../Top_Page/top_page.php');
     }else{
-      echo "失敗";
+      $_SESSION['message'] = "失敗";
+      print("<script>history.back();</script>");
     }
   }else{
-    echo "失敗";
+    $_SESSION['message'] = "失敗";
+    print("<script>history.back();</script>");
   }
 ?>
