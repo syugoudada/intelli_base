@@ -1,5 +1,10 @@
 <?php
   session_start();
+  if($_SESSION['product']['message'] != ""){
+    $message = $_SESSION['product']['message'];
+    print("<script>alert('$message')</script>");
+    unset($_SESSION['product']['message']);
+  }
 ?>
 
 <!DOCTYPE html>

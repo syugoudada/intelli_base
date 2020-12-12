@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('../Repository/db_config.php');
 require_once('../Repository/Product_Registration_Repository.php');
 require_once('../File/file.php');
@@ -15,13 +16,20 @@ foreach ($author_info as $key => $value) {
 //author,category,productの登録処理
 if (isset($author_info['submit']) && $author_info['submit'] != '') {
   $myself->login();
-  if($myself->register_author($author_info) && $myself->register_genre($author_info)){
-    if($myself->book_save($author_info)){
-      $id = $myself->find_id($author_info);
-      if(pdf_register($id[0]['id'],$file) && image_register($id[0]['id'],$file)){
-        echo "登録成功";
-        //元のページに遷移
-      }
+  if($myself->register_author($author_info) && $myself->register_genre($author_info) && $myself->book_save($author_info)){
+    $id = $myself->find_id($author_info['title']);
+    if(pdf_register($id[0]['id'],$file) && image_register($id[0]['id'],$file)){
+      $_SESSION['product']['message'] = "登録成功";
+      //元のページに遷移
+      header("Location:Register.php");
+    }else{
+      $_SESSION['product']['message'] = "失敗";
+      //元のページに遷移
+      header("Location:Register.php");
     }
+  }else{
+    $_SESSION['product']['message'] = "失敗";
+    //元のページに遷移
+    header("Location:Register.php");
   }
 }
