@@ -10,11 +10,11 @@ class Review extends Repository
         parent::__construct($name, $password);
     }
 
-    // public function save(array $user, $input_parameters=NULL){
-    //     $user['sql'] = "INSERT INTO `review` (`account_id`, `product_id`, `evaluation`, `title`, `description`) VALUES ('$user[id]', '$user[book_id]', '$user[star]', '$user[title]', '$user[description]');";
-    //     $result = parent::save($user);
-    //     return $result;
-    // }
+    public function reviewSave(array $reviewAdd){
+        $sql = "INSERT INTO `review` (`account_id`, `product_id`, `evaluation`, `title`, `description`) VALUES ('$reviewAdd[id]', '$reviewAdd[book_id]', '$reviewAdd[star]', '$reviewAdd[title]', '$reviewAdd[description]');";
+        $result = parent::save($sql);
+        return $result;
+    }
 
 
 
