@@ -17,7 +17,7 @@ $product_id = $_POST["product_id"];
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>カート</title>
-    <link rel="stylesheet" type="text/css" href="Review.css">
+    <link rel="stylesheet" type="text/css" href="../Css/review.css">
 
 </head>
     <body>
