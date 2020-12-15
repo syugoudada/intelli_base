@@ -13,21 +13,21 @@ class Account extends Repository{
    * @return boolean
    */
 
-   public function account_save($pass,$user){
+   public function account_save($mail,$user,$pass){
     $password = $this->encrypt($pass);
-    $sql = "INSERT INTO account(name,password,point) VALUES ('$user','$password',0)";
+    $sql = "INSERT INTO accounts(user_id,user_name,password) VALUES ('$mail','$user','$password')";
     $result = parent::save($sql);
     return $result;
    }
 
    /**
    * アカウント情報
-   * @param array $user_name 
+   * @param string $user_id 
    * @return array $result ユーザ情報
    */
 
-   public function find($user_name,$input_parameters=NULL){
-    $sql = "Select id,name,point from account where name = '$user_name'";
+   public function find($user_id,$input_parameters=NULL){
+    $sql = "Select id,user_id,user_name,point from accounts where user_id = '$user_id'";
     $result = parent::find($sql);
     return $result;
    }
@@ -38,8 +38,8 @@ class Account extends Repository{
    * @return boolean 
    */
 
-  public function exist($user_name,$input_parameters = NULL){
-    $sql = "SELECT COUNT(*) FROM account where name = '$user_name'"; 
+  public function exist($user,$input_parameters = NULL){
+    $sql = "SELECT COUNT(*) FROM accounts where user_id = '$user'"; 
     $result = parent::exist($sql);
     return $result;
   }
@@ -49,9 +49,9 @@ class Account extends Repository{
     */
 
    function password_resach(array $user){
-     $sql = "SELECT password from account where name = '$user[user]'";
+     $sql = "SELECT password from accounts where user_id = '$user[user_id]'";
      $result = parent::find($sql);
-     $flag = $this->decryption($user['password'],$result[0]['password']);
+     $flag = $this->decryption($user['pass'],$result[0]['password']);
      return $flag;
    }
 }

@@ -55,7 +55,7 @@ $result = $myself->search($genre_id);
             <div class="regular_3 slider">
               <?php
               foreach($result as $value){
-                print("<form action='../Search/product_detail.php' name='product_submit$value[id]' method='POST'><a href='#' onclick='document.product_submit$value[id].submit();'><img src='../uploadedData/thumbnail/thumbnail$value[id].png'></a><input type='text' name = 'product_id' hidden value  = '$value[id]'></form>");
+                print("<form action='../Search/product_detail.php' name='product_submit$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><a href='#' onclick='document.product_submit$value[id].submit();'><img src='../uploadedData/thumbnail/thumbnail$value[id].png'></a><input type='text' name = 'product_id' hidden value  = '$value[id]'></form>");
               }
               ?>
               

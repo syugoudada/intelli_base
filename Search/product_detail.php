@@ -27,7 +27,7 @@ $product_detail = $myself->book_find($product_id);
         </div>
         <div class="description">
           <div class="title">
-            <?= $product_detail[0]["name"]; ?>
+            <?= $product_detail[0]["title"]; ?>
           </div>
           <p id="star1"></p>
           <div class="price">

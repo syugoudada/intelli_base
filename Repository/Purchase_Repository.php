@@ -39,4 +39,16 @@ class Purchase_Repository extends Repository{
   //   return $result;
   //  }
 
+  /**
+   * 本の情報
+   * @param string $id cartの中のID
+   * @return array $result 本の情報
+   */
+
+  function book_find(string $id){
+    $sql = "SELECT book.id,book.title,book.price,book.evaluation_avg,author.name as author_name FROM books book, authors author WHERE book.author_id = author.id and book.id = '$id'";
+    $result = parent::find($sql);
+    return $result;
+  }
+
 }

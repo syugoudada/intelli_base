@@ -1,7 +1,7 @@
 <?php
-session_start();
-$_SESSION['user'] = $_SESSION['user'];
-#クッキーを書くuser
+  session_start(); 
+  //cart情報を受け取る
+  $cart_items = $_POST;
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +12,16 @@ $_SESSION['user'] = $_SESSION['user'];
   <title>Document</title>
 </head>
 <body>
-  <h1>ログイン成功</h1>
+  <header>
+
+  </header>
+
+  <div class="contents">
+    
+  </div>
+
+  <footer>
+
+  </footer>
 </body>
 </html>

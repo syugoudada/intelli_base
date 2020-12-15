@@ -23,7 +23,7 @@ class Repository implements IuserRepository{
   function __construct(string $name,string $password){
     $this -> name = $name;
     $this -> password = $password;
-    $this -> dns = "mysql:host=127.0.0.1;dbname=intelli_base;dbport=3306;charset=utf8";
+    $this -> dns = "mysql:host=127.0.0.1;dbname=intelli_base_version2;dbport=3306;charset=utf8";
   }
 
   public function login(){

@@ -13,10 +13,10 @@
     <h1>ログインページ</h1>
     <form action="login.php" method="POST">
       <div>
-        <label for="user">ユーザー
-          <input type="text" name="user" value="<?php
-            if(isset($_COOKIE['user']) && $_COOKIE['user'] !== ""){
-              print($_COOKIE['user']);
+        <label for="user_id">ユーザー
+          <input type="text" name="user_id" value="<?php
+            if(isset($_COOKIE['user_id']) && $_COOKIE['user_id'] !== ""){
+              print($_COOKIE['user_id']);
             }
           ?>"required>
         </label>
@@ -24,7 +24,7 @@
 
       <div>
         <label for="pass">パスワード
-          <input type="password" name="password" required>
+          <input type="pass" name="pass" required>
         </lable>
       </div>
 

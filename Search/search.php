@@ -6,7 +6,6 @@ if ($_POST['title'] == "") {
 
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +41,11 @@ if ($_POST['title'] == "") {
         }
       });
 
-      <?php if($_POST['title'] != ""){print("var title = {\"title\":\"$_POST[title]\"};ajax(title);");}?>
+      <?php if($_POST['title'] != ""){
+        $title = str_replace("\"","",$_POST['title']);
+        $title = str_replace("'","",$title);
+        print("var title = {\"title\":\"$title\"};ajax(title);");
+        }?>
 
       function ajax(title_name) {
         // 非同期通信
@@ -54,6 +57,9 @@ if ($_POST['title'] == "") {
           success: function(msg) {
             if (msg['id'].length > 0) {
               for (var i = 0; i < msg["id"].length; i++) {
+                if(i === 16){
+                  break;
+                }
                 make_obj(msg, i);
               }
             } else {
@@ -65,18 +71,21 @@ if ($_POST['title'] == "") {
       }
 
       function make_obj(content, index) {
-        $('#product_content').append(' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = product_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["name"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><input type="submit" name="cart" value="Cart"></div></div>');
+        $('#product_content').append(' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST" target="_blank" rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = product_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><input type="submit" name="cart" value="Cart"></div></div>');
         star(content, index);
+      }
+
+      function make_button(){
+        $('#product_content').append("<button type='submit' value='送信'>送信</button>");
       }
 
       function star(content, index) {
         $('#star' + index).raty({
           readOnly: true,
-          score: content["avg"][index]
+          score: Math.round(content["avg"][index])
         });
       }
     });
   </script>
 </body>
-
 </html>

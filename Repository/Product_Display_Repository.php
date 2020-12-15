@@ -13,18 +13,18 @@ class Product_Display_Repository extends Repository{
    */
 
   public function search(string $id){
-    $sql = "SELECT pu.id,pu.name,pu.price,pu.evaluation_avg,au.name as author_name FROM product pu, author au WHERE pu.author_id = au.id and pu.category_id = '$id'";
+    $sql = "SELECT book.id,book.title,book.price,book.evaluation_avg,author.name as author_name FROM books book, authors author WHERE book.author_id = author.id and book.genre_id = '$id'";
     $result = parent::find($sql);
     return $result;
   }
 
   /**
    * 本詳細
-   * @param $user 本のid
+   * @param $book_id 本のid
    */
 
-  public function find($product_id, $input_parameters = NULL){
-    $sql = "SELECT * from product WHERE id = $product_id";
+  public function find($book_id, $input_parameters = NULL){
+    $sql = "SELECT * from books WHERE id = $book_id";
     $result = parent::find($sql);
     return $result;
   }
