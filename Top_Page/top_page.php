@@ -34,15 +34,15 @@ $genre = $myself->genre();
           <a href="../Login/login_form.php">こんにちは、ログイン</a></form>
         </div>
         <script>
-          function login_user(user) {
-            $('.login_tag').children('a').html("<a href='../Product_Display/user_detail.php'>" + user + "さんようこそ</a>");
+          function login_name(name) {
+            $('.login_tag').children('a').html("<a href='../Product_Display/user_detail.php'>" + name + "さんようこそ</a>");
           }
         </script>
 
         <?php
-        if ($_SESSION["account"]["user"] != "" && isset($_SESSION["account"]["user"])) {
-          $user = $_SESSION["account"]["user"];
-          print("<script>$(function(){login_user('$user');});</script>");
+        if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
+          $name = $_SESSION["account"]["name"];
+          print("<script>$(function(){login_name('$name');});</script>");
         }
         ?>
 

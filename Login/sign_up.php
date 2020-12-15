@@ -16,15 +16,15 @@ session_start();
   <form action="register.php" method="POST">
 
     <div>
-      <label for="mail">mail
-        <input type="text" name="mail" required>
+      <label for="email">mail
+        <input type="text" name="email" required>
       </label>
     </div>
 
 
     <div>
-      <label for="user">user
-        <input type="text" name="user" required>
+      <label for="name">name
+        <input type="text" name="name" required>
       </label>
     </div>
 

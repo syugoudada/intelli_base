@@ -13,10 +13,10 @@
     <h1>ログインページ</h1>
     <form action="login.php" method="POST">
       <div>
-        <label for="user_id">ユーザー
-          <input type="text" name="user_id" value="<?php
-            if(isset($_COOKIE['user_id']) && $_COOKIE['user_id'] !== ""){
-              print($_COOKIE['user_id']);
+        <label for="email">ユーザー
+          <input type="text" name="email" value="<?php
+            if(isset($_COOKIE['email']) && $_COOKIE['email'] !== ""){
+              print($_COOKIE['email']);
             }
           ?>"required>
         </label>
