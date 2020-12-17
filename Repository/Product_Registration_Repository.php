@@ -8,7 +8,7 @@ class Product_Registration_Repository extends Repository{
 
   /**
    * 著者が登録されているか
-   * @param string $author[name] 著者
+   * @param string $author 著者
    * @return boolean 
    */
   function author_exist(string $author){

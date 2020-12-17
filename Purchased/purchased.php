@@ -4,19 +4,24 @@ require_once("../Repository/Purchase_Repository.php");
 require_once("../Repository/db_config.php");
 $myself = new Purchase_Repository(DB_USER,DB_PASS);
 $myself->login();
-// $kago = array('この音とまれ!');
-// $user = $_SESSION['user'];
-// $user = [];
-// if (isset($_POST['kago']) and $_POST != "") {
-// if (isset($kago) and $kago != "") {
-//   #purchase綴り間違い
-//   foreach ($kago as $value) {
-//     $myself->value = $value;
-//     $user = $myself->find($user);
-//     if ($myself->save($user)) {
-//       print("購入しました");
-//     } else {
-//       print("失敗");
-//     }
-//   }
+$cart = array();
+for($i = 0; $i < count($_POST)-3; $i++){
+  array_push($cart,$_POST["id$i"]);
+}
+
+if($_POST['submit'] != ""){
+  foreach($cart as $book_id){
+    $myself->book_purchase($account_id,$book_id,TODAY,$point($_POST['total']),$_POST['point']);
+    $myself->change_point($account_id,$_POST['point']);
+  }
+}
+
+/**
+ * ポイント計算
+ */
+
+$point = function ($total){
+  return round($total / 100);
+};
+
 

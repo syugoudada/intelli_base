@@ -1,8 +1,5 @@
 <?php
   session_start();
-  if(isset($_SESSION['user'])){
-    unset($_SESSION);
-  }
   //ページ分けで使う
   var_dump($_SERVER['HTTP_REFERER']);
 ?>
@@ -28,15 +25,12 @@
         </lable>
       </div>
 
-      <p>
-        
-      </p>
+      <?= print("<input type='hidden' name='http' value='$_SERVER[HTTP_REFERER]'"); ?>
       <div>
         <button type="submit">Login</button>
       </div>
 
       <a href="sign_up.php">新規登録</a>
-
     </form>
   </body>
 </html>

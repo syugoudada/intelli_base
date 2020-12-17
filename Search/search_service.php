@@ -11,13 +11,13 @@ $book["id"] = array();
 $book["title"] = array();
 $book["price"] = array();
 $book["avg"] = array();
-$book["author_name"] = array();
+$book["name"] = array();
 foreach ($result as $value) {
   array_push($book["id"], $value['id']);
   array_push($book["title"], $value['title']);
   array_push($book["price"],$value['price']);
   array_push($book["avg"],$value['evaluation_avg']);
-  array_push($book["author_name"],$value['author_name']);
+  array_push($book["name"],$value['name']);
 }
 echo json_encode($book, JSON_UNESCAPED_UNICODE);
 ?>

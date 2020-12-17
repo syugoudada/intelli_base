@@ -13,7 +13,7 @@ class Product_Display_Repository extends Repository{
    */
 
   public function search(string $id){
-    $sql = "SELECT book.id,book.title,book.price,book.evaluation_avg,author.name as author_name FROM books book, authors author WHERE book.author_id = author.id and book.genre_id = '$id'";
+    $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where genre_id = '$id'";
     $result = parent::find($sql);
     return $result;
   }

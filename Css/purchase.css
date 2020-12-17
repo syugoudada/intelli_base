@@ -1,0 +1,20 @@
+.book_contents{
+  display: flex;
+}
+
+.book_list{
+  display: flex;
+  margin: 20px 0;
+}
+
+.all_contents{
+  width: 1000px;
+  margin: 0  auto;
+}
+
+.book_items{
+  border: 1.5px solid rgba(0,0,255,0.3);
+  border-radius: 5%;
+  width: 600px;
+}
+

@@ -9,13 +9,13 @@ $genre = $myself->genre();
 
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link href="../Css/slick-theme.css" rel="stylesheet" type="text/css">
   <link href="../Css/slick.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../Css/test.css">
   <script src="../js/slick.min.js"></script>
   <title>intelli_base</title>
 </head>
@@ -67,7 +67,6 @@ $genre = $myself->genre();
       </div>
       <div class="book_contents">
         <div class="section">
-
           <div class="sliderArea">
             <div class="regular_3 slider">
               <div><a href="#"><img src="https://125naroom.com/demo/img/itukanokotonokoto01.jpg" alt="125naroom"></a></div>
