@@ -18,7 +18,7 @@ class Purchase_Repository extends Repository{
    */
 
   public function book_purchase($account_id,$book_id,$today,$add_point,$use_point){
-    $sql = "INSERT into purchase(account_id,book_id,date,add_point,use_point) values ('$account_id','$book_id','$today','$add_point','$use_point')";
+    $sql = "INSERT into purchases(account_id,book_id,date,add_point,use_point) values ('$account_id','$book_id','$today','$add_point','$use_point')";
     $result = parent::save($sql);
     return $result;
   }
@@ -41,7 +41,7 @@ class Purchase_Repository extends Repository{
    */
 
   public function change_point($id,$point){
-    $sql = "UPDATE set accouts point = $point where id = $id";
+    $sql = "UPDATE accounts set point = $point where id = $id";
     $result = parent::save($sql);
     return $result;
   }
