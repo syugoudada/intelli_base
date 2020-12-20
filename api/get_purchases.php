@@ -10,18 +10,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     //値の取得
     if (isset($_POST['id'])) {
         $id = $_POST['id'];
-        $shared = null;
-        if (isset($_POST['shared'])) {
-            $shared = $_POST['shared'];
+        $alreadyGet = 0;
+        if (isset($_POST['already_get'])) {
+            $alreadyGet = $_POST['already_get'];
         }
     } else if (isset($_GET['id'])) {
+        $response['mode'] = 'debug';
         $id = $_GET['id'];
-        $shared = null;
-        if (isset($_GET['shared'])) {
-            $shared = $_GET['shared'];
+        $alreadyGet = 0;
+        if (isset($_GET['already_get'])) {
+            $alreadyGet = $_GET['already_get'];
         }
     } else {
-        $id = 0;
+        $id = 1;
+        $alreadyGet = 0;
         $response['error'] = true;
         $response['message'] = 'post parameter error';
     }
@@ -30,19 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    // 公開設定の指定があるかどうか
-    if ($shared != null) {
-        // 指定された設定に変更
-        $flg = $this->insert('UPDATE notes SET shared = ? WHERE id = ?', array($shared, $noteId));
-    } else {
-        // 指定がなければトグル
-        $flg = $this->insert('UPDATE notes SET shared = !shared WHERE id = ?', array($noteId));
-    }
-    if (!$flg) {
+    $value = $db->select(
+        'SELECT id, account_id, book_id FROM purchases WHERE account_id = ? AND id > ?',
+        array($id, $alreadyGet)
+    );
+    if (!$value) {
         $response['error'] = true;
         $response['message'] = 'Statement error.';
     }
-    $response['content'] = $flg;
+    $response['content'] = $value;
 } else {
     $response['error'] = true;
     $response['messgae'] = 'あなたは承認されていません';

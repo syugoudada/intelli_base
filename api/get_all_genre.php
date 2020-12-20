@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->select('SELECT * FROM category ORDER BY id');
+    $value = $db->select('SELECT id, name, parent_id FROM genres ORDER BY id');
     if (!$value) {
         $response['error'] = true;
         $response['message'] = 'Statement error.';
