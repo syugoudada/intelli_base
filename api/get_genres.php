@@ -8,12 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     $response['message'] = '承認';
 
     //値の取得
-    if (isset($_POST['id'])) {
-        $id = $_POST['id'];
-    } else if (isset($_GET['id'])) {
-        $id = $_GET['id'];
+    if (isset($_POST['already_get'])) {
+        $alreadyGet = $_POST['already_get'];
+    } else if (isset($_GET['test'])) {
+        $alreadyGet = 0;
+        if (isset($_GET['already_get'])) {
+            $alreadyGet = $_GET['already_get'];
+        }
     } else {
-        $id = 0;
+        $alreadyGet = 0;
         $response['error'] = true;
         $response['message'] = 'post parameter error';
     }
@@ -22,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->select('SELECT * FROM category WHERE id = ? ORDER BY id desc', array($id));
+    $value = $db->select('SELECT id, name, parent_id FROM genres WHERE id > ? ORDER BY id', array($alreadyGet));
     if (!$value) {
         $response['error'] = true;
         $response['message'] = 'Statement error.';

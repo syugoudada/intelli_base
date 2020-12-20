@@ -32,20 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     $db = new DbOparation();
 
     // Check accountId and bookId.
-    if (!$db->select('SELECT id FROM account WHERE account = ?', [$accountId]) || !$db->select('SELECT id FROM book WHERE id = ?', [$bookId])) {
+    if (!$db->select('SELECT id FROM accounts WHERE account = ?', [$accountId]) || !$db->select('SELECT id FROM book WHERE id = ?', [$bookId])) {
         // If entered accountId or bookId does not exist.
         $response['error'] = true;
         $response['message'] = 'Invalid accountId entered.';
         $res = false;
     } else {
-        $flg = $db->insert('INSERT INTO note (account_id, local_id, book_id, title, shared) values (?,?,?,?,?)', array($accountId, $localId, $bookId, $title, true));
+        $flg = $db->insert('INSERT INTO notes (account_id, local_id, book_id, title, shared) values (?,?,?,?,?)', array($accountId, $localId, $bookId, $title, true));
         if (!$flg) {
             // If cannot execute statement.
             $res = false;
             $response['error'] = true;
             $response['message'] = 'Statement error.';
         }
-        $rse = $db->select('SELECT id FORM note WHERE account_id = ? AND local_id = ?', array($accountId, $localId));
+        $rse = $db->select('SELECT id FORM notes WHERE account_id = ? AND local_id = ?', array($accountId, $localId));
     }
 
     // inserted noteId | false

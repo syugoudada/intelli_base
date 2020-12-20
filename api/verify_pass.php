@@ -8,14 +8,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     $response['message'] = '承認';
 
     //値の取得
-    if (isset($_POST['id']) && isset($_POST['pass'])) {
-        $id = $_POST['id'];
+    if (isset($_POST['email']) && isset($_POST['pass'])) {
+        $email = $_POST['email'];
         $pass = $_POST['pass'];
-    } else if (isset($_GET['id']) && isset($_GET['pass'])) {
-        $id = $_GET['id'];
+    } else if (isset($_GET['email']) && isset($_GET['pass'])) {
+        $email = $_GET['email'];
         $pass = $_GET['pass'];
     } else {
-        $id = 'test';
+        $email = 'lavon36@hotmail.com';
         $pass = 'testpass';
         $response['error'] = true;
         $response['message'] = 'post parameter error';
@@ -24,12 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     //DBファイルの操作
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
-    $value = $db->select('SELECT password FROM account WHERE id = ?', array($id));
+    $value = $db->select('SELECT id, password, name FROM accounts WHERE email = ?', array($email));
 
     if (count($value) != 1) {
         $content = [array('verify' => false)];
     } else {
-        $content = [array('verify' => password_verify($pass, $value[0]['password']))];
+        $content = [
+            array(
+                'verify' => password_verify($pass, $value[0]['password']),
+                'id' => $value[0]['id'],
+                'name' => $value[0]['name']
+            )
+        ];
     }
     $response['content'] = $content;
 } else {

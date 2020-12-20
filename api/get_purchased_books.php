@@ -31,10 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
+    // print "SELECT books.title, books.author_id, books.genre_id FROM books, purchases WHERE books.id = purchases.book_id AND purchases.account_id = $id AND purchases.id > $alreadyGet <br>";
+
     $value = $db->select(
-        'SELECT purchase.id id, book.id book_id, book.title book_title, author.id author_id, author.name author_name FROM purchase, product book, author 
-        WHERE product_id = book.id AND author.id = author_id AND account_id = ? AND purchase.id > ?',
-        array($userId, $already_get)
+        'SELECT books.id, books.title, books.author_id, books.genre_id FROM books, purchases WHERE books.id = purchases.book_id AND purchases.account_id = ? AND purchases.id > ?',
+        array($id, $alreadyGet)
     );
     if (!$value) {
         $response['error'] = true;

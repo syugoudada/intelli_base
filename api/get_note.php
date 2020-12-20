@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         $response['error'] = true;
         $response['message'] = 'Statement error.';
     } else if ($share[0]['share']) {
-        $value = $db->select('SELECT id, account_id, book_id FROM note WHERE id = ?', array($id));
+        $value = $db->select('SELECT id, account_id, book_id FROM notes WHERE id = ?', array($id));
         if (!$value) {
             $response['error'] = true;
             $response['message'] = 'Statement error.';
