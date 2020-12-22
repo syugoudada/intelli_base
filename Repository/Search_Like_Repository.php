@@ -24,7 +24,7 @@ class Search_Like_Repository extends Repository{
    */
 
   public function book_find($book_id){
-    $sql = "SELECT * from books WHERE id = $book_id";
+    $sql = "SELECT * from book_infomation WHERE id = $book_id";
     $result = parent::find($sql);
     return $result;
   }

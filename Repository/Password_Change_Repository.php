@@ -30,7 +30,6 @@ class Password_Change_Repository extends Repository{
     if($this->decryption($old_pass,$old_password[0]['password'])){
       $new_pass = $this->encrypt($new_pass);
       $sql = "UPDATE accounts SET password = '$new_pass', password_modification_datetime = '$today' where id = '$id'";
-      var_dump($sql);
       $result = parent::save($sql);
       return $result;
     }else{

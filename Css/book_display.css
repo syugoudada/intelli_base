@@ -1,0 +1,7 @@
+/* body{
+  background-color: red;
+} */
+
+.book_contents{
+  display: flex;
+}

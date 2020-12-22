@@ -16,8 +16,10 @@ $update_point = point_update($_POST['point'],point($_POST['total']),$current_poi
 if($_POST['submit'] != ""){
   foreach($cart as $book_id){
     $myself->book_purchase($account_id,$book_id,TODAY,point($_POST['total']),$_POST['point']);
-    $myself->change_point($account_id,$update_point);
   }
+  if($myself->change_point($account_id,$update_point)){
+    header('Location:purchased_result.php');
+  };
 }
 
 /**

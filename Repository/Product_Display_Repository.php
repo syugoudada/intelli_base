@@ -13,7 +13,8 @@ class Product_Display_Repository extends Repository{
    */
 
   public function search(string $id){
-    $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where genre_id = '$id'";
+    $parent_id = $this->parent_id($id);
+    $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where genre_id = '$id' || genre_id = '$parent_id'";
     $result = parent::find($sql);
     return $result;
   }
@@ -27,5 +28,20 @@ class Product_Display_Repository extends Repository{
     $sql = "SELECT * from books WHERE id = $book_id";
     $result = parent::find($sql);
     return $result;
+  }
+
+  /**
+   * 親ID取得
+   * @param $id 
+   */
+
+  function parent_id($id){
+    $sql = "SELECT id from genres where parent_id = '$id'";
+    $result = parent::find($sql);
+    if(!$result){
+      return 0;
+    }else{
+      return $result[0]['id'];
+    }
   }
 }

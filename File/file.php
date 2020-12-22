@@ -10,7 +10,7 @@ function pdf_register(string $id,array $file){
   $name = $file['pdf_name'];
   $tmp_file = $file['pdf_tmp'];
   move_uploaded_file($tmp_file,PDF_PATH.$name);
-  if (rename(PDF_PATH . $name, PDF_PATH . "pdf$id.pdf")) {
+  if (rename(PDF_PATH . $name, PDF_PATH . "book$id.pdf")) {
     return true;
   } else {
     return false;

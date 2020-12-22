@@ -139,4 +139,15 @@ class Product_Registration_Repository extends Repository{
     $result = parent::find($sql);
     return $result;
  }
+
+/**
+ * 本の情報取得
+ * @param int $id 本のID
+ */
+
+ function book_info($id){
+    $sql = "SELECT title,name,evaluation_avg from book_infomation where id = $id";
+    $result = parent::find($sql);
+    return $result;
+ }
 }

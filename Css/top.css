@@ -1,0 +1,23 @@
+.main_contents{
+  display: flex;
+}
+
+*{
+  min-height: 0;
+  min-width: 0;
+}
+
+.book_contents{
+  margin-left: 250px;
+
+}
+
+
+.slider{
+  width: 90%;
+}
+
+
+.genre_list{
+  width: 400px;
+}
