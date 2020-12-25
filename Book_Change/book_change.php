@@ -15,11 +15,12 @@
 
   <main>
     <div class="contents">
-      <form method="POST" enctype="multipart/form-data" action="register_service.php">
+      <form method="POST" enctype="multipart/form-data" action="book_change_service.php">
         タイトル:<input type="text" name="title" id="id" required>
         <div class="register" hidden>
           著者名:<input type="text" name="name" required class="name"><br>
-          説明:<textarea style="resize:none" name="description" class="description" ></textarea>
+          説明:<textarea style="resize:none" name="description" class="description"></textarea>
+          前ジャンル<input type="text" class="before_genre"><input type="text" class="before_subgenre">
           ジャンル:<select name="genre" id="genre" required>
             <?php
             require_once('../Repository/Product_Registration_Repository.php');
@@ -50,23 +51,35 @@
             }
 
             $(function() {
-              $('#id').change(function(){
-                if($('#id').val() == ""){
+              $('#id').change(function() {
+                if ($('#id').val() == "") {
                   $('.register').hide();
-                }else{
-                  let title = {"title":$('#id').val()};
+                } else {
+                  let title = {
+                    "title": $('#id').val()
+                  };
                   $.ajax({
                     type: 'POST',
-                    url: 'book_change_service.php',
+                    url: 'book_data.php',
                     data: title,
                     dataType: 'json',
-                    success: function(book_info){
-                      $('.register').fadeIn();
-                      $('.url').val(book_info['url']);
-                      $('.contents').append("<iframe src='../uploadedData/book/pdf" + book_info['id'] + ".pdf#zoom=30' width='300px' height='300px'></iframe><img src='../uploadedData/thumbnail/thumbnail" + book_info['id'] + ".png'>");
-                      $('.name').val(book_info['name']);
-                      $('.price').val(book_info['price']);
-                      $('.description').val(book_info['description']);
+                    success: function(book_info) {
+                      switch (book_info['message']) {
+                        case 'success':
+                          $('.uploadedData').remove();
+                          $('.register').fadeIn();
+                          $('.before_genre').val(book_info['genre']);
+                          $('.before_subgenre').val(book_info['sub_genre']);
+                          $('.url').val(book_info['url']);
+                          $('.contents').append("<div class='uploadedData'><iframe src='../uploadedData/book/pdf" + book_info['id'] + ".pdf#zoom=30' width='300px' height='300px'></iframe><img src='../uploadedData/thumbnail/thumbnail" + book_info['id'] + ".png'></div>");
+                          $('.name').val(book_info['name']);
+                          $('.price').val(book_info['price']);
+                          $('.description').val(book_info['description']);
+                          break;
+                        default:
+                          $('.register').fadeOut();
+                          $('.uploadedData').remove();
+                      }
                     }
                   });
                 }

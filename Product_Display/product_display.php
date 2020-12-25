@@ -71,9 +71,6 @@ $result = $myself->search($genre_id);
         });
       });
     </script>
-    </div>
-    </div>
-    </div>
   </main>
   <footer>
 

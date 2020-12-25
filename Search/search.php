@@ -34,7 +34,7 @@ if ($_POST['title'] == "") {
         <div class="product-content">
         </div>
       </ul>
-      <div class="pager" id="diary-all-pager"></div>
+      <div class="pager" id="diary-all-pager" hidden></div>
     </div>
   </div>
 
@@ -50,13 +50,14 @@ if ($_POST['title'] == "") {
             "title": $('#search_bar').val()
           };
           ajax(title);
+          $('#diary-all-pager').hide().fadeIn(500);
         }
       });
 
       <?php if ($_POST['title'] != "") {
         $title = str_replace("\"", "", $_POST['title']);
         $title = str_replace("'", "", $title);
-        print("let title = {\"title\":\"$title\"};ajax(title);");
+        print("let title = {\"title\":\"$title\"};ajax(title);$('#diary-all-pager').hide().fadeIn(500);");
       } ?>
 
       function pagenation(book_list){
@@ -83,7 +84,7 @@ if ($_POST['title'] == "") {
           success: function(msg) {
             if (msg['id'].length > 0) {
               for (var i = 0; i < msg["id"].length; i++) {
-                if (i === 32) {
+                if (i === 64) {
                   break;
                 }
                 book_list.push(make_obj(msg, i));
@@ -94,7 +95,6 @@ if ($_POST['title'] == "") {
               book_list.push('<div class="product-part"><div>存在しません</div></div>');
               pagenation(book_list);
             }
-            // console.log(msg);
           }
         });
         console.log(book_list);
@@ -103,10 +103,6 @@ if ($_POST['title'] == "") {
       function make_obj(content, index) {
         return ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST" target="_blank" rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><input type="submit" name="cart" value="Cart"></div></div>';
         star(content, index);
-      }
-
-      function make_button() {
-        $('#product_content').append("<button type='submit' value='送信'>送信</button>");
       }
 
       function star(content, index) {
@@ -119,9 +115,8 @@ if ($_POST['title'] == "") {
       function template(dataArray) {
         return dataArray.map(function(data) {
           return '<li class="list">' + data + '</li>'
-        })
+        });
       }
-
     });
   </script>
   

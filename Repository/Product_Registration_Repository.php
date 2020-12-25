@@ -37,7 +37,6 @@ class Product_Registration_Repository extends Repository{
       }else{
         return false;
       }
-      var_dump($sql);
       $result = parent::save($sql);
       return $result;
     }

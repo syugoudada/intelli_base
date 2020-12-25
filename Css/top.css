@@ -9,15 +9,19 @@
 
 .book_contents{
   margin-left: 250px;
-
 }
 
 
 .slider{
   width: 90%;
+  opacity: 0;
+  transition: opacity .3s linear;
 }
-
 
 .genre_list{
   width: 400px;
+}
+
+.slider.slick-initialized{
+  opacity: 1; /*slick-initializedが付与されたら表示*/
 }

@@ -68,17 +68,17 @@ $genre = $myself->genre();
           </ul>
         </div>
         <div class="book_contents">
-          <p>人気タイトル</p>
+          <p hidden>人気タイトル</p>
           <ul class="slider multiple-item popular">
            
           </ul>
 
-          <p>ランキング</p>
+          <p hidden>ランキング</p>
           <ul class="slider multiple-item rank">
             
           </ul>
 
-          <p>おすすめ</p>
+          <p hidden>おすすめ</p>
           <ul class="slider multiple-item recommended">
             <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
             <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
@@ -95,6 +95,8 @@ $genre = $myself->genre();
           <script>
             $(function() {
               make_booklist();
+
+              $('.book_contents').find('p').hide().fadeIn(2000);
 
               $('.multiple-item').slick({
                 infinite: true,
@@ -127,8 +129,6 @@ $genre = $myself->genre();
                 }
               }
             });
-
-
           </script>
         </div>
       </div>
