@@ -23,7 +23,7 @@ class Repository implements IuserRepository{
   function __construct(string $name,string $password){
     $this -> name = $name;
     $this -> password = $password;
-    $this -> dns = "mysql:host=127.0.0.1;dbname=intelli_base;dbport=3306;charset=utf8";
+    $this -> dns = "mysql:host=127.0.0.1;dbname=intelli_base_version2;dbport=3306;charset=utf8";
   }
 
   public function login(){
@@ -59,11 +59,22 @@ class Repository implements IuserRepository{
     return $verity_password;
   }
 
+  /**
+   * UPDATE,INSERTなどで使用
+   * @param string $sql
+   * @return boolean 
+   */
+
   public function save(string $sql,$input_parameters = NULL){
     $stmt = $this->dbh->prepare($sql); 
     $result = $stmt->execute($input_parameters);
     return $result;
   }
+
+  /**
+   * SELECTで使用
+   * @param string $sql
+   */
 
   public function find(string $sql,$input_parameters = NULL){
     $stmt = $this->dbh->prepare($sql); 
@@ -74,6 +85,11 @@ class Repository implements IuserRepository{
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
   }
+
+  /**
+   * ユーザの存在を確認
+   * @param string $sql
+   */
 
   public function exist(string $sql,$input_parameters = NULL){
     $stmt = $this->dbh->prepare($sql); 

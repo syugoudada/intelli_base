@@ -5,13 +5,18 @@
   require_once('../Repository/db_config.php');
   $myself = new Account(DB_USER,DB_PASS);
   $myself-> login();
-  $user = $_POST['user'];
-  if($myself->exist($user)){
+  var_dump($_POST);
+  $email = $_POST['email'];
+  if($myself->exist($email)){
     if($myself->password_resach($_POST)){
-      $_SESSION["account"]["user"] = $user;
-      $id = $myself->find($user);
-      $_SESSION["account"]["id"] = $id[0]["id"];
-      header('Location:../Top_Page/top_page.php');
+      $account = $myself->find($email);
+      $_SESSION["account"]["id"] = $account[0]["id"];
+      $_SESSION["account"]["name"] = $account[0]['name'];
+      if($_POST['http'] == "http://localhost/intelli_base/Purchased/"){
+        header('Location:../Purchased/purchased_form.php');
+      }else{
+        header('Location:../Top_Page/top_page.php');
+      }
     }else{
       $_SESSION['message'] = "失敗";
       print("<script>history.back();</script>");

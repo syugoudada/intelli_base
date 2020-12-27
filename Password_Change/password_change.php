@@ -5,7 +5,8 @@ require_once('../Repository/db_config.php');
 $myself = new Password_Change_Repository(DB_USER,DB_PASS);
 $myself->login();
 $account_id = $_SESSION["account"]["id"];
-if ($myself->update($account_id, $_POST['oldpass'], $_POST['newpass'])) {
+
+if ($myself->update($account_id, $_POST['oldpass'], $_POST['newpass'],TODAY)) {
   print("変更しました");
 } else {
   print("パスワードが違います");

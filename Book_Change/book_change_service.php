@@ -1,0 +1,14 @@
+<?php
+session_start();
+require_once('../Repository/db_config.php');
+require_once('../Repository/Book_Change_Repository.php');
+require_once('../File/file.php');
+$myself = new Book_Change_Repository(DB_USER, DB_PASS);
+
+$author_info = ['title' => $_POST['title'], 'name' => $_POST['name'],'description'=>$_POST['description'] ,'genre' => $_POST['genre'], 'sub_genre' => $_POST['sub_genre'], 'new_genre' => $_POST['new_genre'], 'price' => $_POST['price'], 'url' => $_POST['url'], 'submit' => $_POST['submit']];
+
+$file = ['pdf_name'=>$_FILES['pdf']['name'],'pdf_tmp'=>$_FILES['pdf']['tmp_name'],'image_name'=>$_FILES['image']['name'],'image_tmp'=>$_FILES['image']['tmp_name']];
+
+foreach ($author_info as $key => $value) {
+  $author_info[$key] = trim(htmlspecialchars($value,ENT_QUOTES,'UTF-8'));
+}

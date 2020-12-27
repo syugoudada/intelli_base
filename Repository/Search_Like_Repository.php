@@ -9,21 +9,22 @@ class Search_Like_Repository extends Repository{
   /**
    * 検索バー
    * @param String $bookname
+   * @return array $result 本の情報
    */
 
-  public function search(string $bookname){
-    $sql = "SELECT pu.id,pu.name,pu.price,pu.evaluation_avg,au.name as author_name FROM product pu, author au WHERE pu.author_id = au.id and pu.name LIKE '%$bookname%'";
+  public function search(string $title){
+    $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where title LIKE '%$title%' OR name LIKE '%$title%'";
     $result = parent::find($sql);
     return $result;
   }
 
   /**
    * 本の情報取得
-   * @param array $user 本のID
+   * @param string $book_id 本のID
    */
 
   public function book_find($book_id){
-    $sql = "SELECT * from product WHERE id = $book_id";
+    $sql = "SELECT * from book_infomation WHERE id = $book_id";
     $result = parent::find($sql);
     return $result;
   }

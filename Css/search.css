@@ -1,0 +1,14 @@
+.product-part{
+  display: flex;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.product-content li:not(:first-of-type){
+  margin-top: 20px;
+}
+
+.pager{
+  position: relative;
+  bottom: 0px;
+}

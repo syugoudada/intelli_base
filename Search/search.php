@@ -11,38 +11,68 @@ if ($_POST['title'] == "") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="../js/pagination.min.js"></script>
   <script src="../js/jquery.raty.js"></script>
-  <link rel="stylesheet" href="../Css/search_bar.css">
+  <link rel="stylesheet" href="../Css/search.css">
+  <link rel="stylesheet" href="../Css/pagination.css">
   <title></title>
 </head>
 
 <body>
+
+  <header>
+
+  </header>
+
   <div class="contents">
     <div class="search_bar_content">
       <input type="text" id="search_bar" name="title" placeholder="入力してください">
       <input type="submit" id="submit" name="submit" value="ボタン">
     </div>
     <div class="search_display">
-      <div id="product_content">
-      </div>
+      <ul style="list-style: none;">
+        <div class="product-content">
+        </div>
+      </ul>
+      <div class="pager" id="diary-all-pager" hidden></div>
     </div>
-  </div>
-  </div>
   </div>
 
   <script>
     $(function() {
+      let book_list = [];
       $("#submit").click(function() {
+        book_list = [];
         if ($('#search_bar').val() != "") {
           $('.product-part').remove();
+          console.log(book_list.length);
           var title = {
             "title": $('#search_bar').val()
           };
           ajax(title);
+          $('#diary-all-pager').hide().fadeIn(500);
         }
       });
 
-      <?php if($_POST['title'] != ""){print("var title = {\"title\":\"$_POST[title]\"};ajax(title);");}?>
+      <?php if ($_POST['title'] != "") {
+        $title = str_replace("\"", "", $_POST['title']);
+        $title = str_replace("'", "", $title);
+        print("let title = {\"title\":\"$title\"};ajax(title);$('#diary-all-pager').hide().fadeIn(500);");
+      } ?>
+
+      function pagenation(book_list){
+        $('#diary-all-pager').pagination({ // diary-all-pagerにページャーを埋め込む
+          dataSource: book_list,
+          pageSize: 8, // 1ページあたりの表示数
+          prevText: '&lt; 前へ',
+          nextText: '次へ &gt;',
+          // ページがめくられた時に呼ばれる
+          callback: function(data, pagination) {
+            // dataの中に次に表示すべきデータが入っているので、html要素に変換
+            $('.product-content').html(template(data)); // product-contentにコンテンツを埋め込む
+          }
+        });
+      }
 
       function ajax(title_name) {
         // 非同期通信
@@ -54,29 +84,47 @@ if ($_POST['title'] == "") {
           success: function(msg) {
             if (msg['id'].length > 0) {
               for (var i = 0; i < msg["id"].length; i++) {
-                make_obj(msg, i);
+                if (i === 64) {
+                  break;
+                }
+                book_list.push(make_obj(msg, i));
+                pagenation(book_list);
               }
             } else {
-              $('#product_content').append('<div class="product-part"><div>存在しません</div></div>');
+              // $('#product_content').append('<div class="product-part"><div>存在しません</div></div>');
+              book_list.push('<div class="product-part"><div>存在しません</div></div>');
+              pagenation(book_list);
             }
-            console.log(msg);
           }
         });
+        console.log(book_list);
       }
 
       function make_obj(content, index) {
-        $('#product_content').append(' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = product_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["name"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><input type="submit" name="cart" value="Cart"></div></div>');
+        return ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST" target="_blank" rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><input type="submit" name="cart" value="Cart"></div></div>';
         star(content, index);
       }
 
       function star(content, index) {
         $('#star' + index).raty({
           readOnly: true,
-          score: content["avg"][index]
+          score: Math.round(content["avg"][index])
+        });
+      }
+
+      function template(dataArray) {
+        return dataArray.map(function(data) {
+          return '<li class="list">' + data + '</li>'
         });
       }
     });
   </script>
+  
+
+  <footer>
+
+  </footer>
+
 </body>
 
 </html>

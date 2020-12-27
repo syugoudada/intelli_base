@@ -57,7 +57,6 @@
           $(function() {
             //一つ目のジャンル選択後button有効化
             $('#genre').change(function(){
-              // $("#plusbutton").prop("disabled",false);
               $(".new_genre").hide().val("");
             });
 
