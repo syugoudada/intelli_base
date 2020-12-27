@@ -1,10 +1,17 @@
 <?php
 session_start();
 require_once('../Repository/Product_Registration_Repository.php');
+require_once('../Repository/Top_Page_Repository.php');
 require_once('../Repository/db_config.php');
-$myself = new Product_Registration_Repository(DB_USER, DB_PASS);
+$myself = new Top_Page_Repository(DB_USER, DB_PASS);
+
 $myself->login();
 $genre = $myself->genre();
+$book["rank"] = $myself->rank_book();
+$book["popular_count"] = $myself->popular_count();
+$book["popular"] = array();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -70,12 +77,23 @@ $genre = $myself->genre();
         <div class="book_contents">
           <p hidden>人気タイトル</p>
           <ul class="slider multiple-item popular">
-           
+          <?php
+            foreach ($book["popular_count"] as $value) {
+              $book["popular"] = $myself->popular_book($value['book_id']);
+              foreach($book["popular"] as $value2){
+                print("<li><form action='../Search/product_detail.php' name='product$value2[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value2[id].png' width='120'><p>$value2[title]</p><p>$value2[name]</p><input type='text' name = book_id hidden value = $value2[id]></form></li>");
+              }
+            }
+            ?>
           </ul>
 
           <p hidden>ランキング</p>
           <ul class="slider multiple-item rank">
-            
+            <?php
+            foreach ($book["rank"] as $value) {
+              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='120'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
+            }
+            ?>
           </ul>
 
           <p hidden>おすすめ</p>
@@ -94,7 +112,7 @@ $genre = $myself->genre();
 
           <script>
             $(function() {
-              make_booklist();
+              // make_booklist();
 
               $('.book_contents').find('p').hide().fadeIn(2000);
 
@@ -118,14 +136,14 @@ $genre = $myself->genre();
                 // }]
               });
 
-              function make_booklist(){
+              function make_booklist() {
                 let i = 1;
-                for(i; i <= 10; i++){
-                  $('.popular').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><p></p><p></p><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');  
+                for (i; i <= 10; i++) {
+                  $('.popular').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><p></p><p></p><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');
                 }
 
-                for(i; i <= 20; i++){
-                  $('.rank').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');  
+                for (i; i <= 20; i++) {
+                  $('.rank').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');
                 }
               }
             });
@@ -137,7 +155,7 @@ $genre = $myself->genre();
 
   <footer>
     <div class="footer_contents">
-    <!-- <form action="../Search/product_detail.php" name="product" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail1.png" ><input type="text" name = product_id hidden value  = "1"></form> -->
+      <!-- <form action="../Search/product_detail.php" name="product" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail1.png" ><input type="text" name = product_id hidden value  = "1"></form> -->
     </div>
   </footer>
 </body>
