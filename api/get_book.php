@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     } else if (isset($_GET['id'])) {
         $id = $_GET['id'];
     } else {
-        $id = 0;
+        $id = 1;
         $response['error'] = true;
         $response['message'] = 'post parameter error';
     }
@@ -22,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->select('SELECT book.id id, book.title title, author.id author_name, author.name author_id FROM product book, author WHERE author.id = book.author_id AND book.id = ?', array($bookId));
+    // $value = $db->select('SELECT books.id id, books.title title, authors.id author_name, authors.name author_id FROM books, authors WHERE authors.id = books.author_id AND books.id = ?', array($bookId));
+    $value = $db->select('SELECT id, title, author_id, genre_id FROM books WHERE id = ?', array($id));
     if (!$value) {
         $response['error'] = true;
         $response['message'] = 'Statement error.';
