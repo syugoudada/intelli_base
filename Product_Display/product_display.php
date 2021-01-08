@@ -44,8 +44,10 @@ $result = $myself->search($genre_id);
             $genre_self->login();
             $genre_id = $_POST["genre_id"];
             $genre = $genre_self->sub_genre($genre_id);
-            foreach ($genre as $value) {
-              print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
+            if(!empty($genre)){
+              foreach ($genre as $value) {
+                print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
+              }
             }
             ?>
           </div>
@@ -54,7 +56,9 @@ $result = $myself->search($genre_id);
           <ul class="slider multiple-item popular">
             <?php
             foreach ($result as $value) {
-              print("<form action='../Search/product_detail.php' name='product_submit$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><a href='#' onclick='document.product_submit$value[id].submit();'><img src='../uploadedData/thumbnail/thumbnail$value[id].png'></a><input type='text' name = 'book_id' hidden value  = '$value[id]'></form>");
+              // print("<form action='../Search/product_detail.php' name='product_submit$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><a href='#' onclick='document.product_submit$value[id].submit();'><img src='../uploadedData/thumbnail/thumbnail$value[id].png'></a><input type='text' name = 'book_id' hidden value  = '$value[id]'></form>");
+
+              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='120'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
             }
             ?>
           </ul>

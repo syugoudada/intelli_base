@@ -16,7 +16,7 @@
   <main>
     <div class="contents">
       <form method="POST" enctype="multipart/form-data" action="book_change_service.php">
-        タイトル:<input type="text" name="title" id="id" required>
+        タイトル:<input type="text" name="title" id="title" required>
         <div class="register" hidden>
           著者名:<input type="text" name="name" required class="name"><br>
           説明:<textarea style="resize:none" name="description" class="description"></textarea>
@@ -51,12 +51,15 @@
             }
 
             $(function() {
-              $('#id').change(function() {
-                if ($('#id').val() == "") {
+              $('#title').change(function() {
+                if ($('#title').val() == "") {
                   $('.register').hide();
+                  $('.uploadedData').remove();
                 } else {
+                  $('.register').hide();
+                  $('.uploadedData').remove();
                   let title = {
-                    "title": $('#id').val()
+                    "title": $('#title').val()
                   };
                   $.ajax({
                     type: 'POST',
@@ -66,19 +69,18 @@
                     success: function(book_info) {
                       switch (book_info['message']) {
                         case 'success':
-                          $('.uploadedData').remove();
+                          console.log(book_info);
                           $('.register').fadeIn();
                           $('.before_genre').val(book_info['genre']);
                           $('.before_subgenre').val(book_info['sub_genre']);
                           $('.url').val(book_info['url']);
-                          $('.contents').append("<div class='uploadedData'><iframe src='../uploadedData/book/pdf" + book_info['id'] + ".pdf#zoom=30' width='300px' height='300px'></iframe><img src='../uploadedData/thumbnail/thumbnail" + book_info['id'] + ".png'></div>");
+                          $('.contents').append("<div class='uploadedData'><iframe src='../uploadedData/book/book" + book_info['id'] + ".pdf#zoom=30' width='300px' height='300px'></iframe><img src='../uploadedData/thumbnail/thumbnail" + book_info['id'] + ".png'></div>");
                           $('.name').val(book_info['name']);
                           $('.price').val(book_info['price']);
                           $('.description').val(book_info['description']);
                           break;
                         default:
                           $('.register').fadeOut();
-                          $('.uploadedData').remove();
                       }
                     }
                   });

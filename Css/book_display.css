@@ -1,7 +1,23 @@
-/* body{
-  background-color: red;
-} */
-
 .book_contents{
   display: flex;
+}
+
+*{
+  min-height: 0;
+  min-width: 0;
+}
+
+.slider{
+  width: 800px;
+  opacity: 0;
+  transition: opacity .3s linear;
+  margin: 0 auto;
+}
+
+.sub_genre{
+  width: 400px;
+}
+
+.slider.slick-initialized{
+  opacity: 1; 
 }

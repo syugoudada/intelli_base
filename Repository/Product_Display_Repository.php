@@ -12,9 +12,22 @@ class Product_Display_Repository extends Repository{
    * @return array $result 本の内容
    */
 
+  // public function search(string $id){
+  //   $parent_id = $this->parent_id($id);
+  //   $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where genre_id = '$id' || genre_id = '$parent_id'";
+  //   $result = parent::find($sql);
+  //   return $result;
+  // }
+
   public function search(string $id){
     $parent_id = $this->parent_id($id);
-    $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where genre_id = '$id' || genre_id = '$parent_id'";
+    $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where genre_id = '$id'";
+    if($parent_id){
+      foreach($parent_id as $value){
+         $sql .= "|| genre_id = '$value[id]' ";
+      }
+    }
+    $sql .= "LIMIT 20";
     $result = parent::find($sql);
     return $result;
   }
@@ -35,13 +48,23 @@ class Product_Display_Repository extends Repository{
    * @param $id 
    */
 
+  // function parent_id($id){
+  //   $sql = "SELECT id from genres where parent_id = '$id'";
+  //   $result = parent::find($sql);
+  //   if(!$result){
+  //     return 0;
+  //   }else{
+  //     return $result[0]['id'];
+  //   }
+  // }
+
   function parent_id($id){
     $sql = "SELECT id from genres where parent_id = '$id'";
     $result = parent::find($sql);
     if(!$result){
-      return 0;
+      return false;
     }else{
-      return $result[0]['id'];
+      return $result;
     }
   }
 }

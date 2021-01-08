@@ -45,7 +45,7 @@
   }
 
   /**
-   * 著者登録
+   * 著者追加
    * @param array $author[name] 著者 $author[url] 著者のホームページ
    * @return boolean 
    */
@@ -117,15 +117,16 @@
     $author_sql = "Select id from authors where name = '$book_info[name]'";
     $book['author'] = parent::find($author_sql);
     $author_id = $book['author'][0]['id'];
+    $book_id = $this->book_id($book_info['title']);
     //サブジャンル選択状態
     if($book_info['sub_genre'] != 'add'){
-      $sql = "UPDATE books SET title = '$book_info[title]',genre_id = '$book_info[sub_genre]',author_id = '$author_id',description = '$book_info[description]',price = $book_info[price] WHERE id = book[id]";
+      $sql = "UPDATE books SET title = '$book_info[title]',genre_id = '$book_info[sub_genre]',author_id = '$author_id',description = '$book_info[description]',price = $book_info[price] WHERE id = $book_id";
     //新規ジャンル登録した
     }elseif($book_info['sub_genre'] == 'add' && $book_info['new_genre']){
       $genre_sql = "Select id from genres where name = '$book_info[new_genre]'";
       $book['genre'] = parent::find($genre_sql);
       $genre_id = $book['genre'][0]['id'];
-      $sql = "UPDATE books SET title = '$book_info[title]',genre_id = '$genre_id',author_id = '$author_id',description = '$book_info[description]',price = $book_info[price] WHERE id = book[id]";
+      $sql = "UPDATE books SET title = '$book_info[title]',genre_id = '$genre_id',author_id = '$author_id',description = '$book_info[description]',price = $book_info[price] WHERE id = $book_id";
     }else{
       return false;
     }
@@ -134,5 +135,16 @@
   }
   return false;
  }
+
+
+  /**
+   * 本のID取得
+   */
+
+   function book_id($title){
+    $sql = "SELECT id from books where title = $title";
+    $result = parent::find($sql);
+    return $result[0];
+   }
 
 }
