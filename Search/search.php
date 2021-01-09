@@ -97,7 +97,6 @@ if ($_POST['title'] == "") {
             }
           }
         });
-        console.log(book_list);
       }
 
       function make_obj(content, index) {
@@ -105,10 +104,10 @@ if ($_POST['title'] == "") {
         star(content, index);
       }
 
-      function star(content, index) {
+      function star(content, index){
         $('#star' + index).raty({
           readOnly: true,
-          score: Math.round(content["avg"][index])
+          score: Math.round(content["avg"][index]),
         });
       }
 

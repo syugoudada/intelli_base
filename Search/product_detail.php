@@ -37,8 +37,8 @@ $book_detail = $myself->book_find($book_id);
           <div class="price">
             <?= $book_detail[0]["price"]; ?>円
           </div>
-          <form action="" method="POST">
-            <input type="text" id='1' hidden>
+          <form action="../Cart/Cart_add.php" method="POST">
+            <input type="text" name="book_id" value='<?=$book_detail[0]['id']?>' hidden>
         </div>
         <input type="submit" name="cart" value="Cart">
         </form>
