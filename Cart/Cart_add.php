@@ -11,23 +11,40 @@
     if(!empty($_SESSION['account']['id'])){
         $account_id = $_SESSION['account']['id'];
         $cart = $myself->find_cart($account_id);
-        $cart_items = array();
-        if($cart[0]["cart_json"] != "{}"){
-            $book_id = json_decode($cart[0]['cart_json'],true);
-            for($i=0;$i < count($book_id); $i++){    
-                array_push($cart_items,array("id"=>$book_id[$i]["id"]));
-            }
-        }
+        $book_ids = json_decode($cart[0]['cart_json'],true);
+
+        // $cart_items = array();
+        // if($cart[0]["cart_json"] != "{}"){
+        //     $book_id = json_decode($cart[0]['cart_json'],true);
+        //     for($i=0;$i < count($book_id); $i++){    
+        //         array_push($cart_items,array("id"=>$book_id[$i]["id"]));
+        //     }
+        // }
+
         //cartに同一の値があるか
-        foreach($cart_items as $value){
+        // foreach($cart_items as $value){
+        //     if($_POST["book_id"] == $value["id"]){
+        //         $flag = false;
+        //     }
+        // }
+        // if($flag){
+        //     array_push($cart_items,array("id"=>$_POST["book_id"]));
+        // }
+        // $json_cart = json_encode($cart_items);
+        // //カートに追加
+        // if($myself->updateCartJson($account_id, $json_cart)){
+        //     header('Location:Cart.php');
+        // }
+
+        foreach($book_ids as $value){
             if($_POST["book_id"] == $value["id"]){
                 $flag = false;
             }
         }
         if($flag){
-            array_push($cart_items,array("id"=>$_POST["book_id"]));
+            array_push($book_ids,array("id"=>$_POST["book_id"]));
         }
-        $json_cart = json_encode($cart_items);
+        $json_cart = json_encode($book_ids);
         //カートに追加
         if($myself->updateCartJson($account_id, $json_cart)){
             header('Location:Cart.php');

@@ -2,14 +2,18 @@
 session_start();
 require_once("../Repository/db_config.php");
 require_once("../Repository/Purchase_Repository.php");
-//cart情報を受け取る
-// $cart_items = $_POST;
 
 if(!isset($_SESSION['account']['id']) && $_SESSION['account']['id'] == ""){
   header('Location:../Login/login_form.php');
 }
 
-$cart_items = [2, 5, 6];
+//cart情報を受け取る
+$cart_items = array();
+foreach($_POST as $value){
+  array_push($cart_items,$value);
+}
+array_pop($cart_items);
+
 $total = 0;
 $myself = new Purchase_Repository(DB_USER, DB_PASS);
 $myself->login();
@@ -60,7 +64,7 @@ $myself->login();
 
         <div class="purchase_method">
           <?php
-          $point = $myself->point(1);
+          $point = $myself->point($_SESSION['account']['id']);
           $point = $point[0]['point'];
           print("<p>現在のポイント:$point</p>");
           ?>
@@ -77,8 +81,12 @@ $myself->login();
               $('#total').html('<p>Total:' + (<?=$total ?> - point) + '</p>');
               $('#hid_total').attr('value',<?=$total ?> - point);
             } else {
+              if(point >= 0){
+                alert("pointが足りません");
+              }else{
+                alert("正しく入力してください");
+              }
               $('#point').val(0);
-              alert("pointが足りません");
             }
           });
         });

@@ -55,7 +55,7 @@ $book["popular"] = array();
         ?>
 
         <div id="cart_tag">
-          <a href="#">カート</a>
+          <a href="../Cart/Cart.php">カート</a>
         </div>
       </div>
     </div>

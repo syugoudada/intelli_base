@@ -26,7 +26,7 @@ class Cart_Repository extends Repository
      * dbのjsonデータ取得
      * 
      * @param integer $string
-     * @return String json
+     * @return array json
      */
     public function find_cart(string $account_id){
         $sql = "select cart_json from accounts where id = '$account_id'";
@@ -38,7 +38,8 @@ class Cart_Repository extends Repository
         $result = array();
         foreach($book_ids as $id){
             $sql = "select id, title, price from books where id = '$id'";
-            array_push($result, parent::find($sql));
+            $book = parent::find($sql);
+            array_push($result, $book[0]);
         }
         return $result;
     }
@@ -47,7 +48,7 @@ class Cart_Repository extends Repository
      * getBooksDataInCart
      * 
      * 引数に指定されたユーザIDからカートのJSONを取得してJSONに含まれるIDから本の情報を取得する
-     * @param array $user ユーザID
+     * @param string $user ユーザID
      * @return array 配列
      */
     public function getBooksDataInCart(string $account_id){
@@ -56,7 +57,8 @@ class Cart_Repository extends Repository
         $result = array();
         foreach($book_ids as $id){
             $sql = "select id, title, price from books where id = '$id[id]'";
-            array_push($result, parent::find($sql));
+            $book = parent::find($sql);
+            array_push($result, $book[0]);
         }
         return $result;
     }

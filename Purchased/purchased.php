@@ -18,6 +18,9 @@ if($_POST['submit'] != ""){
     $myself->book_purchase($account_id,$book_id,TODAY,point($_POST['total']),$_POST['point']);
   }
   if($myself->change_point($account_id,$update_point)){
+    //購入した本のIDを削除し、jsonをupdateする処理を書く
+                    // ↓
+
     header('Location:purchased_result.php');
   };
 }
