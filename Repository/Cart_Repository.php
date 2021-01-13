@@ -34,6 +34,12 @@ class Cart_Repository extends Repository
         return $result;
     }
 
+    /**
+     * ログインしていないユーザーの商品を取得
+     * @param array $book_ids
+     * @return array $result
+     */
+
     public function NoUsergetsBooksData($book_ids){
         $result = array();
         foreach($book_ids as $id){

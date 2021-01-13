@@ -41,7 +41,7 @@ if (empty($_SESSION['account']['id'])) {
                             <?php
                                 if($cart){
                                     foreach($cart as $index => $value){
-                                        print("<div class='books'><input type='checkbox' name='book$index' value='$value[id]' alt='本'><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px'><div><p>$value[title]</p><p>$value[price]円</p></div></div>");
+                                        print("<div class='books' id='$value[id]'><input type='checkbox' class='check_box' name='book$index' value='$value[id]' alt='本'><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px'><div><p>$value[title]</p><p>$value[price]円</p></div><button class='delete' type='button' value='$value[id]'>削除</button></div>");
                                     }
                                 }
                             ?>
@@ -57,8 +57,26 @@ if (empty($_SESSION['account']['id'])) {
 
     <script>
         $(function(){
-            
+            $('.delete').click(function(){
+                console.log($(this).val());
+                var id = $(this).val();
+                ajax(id);
+            });
+            console.log($('.check_box').val());
         });
+
+        function ajax(id){
+              $.ajax({
+                  type: 'POST',
+                  url: 'cart_service.php',
+                  data: {"id":id},
+                  dataType: 'json',
+                  success: function(msg){
+                    console.log(msg);
+                    $('#' + id).remove();
+                  }
+                });
+              }
     </script>
 
     <footer>
