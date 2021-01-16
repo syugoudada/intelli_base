@@ -12,3 +12,8 @@
   position: relative;
   bottom: 0px;
 }
+
+.pager{
+  width: 350px;
+  margin: 0 auto;
+}

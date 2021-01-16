@@ -1,11 +1,10 @@
 <?php
   session_start();
-  //ページ分けで使う
-  var_dump($_SERVER['HTTP_REFERER']);
 ?>
-
 <html lang="ja">
-  <head></head>
+  <head>
+    <title>ログインフォーム</title>
+  </head>
   <body>
     <h1>ログインページ</h1>
     <form action="login.php" method="POST">

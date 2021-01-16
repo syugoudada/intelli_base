@@ -5,9 +5,9 @@ require_once('../Repository/db_config.php');
 $myself = new Cart_Repository(DB_USER, DB_PASS);
 $myself->login();
 if (empty($_SESSION['account']['id'])) {
-    if(empty($_SESSION["cart"])){
+    if (empty($_SESSION["cart"])) {
         $cart = 0;
-    }else{
+    } else {
         $book_ids = $_SESSION["cart"];
         $cart = $myself->NoUsergetsBooksData($book_ids);
     }
@@ -24,63 +24,72 @@ if (empty($_SESSION['account']['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="../Css/cart.css">
+    <title>intelli_base</title>
 </head>
 
 <body>
-    <header>
+    <header>header</header>
 
-    </header>
+    <nav>left</nav>
 
     <main>
-        <div class="main_contents">
-            <form action="../Purchased/purchased_form.php" method="POST">
+    <p>Shoping Cart</p><hr> 
+        <form action="../Purchased/purchased_form.php" method="POST">
+            <div class="main_contents">
                 <div class="cart_contents">
-                    <div class="cart_info">
-                        <div class='books_info'>
-                            <?php
-                                if($cart){
-                                    foreach($cart as $index => $value){
-                                        print("<div class='books' id='$value[id]'><input type='checkbox' class='check_box' name='book$index' value='$value[id]' alt='本'><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px'><div><p>$value[title]</p><p>$value[price]円</p></div><button class='delete' type='button' value='$value[id]'>削除</button></div>");
-                                    }
-                                }
-                            ?>
-                        </div>
-                    </div>
-                    <div class="purchase">
-                        <input type="submit" name="submit" value="購入">
-                    </div>
+                    <?php
+                    $total = 0;
+                    if ($cart) {
+                        foreach ($cart as $index => $value) {
+                            $total = $total + $value["price"];
+                            print("<div class='books' id='$value[id]'><input type='checkbox' class='check_box' name='book$index' value='$value[id]' checked><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px' alt='本'><div class='book_info'><p class='title'>$value[title]</p><p class='price$value[id]'>$value[price]円</p><button class='delete' type='button' value='$value[id]'>削除</button></div></div>");
+                        }
+                    } else {
+                        print("<p>intelli_baseカートは商品がありません</p>");
+                    }
+                    ?>
                 </div>
-            </form>
-        </div>
+                <div class="purchase">
+                    <div class="totalPrice">total:￥<strong><?= $total ?></strong></div>
+                    <div class="totalPoint">price:<?= round($total/10) ?>pt</div>
+                    <input type="submit" name="submit" value="購入">
+                </div>
+            </div>
+        </form>
     </main>
+    <aside>right</aside>
 
     <script>
-        $(function(){
-            $('.delete').click(function(){
-                console.log($(this).val());
-                var id = $(this).val();
-                ajax(id);
+        $(function() {
+            $('.delete').click(function() {
+                let id = $(this).val();
+                let price = $(".price" + id).text();     
+                price = price.slice(0,-1);  
+                price = <?= $total?> - price;  
+                ajax(id,price);
             });
-            console.log($('.check_box').val());
+
         });
 
-        function ajax(id){
-              $.ajax({
-                  type: 'POST',
-                  url: 'cart_service.php',
-                  data: {"id":id},
-                  dataType: 'json',
-                  success: function(msg){
-                    console.log(msg);
+        function ajax(id,price) {
+            $.ajax({
+                type: 'POST',
+                url: 'cart_service.php',
+                data: {
+                    "id": id
+                },
+                dataType: 'json',
+                success: function(msg) {
                     $('#' + id).remove();
-                  }
-                });
-              }
+                    $(".totalPrice").html('<div class="totalPrice">total:￥<strong>' + price + '</strong></div>');
+                }
+            });
+        }
     </script>
 
     <footer>
-
+        footer
     </footer>
 
 </body>

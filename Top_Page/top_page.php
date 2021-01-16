@@ -4,14 +4,11 @@ require_once('../Repository/Product_Registration_Repository.php');
 require_once('../Repository/Top_Page_Repository.php');
 require_once('../Repository/db_config.php');
 $myself = new Top_Page_Repository(DB_USER, DB_PASS);
-
 $myself->login();
 $genre = $myself->genre();
 $book["rank"] = $myself->rank_book();
 $book["popular_count"] = $myself->popular_count();
 $book["popular"] = array();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -34,31 +31,28 @@ $book["popular"] = array();
       <form action="../Search/search.php" method="POST">
         <div class="serach_bar">
           <input type="text" id="search_bar" name="title" placeholder="入力してください">
-          <input type="submit" id="search" name="search" value="ボタン">
+          <input type="submit" id="search" name="search" value="検索">
         </div>
       </form>
-      <div class="user_tag">
-        <div class="login_tag">
-          <a href="../Login/login_form.php">こんにちは、ログイン</a></form>
-        </div>
-        <script>
-          function login_name(name) {
-            $('.login_tag').children('a').html("<a href='../Product_Display/user_detail.php'>" + name + "さんようこそ</a>");
-          }
-        </script>
-
-        <?php
-        if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
-          $name = $_SESSION["account"]["name"];
-          print("<script>$(function(){login_name('$name');});</script>");
-        }
-        ?>
-
-        <div id="cart_tag">
-          <a href="../Cart/Cart.php">カート</a>
-        </div>
+      <div class="login_tag">
+        <a href="../Login/login_form.php">こんにちは、ログイン</a></form>
       </div>
-    </div>
+      <script>
+        function login_name(name) {
+          $('.login_tag').children('a').html("<a href='../Product_Display/user_detail.php'>" + name + "さんようこそ</a>");
+        }
+      </script>
+
+      <?php
+      if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
+        $name = $_SESSION["account"]["name"];
+        print("<script>$(function(){login_name('$name');});</script>");
+      }
+      ?>
+
+      <div id="cart_tag">
+        <a href="../Cart/Cart.php">カート</a>
+      </div>
     </div>
   </header>
 
@@ -77,10 +71,10 @@ $book["popular"] = array();
         <div class="book_contents">
           <p hidden>人気タイトル</p>
           <ul class="slider multiple-item popular">
-          <?php
+            <?php
             foreach ($book["popular_count"] as $value) {
               $book["popular"] = $myself->popular_book($value['book_id']);
-              foreach($book["popular"] as $value2){
+              foreach ($book["popular"] as $value2) {
                 print("<li><form action='../Search/product_detail.php' name='product$value2[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value2[id].png' width='120'><p>$value2[title]</p><p>$value2[name]</p><input type='text' name = book_id hidden value = $value2[id]></form></li>");
               }
             }
@@ -112,8 +106,6 @@ $book["popular"] = array();
 
           <script>
             $(function() {
-              // make_booklist();
-
               $('.book_contents').find('p').hide().fadeIn(2000);
 
               $('.multiple-item').slick({
@@ -121,19 +113,6 @@ $book["popular"] = array();
                 dots: true,
                 slidesToShow: 6,
                 slidesToScroll: 6,
-                // responsive: [{
-                //   breakpoint: 768,
-                //   settings: {
-                //     slidesToShow: 3,
-                //     slidesToScroll: 3,
-                //   }
-                // }, {
-                //   breakpoint: 480,
-                //   settings: {
-                //     slidesToShow: 2,
-                //     slidesToScroll: 2,
-                //   }
-                // }]
               });
 
               function make_booklist() {
@@ -155,7 +134,7 @@ $book["popular"] = array();
 
   <footer>
     <div class="footer_contents">
-      <!-- <form action="../Search/product_detail.php" name="product" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail1.png" ><input type="text" name = product_id hidden value  = "1"></form> -->
+
     </div>
   </footer>
 </body>

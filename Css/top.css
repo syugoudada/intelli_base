@@ -1,3 +1,9 @@
+.header_contents{
+  display: flex;
+  justify-content: center;
+  width: 800px;
+}
+
 .main_contents{
   display: flex;
 }
@@ -11,7 +17,6 @@
   margin-left: 250px;
 }
 
-
 .slider{
   width: 90%;
   opacity: 0;
@@ -20,6 +25,8 @@
 
 .genre_list{
   width: 400px;
+  list-style: none;
+  padding: 0;
 }
 
 .slider.slick-initialized{

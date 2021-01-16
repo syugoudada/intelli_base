@@ -78,7 +78,7 @@ $myself->login();
             let point = $('#point').val();
             if (isFinite(point) && point >= 0 && point <= <?= $point ?>) {
               $('#chose_point').html('<p>Point:' + point + '</p>');
-              $('#total').html('<p>Total:' + (<?=$total ?> - point) + '</p>');
+              $('#total').html('<p>Total:' + (<?=$total ?> - point) + '円</p>');
               $('#hid_total').attr('value',<?=$total ?> - point);
             } else {
               if(point >= 0){

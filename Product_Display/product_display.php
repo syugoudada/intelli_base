@@ -56,8 +56,6 @@ $result = $myself->search($genre_id);
           <ul class="slider multiple-item popular">
             <?php
             foreach ($result as $value) {
-              // print("<form action='../Search/product_detail.php' name='product_submit$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><a href='#' onclick='document.product_submit$value[id].submit();'><img src='../uploadedData/thumbnail/thumbnail$value[id].png'></a><input type='text' name = 'book_id' hidden value  = '$value[id]'></form>");
-
               print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='120'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
             }
             ?>

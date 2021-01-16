@@ -15,7 +15,7 @@ if ($_POST['title'] == "") {
   <script src="../js/jquery.raty.js"></script>
   <link rel="stylesheet" href="../Css/search.css">
   <link rel="stylesheet" href="../Css/pagination.css">
-  <title></title>
+  <title>intelli_base</title>
 </head>
 
 <body>
@@ -45,7 +45,6 @@ if ($_POST['title'] == "") {
         book_list = [];
         if ($('#search_bar').val() != "") {
           $('.product-part').remove();
-          console.log(book_list.length);
           var title = {
             "title": $('#search_bar').val()
           };
@@ -91,7 +90,6 @@ if ($_POST['title'] == "") {
                 pagenation(book_list);
               }
             } else {
-              // $('#product_content').append('<div class="product-part"><div>存在しません</div></div>');
               book_list.push('<div class="product-part"><div>存在しません</div></div>');
               pagenation(book_list);
             }
@@ -100,7 +98,7 @@ if ($_POST['title'] == "") {
       }
 
       function make_obj(content, index) {
-        return ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST" target="_blank" rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><input type="submit" name="cart" value="Cart"></div></div>';
+        return ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST" target="_blank" rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" value="Cart"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
         star(content, index);
       }
 
@@ -121,7 +119,7 @@ if ($_POST['title'] == "") {
   
 
   <footer>
-
+    
   </footer>
 
 </body>
