@@ -1,0 +1,67 @@
+body{
+  margin: 0px;
+  display: grid;
+  grid-template: 
+  "...... ...... ...... ...... ......"
+  "...... header header header ......"  50px
+  "...... ...... ...... ...... ......"
+  "...... center center center ......"  600px
+  "...... ...... ...... ...... ......"
+  "...... footer footer footer ......"  300px
+  "...... ...... ...... ...... ......"
+  / auto  auto   minmax(400px,450px)   auto   auto;
+}
+
+header{
+  grid-area: header;
+}
+
+main{
+  grid-area: center;
+}
+
+.book-part{
+  display: flex;
+  justify-content: space-around;
+}
+
+.title,.price{
+  font-size: 30px;
+}
+
+.name{
+  color: rgb(0, 184, 174);
+}
+
+.description{
+  width: 250px;
+}
+
+.cart-submit{
+  border: 1.5px solid rgba(0,0,255,0.3);
+  border-radius: 1%;
+  max-width: 400px;
+}
+
+.cart-form{
+  font-size: 25px;
+  color: rgba(77, 75, 75, 0.514);
+}
+
+.cart-form > span{
+  color: red;
+  padding-left: 20px;
+}
+
+.cart-Button{
+  background-color: rgb(250, 203, 117);
+  font-size: 25px;
+  width: 250px;
+  border: orange solid 1px ;
+  outline: none;
+  margin-top: 20px;
+}
+
+footer{
+  grid-area: footer;
+}
