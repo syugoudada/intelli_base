@@ -1,26 +1,26 @@
 body{
-  margin: 0px;
+  margin: 0;
   display: grid;
   grid-template: 
   "...... ...... ...... ...... ......"
   "header header header header header"  100px
   "...... ...... ...... ...... ......"
-  "...... center center center ......"  400px
+  "...... center center center ......"  300px
   "...... ...... ...... ...... ......"
-  "footer footer footer footer footer"  150px
+  "...... footer footer footer ......"  200px
   "...... ...... ...... ...... ......"
   / auto  auto   minmax(400px,450px)   auto   auto;
-}
-
-header{
-  grid-area: header;
-  background-color: rgba(102, 102, 102, 0.096);
 }
 
 .all_body{
   position: absolute;
   margin-top: 90px;
   background-color: rgba(0,0,0,0.5);
+}
+
+header{
+  grid-area: header;
+  background-color: rgba(102, 102, 102, 0.096);
 }
 
 .header_contents{
@@ -69,53 +69,28 @@ header{
 
 main{
   grid-area: center;
-  margin-top: 30px;
+  width: 600px;
+  margin: 0 auto;
 }
 
-.book-part{
-  display: flex;
-  justify-content: space-around;
-}
-
-.title,.price{
-  font-size: 30px;
-}
-
-.name{
-  color: rgb(0, 184, 174);
-}
-
-.description{
-  width: 250px;
-}
-
-.cart-submit{
+.contents{
   border: 1.5px solid rgba(0,0,255,0.3);
-  border-radius: 1%;
-  max-width: 400px;
-  padding: 20px;
+  margin-top: 40px;
+  padding: 30px;
 }
 
-.cart-form{
+.result > p{
+  font-size: 30px;
+  font-weight: 300;
+  margin: 25px 0;
+}
+
+.result > a{
   font-size: 25px;
-  color: rgba(77, 75, 75, 0.514);
 }
 
-.cart-form > span{
-  color: red;
-  padding-left: 20px;
-}
 
-.cart-Button{
-  background-color: rgb(250, 203, 117);
-  font-size: 25px;
-  width: 250px;
-  border: orange solid 1px ;
-  outline: none;
-  margin-top: 20px;
-}
 
 footer{
   grid-area: footer;
-  background-color: rgba(102, 102, 102, 0.096);
 }

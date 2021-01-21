@@ -32,15 +32,30 @@ $myself->login();
 </head>
 
 <body>
-  <div class="all_contents">
     <header>
       <div class="header_contents">
 
       </div>
     </header>
 
-    <div class="contents">
+    <main>
       <form action="purchased.php" method="POST">
+        <div class="paymentForm">
+          <div class="">
+            <p>お支払方法</p>
+            <img src="../image/payment.jpg" width="30px" height="30px">1075で終わる
+            <p>請求先</p>
+            <p>登録されたメールに案内</p>
+          </div>
+          <div class="purchase_method">
+          <?php
+          $point = $myself->point($_SESSION['account']['id']);
+          $point = $point[0]['point'];
+          print("<p>現在のポイント:$point</p>");
+          ?>
+          ポイント:<input type="number" id="point" name="point" value="0">
+        </div>
+        </div>
         <div class="book_contents">
           <div class='book_items'>
             <?php
@@ -48,37 +63,32 @@ $myself->login();
               $item = $myself->book_find($value);
               foreach ($item as $value) {
                 $total += $value['price'];
-                print("<div class='book_list'><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px'><div><p>$value[title]</p><p>$value[price]円</p></div><input type='text' name='id$index' value = '$value[id]' hidden></div>");
+                print("<div class='book_list'><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px'><div><p>$value[title]</p><p>$value[price]円</p></div><input type='text' name='id$index' value = '$value[id]' hidden></div><hr>");
               }
             }
 
             ?>
           </div>
           <div class="total_price">
-            <input type="submit" name="submit" value="Place Your purchase">
+            <input type="submit" name="submit" class="purchaseButton" value="購入します">
             <?php
-            print("<p>Items:$total 円</p><p id='chose_point'>Point:0</p><p id='total'>Total:$total 円</p><input type='text' name='total' value = '$total' id='hid_total' hidden>");
+            print("<p>小計:$total 円</p><p id='chose_point'>消費ポイント:0pt</p><p id='total'>合計:$total 円</p><input type='text' name='total' value = '$total' id='hid_total' hidden>");
             ?>
+            <aside>
+            intelli_baseの利用規約、プライバシーに関するお知らせ、商品の詳細ページとキャンペーンページに記載されているその他の販売条件、同意した上で商品を注文できます。料金と注文の合計。
+            </aside>
           </div>
         </div>
-
-        <div class="purchase_method">
-          <?php
-          $point = $myself->point($_SESSION['account']['id']);
-          $point = $point[0]['point'];
-          print("<p>現在のポイント:$point</p>");
-          ?>
-          point<input type="number" id="point" name="point" value="0">
-        </div>
       </form>
+    </main>
 
       <script>
         $(function() {
           $('#point').change(function() {
             let point = $('#point').val();
             if (isFinite(point) && point >= 0 && point <= <?= $point ?>) {
-              $('#chose_point').html('<p>Point:' + point + '</p>');
-              $('#total').html('<p>Total:' + (<?=$total ?> - point) + '円</p>');
+              $('#chose_point').html('<p>消費ポイント:' + point + 'pt</p>');
+              $('#total').html('<p>合計:' + (<?=$total ?> - point) + '円</p>');
               $('#hid_total').attr('value',<?=$total ?> - point);
             } else {
               if(point >= 0){
@@ -91,13 +101,9 @@ $myself->login();
           });
         });
       </script>
-
-    </div>
-
     <footer>
 
     </footer>
-  </div>
 </body>
 
 </html>

@@ -7,7 +7,9 @@ $myself->login();
 $account_id = $_SESSION["account"]["id"];
 
 if ($myself->update($account_id, $_POST['oldpass'], $_POST['newpass'],TODAY)) {
-  print("変更しました");
+  // header("Location:password_change.php");
 } else {
   print("パスワードが違います");
 }
+
+?>

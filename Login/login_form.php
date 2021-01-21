@@ -10,7 +10,7 @@ session_start();
 
 <body>
   <header>
-    header
+  
   </header>
 
   <main>
@@ -20,12 +20,11 @@ session_start();
           <h1>ログイン</h1>
           <div class="email-form">
             <label for="email"><strong>ユーザー</strong><br>
-              <input type="text" name="email" class="user-input input_form" value="
-          <?php
+              <input type="text" name="email" class="user-input input_form" value="<?php
           if (isset($_COOKIE['email']) && $_COOKIE['email'] !== "") {
             print($_COOKIE['email']);
           }
-          ?>" required>
+          ?>" style="text-align:left" required>
             </label>
           </div>
 
@@ -54,7 +53,7 @@ session_start();
 
 
   <footer>
-    footer
+    
   </footer>
 </body>
 

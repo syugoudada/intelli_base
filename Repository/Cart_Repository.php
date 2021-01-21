@@ -43,7 +43,8 @@ class Cart_Repository extends Repository
     public function NoUsergetsBooksData($book_ids){
         $result = array();
         foreach($book_ids as $id){
-            $sql = "select id, title, price from books where id = '$id'";
+            // $sql = "select id, title, price from books where id = '$id'";
+            $sql = "select id, title, price,name from book_infomation where id = '$id'";
             $book = parent::find($sql);
             array_push($result, $book[0]);
         }
@@ -62,10 +63,15 @@ class Cart_Repository extends Repository
         $book_ids = json_decode($json[0]["cart_json"],true);
         $result = array();
         foreach($book_ids as $id){
-            $sql = "select id, title, price from books where id = '$id[id]'";
+            // $sql = "select id, title, price from books where id = '$id[id]'";
+            $sql = "select id, title, price,name from book_infomation where id = '$id[id]'";
             $book = parent::find($sql);
             array_push($result, $book[0]);
         }
         return $result;
+    }
+
+    public function find_book($id){
+        $sql = "select id, title, price,name from book_infomation where id = $id";
     }
 }

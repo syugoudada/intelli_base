@@ -24,15 +24,23 @@ $result = $myself->search($genre_id);
 </head>
 
 <body>
+<label class="all_body"></label>
   <header>
     <div class="header_contents">
       <form action="../Search/search.php" method="POST">
-        <div class="serach_bar">
-          <input type="text" id="search_bar" name="title" placeholder="入力してください">
-          <input type="submit" id="submit" name="submit" value="ボタン">
+        <div class="search">
+          <input type="text" id="search_bar" name="title" placeholder="検索">
+          <input type="submit" id="submit" name="sub" value="🔍">
         </div>
       </form>
     </div>
+  </header>
+
+  <script>
+    function login_name(name) {
+      $('.login_tag').children('a').html("<a  class='userName' id='userName' href='#'>" + name + "さんようこそ</a>");
+    }
+  </script>
   </header>
 
   <main>
@@ -44,7 +52,7 @@ $result = $myself->search($genre_id);
             $genre_self->login();
             $genre_id = $_POST["genre_id"];
             $genre = $genre_self->sub_genre($genre_id);
-            if(!empty($genre)){
+            if (!empty($genre)) {
               foreach ($genre as $value) {
                 print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
               }
@@ -71,6 +79,28 @@ $result = $myself->search($genre_id);
           slidesToShow: 5,
           slidesToScroll: 5
         });
+
+        $('.userName').hover(
+          function() {
+            $(".userContents").css("top", "50px");
+            $(".all_body").css("width", "100%").css("height", "100%");
+          },
+          function() {
+            $(".userContents").css("top", "-250px");
+            $(".all_body").css("width", "0%").css("height", "0%");
+          },
+        );
+
+        $('.userContents').hover(
+          function() {
+            $(".userContents").css("top", "50px");
+            $(".all_body").css("width", "100%").css("height", "100%");
+          },
+          function() {
+            $(".userContents").css("top", "-250px");
+            $(".all_body").css("width", "0%").css("height", "0%");
+          }
+        );
       });
     </script>
   </main>

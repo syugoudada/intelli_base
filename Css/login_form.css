@@ -18,7 +18,6 @@ header{
 
 main{
   grid-area: center;
-  /* margin: 0 auto; */
 }
 
 .login-Info{
@@ -31,7 +30,6 @@ main{
   border-radius: 1%;
   max-width: 400px;
   padding: 0 0 30px 40px;
-  /* margin: 0 auto; */
 }
 
 .input_form{
@@ -50,10 +48,6 @@ main{
   border: orange solid 1px ;
   outline: none;
   margin-top: 20px;
-}
-
-.login-Button:active{
-  /* outline: solid 1px olivedrab; */
 }
 
 .a-divider {

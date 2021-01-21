@@ -25,9 +25,9 @@ if ($_POST['title'] == "") {
   </header>
 
   <div class="contents">
-    <div class="search_bar_content">
-      <input type="text" id="search_bar" name="title" placeholder="入力してください">
-      <input type="submit" id="submit" name="submit" value="ボタン">
+    <div class="search">
+      <input type="text" id="search_bar" name="title" placeholder="検索">
+      <input type="submit" id="submit" name="sub" value="🔍">
     </div>
     <div class="search_display">
       <ul style="list-style: none;">
@@ -45,7 +45,7 @@ if ($_POST['title'] == "") {
         book_list = [];
         if ($('#search_bar').val() != "") {
           $('.product-part').remove();
-          var title = {
+          let title = {
             "title": $('#search_bar').val()
           };
           ajax(title);
@@ -59,7 +59,7 @@ if ($_POST['title'] == "") {
         print("let title = {\"title\":\"$title\"};ajax(title);$('#diary-all-pager').hide().fadeIn(500);");
       } ?>
 
-      function pagenation(book_list){
+      function pagenation(book_list) {
         $('#diary-all-pager').pagination({ // diary-all-pagerにページャーを埋め込む
           dataSource: book_list,
           pageSize: 8, // 1ページあたりの表示数
@@ -98,11 +98,11 @@ if ($_POST['title'] == "") {
       }
 
       function make_obj(content, index) {
-        return ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST" target="_blank" rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" value="Cart"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
+        return ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"  rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" value="Cart"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
         star(content, index);
       }
 
-      function star(content, index){
+      function star(content, index) {
         $('#star' + index).raty({
           readOnly: true,
           score: Math.round(content["avg"][index]),
@@ -116,10 +116,10 @@ if ($_POST['title'] == "") {
       }
     });
   </script>
-  
+
 
   <footer>
-    
+
   </footer>
 
 </body>

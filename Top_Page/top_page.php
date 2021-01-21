@@ -26,20 +26,26 @@ $book["popular"] = array();
 </head>
 
 <body>
+  <label class="all_body"></label>
   <header>
     <div class="header_contents">
       <form action="../Search/search.php" method="POST">
-        <div class="serach_bar">
-          <input type="text" id="search_bar" name="title" placeholder="入力してください">
-          <input type="submit" id="search" name="search" value="検索">
+        <div class="search">
+          <input type="text" id="search_bar" name="title" placeholder="検索">
+          <input type="submit" id="submit" name="sub" value="🔍">
         </div>
       </form>
-      <div class="login_tag">
-        <a href="../Login/login_form.php">こんにちは、ログイン</a></form>
-      </div>
+      <nav class="login_tag">
+        <a href="../Login/login_form.php">こんにちは、ログイン</a>
+        <ul class="userContents">
+          <li><a href="../Password_Change/change.php">パスワード変更</a></li>
+          <li><a href="../Product_Register/Register.php">商品登録</a></li>
+          <li><a href="../Login/logout.php">ログアウト</a></li>
+        </ul>
+      </nav>
       <script>
         function login_name(name) {
-          $('.login_tag').children('a').html("<a href='../Product_Display/user_detail.php'>" + name + "さんようこそ</a>");
+          $('.login_tag').children('a').html("<a  class='userName' id='userName' href='#'>" + name + "さんようこそ</a>");
         }
       </script>
 
@@ -61,36 +67,37 @@ $book["popular"] = array();
       <div class="main_contents">
         <div class="genre">
           <ul name="genre_list" class="genre_list">
+            <h1>ジャンル</h1>
             <?php
             foreach ($genre as $value) {
-              print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
+              print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' class='genre_a' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
             }
             ?>
           </ul>
         </div>
         <div class="book_contents">
-          <p hidden>人気タイトル</p>
+          <p class="bookTitle" hidden>人気タイトル</p>
           <ul class="slider multiple-item popular">
             <?php
             foreach ($book["popular_count"] as $value) {
               $book["popular"] = $myself->popular_book($value['book_id']);
               foreach ($book["popular"] as $value2) {
-                print("<li><form action='../Search/product_detail.php' name='product$value2[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value2[id].png' width='120'><p>$value2[title]</p><p>$value2[name]</p><input type='text' name = book_id hidden value = $value2[id]></form></li>");
+                print("<li><form action='../Search/product_detail.php' name='product$value2[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value2[id].png' width='131'><p>$value2[title]</p><p>$value2[name]</p><input type='text' name = book_id hidden value = $value2[id]></form></li>");
               }
             }
             ?>
           </ul>
 
-          <p hidden>ランキング</p>
+          <p class="bookTitle" hidden>ランキング</p>
           <ul class="slider multiple-item rank">
             <?php
             foreach ($book["rank"] as $value) {
-              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='120'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
+              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='131'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
             }
             ?>
           </ul>
 
-          <p hidden>おすすめ</p>
+          <p class="bookTitle" hidden>おすすめ</p>
           <ul class="slider multiple-item recommended">
             <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
             <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
@@ -105,6 +112,9 @@ $book["popular"] = array();
           </ul>
 
           <script>
+            // const userTag = document.getElementById("userName");
+            // addEventListener()
+
             $(function() {
               $('.book_contents').find('p').hide().fadeIn(2000);
 
@@ -114,6 +124,28 @@ $book["popular"] = array();
                 slidesToShow: 6,
                 slidesToScroll: 6,
               });
+
+              $('.userName').hover(
+                function() {
+                  $(".userContents").css("top", "65px");
+                  $(".all_body").css("width", "100%").css("height", "100%");
+                },
+                function() {
+                  $(".userContents").css("top", "-250px");
+                  $(".all_body").css("width", "0%").css("height", "0%");
+                },
+              )
+
+              $('.userContents').hover(
+                function() {
+                  $(".userContents").css("top", "65px");
+                  $(".all_body").css("width", "100%").css("height", "100%");
+                },
+                function() {
+                  $(".userContents").css("top", "-250px");
+                  $(".all_body").css("width", "0%").css("height", "0%");
+                }
+              );
 
               function make_booklist() {
                 let i = 1;
