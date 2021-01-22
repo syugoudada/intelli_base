@@ -47,19 +47,19 @@ $result = $myself->search($genre_id);
     <div class="main_contents">
       <div class="book_contents">
         <div class="genre">
-          <div class="sub_genre">
+          <ul class="sub_genre">
             <?php
             $genre_self->login();
             $genre_id = $_POST["genre_id"];
             $genre = $genre_self->sub_genre($genre_id);
             if (!empty($genre)) {
               foreach ($genre as $value) {
-                print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
+                print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li class='subList' value='$value[id]'><a href='#' class='genreList' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
               }
             }
             ?>
           </div>
-        </div>
+          </ul>
         <div class="book_list">
           <ul class="slider multiple-item popular">
             <?php

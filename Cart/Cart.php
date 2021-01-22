@@ -92,7 +92,7 @@ if (empty($_SESSION['account']['id'])) {
                         <div class="purchase_infomation">
                             <div class="totalPrice">小計:￥<strong><?= $total ?></strong></div>
                             <div class="totalPoint">獲得ポイント:<?= $point ?>pt</div>
-                            <input type="submit" name="submit" value="購入">
+                            <input type="submit" name="submit" class="purchaseButton" value="購入">
                         </div>
                     </div>
                     <nav>

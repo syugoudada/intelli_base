@@ -10,6 +10,7 @@ body{
   "...... footer footer footer ......"  150px
   "...... ...... ...... ...... ......"
   / auto  auto   minmax(400px,450px)   auto   auto;
+  background-color: rgba(102, 102, 102, 0.096);
 }
 
 header{
@@ -27,6 +28,7 @@ main{
   width: 600px;
   display: flex;
   justify-content: space-around;
+  background-color: #fff;
 }
 
 aside{
@@ -48,6 +50,7 @@ aside{
   border-radius: 5%;
   padding: 25px;
   margin-right: 40px;
+  background-color: #fff;
 }
 
 .total_price{
@@ -56,6 +59,7 @@ aside{
   width: 20%;
   padding: 30px;
   height: 350px;
+  background-color: #fff;
 }
 
 .total_price > p{

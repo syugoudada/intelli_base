@@ -116,13 +116,24 @@ main{
 
 .purchase{
   border: 1.5px solid  rgba(0,0,255,0.3);
-  height: 20vh;
+  height: 25vh;
   width: 250px;
   background-color: #ffffff
 }
 
 .purchase_infomation{
   margin: 10px;
+}
+
+.totalPrice,.totalPoint{
+  font-size: 25px;
+}
+
+.purchaseButton{
+  width: 200px;
+  height: 35px;
+  font-size: 20px;
+  margin: 10px auto;
 }
 
 .nextBooks{

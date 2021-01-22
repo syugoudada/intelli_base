@@ -1,7 +1,13 @@
 <?php
+session_start();
 if ($_POST['title'] == "") {
   print("<script>history.back();</script>");
 }
+require_once("../Repository/db_config.php");
+require_once("../Repository/Top_Page_Repository.php");
+$myself = new Top_Page_Repository(DB_USER, DB_PASS);
+$myself->login();
+$genre = $myself->genre();
 ?>
 
 <!DOCTYPE html>
@@ -19,27 +25,86 @@ if ($_POST['title'] == "") {
 </head>
 
 <body>
-
+  <label class="all_body"></label>
   <header>
+    <div class="header_contents">
+      <form action="../Search/search.php" method="POST">
+        <div class="search">
+          <input type="text" id="search_bar" name="title" placeholder="検索">
+          <input type="submit" id="submit" name="sub" value="🔍">
+        </div>
+      </form>
+      <nav class="login_tag">
+        <a href="../Login/login_form.php">こんにちは、ログイン</a>
+        <ul class="userContents">
+          <li><a href="../Password_Change/change.php">パスワード変更</a></li>
+          <li><a href="../Product_Register/Register.php">商品登録</a></li>
+          <li><a href="../Login/logout.php">ログアウト</a></li>
+        </ul>
+      </nav>
+      <script>
+        function login_name(name) {
+          $('.login_tag').children('a').html("<a  class='userName' id='userName' href='#'>" + name + "さんようこそ</a>");
+        }
+      </script>
 
+      <?php
+      if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
+        $name = $_SESSION["account"]["name"];
+        print("<script>$(function(){login_name('$name');});</script>");
+      }
+      ?>
+
+      <div id="cart_tag">
+        <a href="../Cart/Cart.php">カート</a>
+      </div>
+    </div>
   </header>
 
-  <div class="contents">
-    <div class="search">
-      <input type="text" id="search_bar" name="title" placeholder="検索">
-      <input type="submit" id="submit" name="sub" value="🔍">
-    </div>
-    <div class="search_display">
-      <ul style="list-style: none;">
-        <div class="product-content">
-        </div>
+  <main>
+    <div class="contents">
+      <ul name="genre_list" class="genre_list">
+        <h1>ジャンル</h1>
+        <?php
+        foreach ($genre as $value) {
+          print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' class='genre_a' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
+        }
+        ?>
       </ul>
-      <div class="pager" id="diary-all-pager" hidden></div>
+      <div class="search_display">
+        <ul style="list-style: none;">
+          <div class="product-content">
+          </div>
+        </ul>
+        <div class="pager" id="diary-all-pager" hidden></div>
+      </div>
     </div>
-  </div>
+  </main>
 
   <script>
     $(function() {
+      $('.userName').hover(
+        function() {
+          $(".userContents").css("top", "65px");
+          $(".all_body").css("width", "100%").css("height", "100%");
+        },
+        function() {
+          $(".userContents").css("top", "-250px");
+          $(".all_body").css("width", "0%").css("height", "0%");
+        },
+      )
+
+      $('.userContents').hover(
+        function() {
+          $(".userContents").css("top", "65px");
+          $(".all_body").css("width", "100%").css("height", "100%");
+        },
+        function() {
+          $(".userContents").css("top", "-250px");
+          $(".all_body").css("width", "0%").css("height", "0%");
+        }
+      );
+
       let book_list = [];
       $("#submit").click(function() {
         book_list = [];
@@ -98,8 +163,9 @@ if ($_POST['title'] == "") {
       }
 
       function make_obj(content, index) {
-        return ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"  rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" value="Cart"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
+        const htmlContent = ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"  rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" value="Cart"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
         star(content, index);
+        return htmlContent;
       }
 
       function star(content, index) {

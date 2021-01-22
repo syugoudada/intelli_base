@@ -7,18 +7,32 @@
   min-width: 0;
 }
 
-
-
 .slider{
   width: 800px;
   opacity: 0;
   transition: opacity .3s linear;
-  margin: 0 auto;
+  margin-left: 50px;
+}
+
+.subList{
+  padding-left: 20px;
+  padding-bottom: 10px;
 }
 
 .sub_genre{
-  width: 400px;
+  width: 330px;
   list-style: none;
+  padding: 0px;
+  border-right: 1px solid rgba(0,0,255,0.3);
+}
+
+.genreList{
+  text-decoration: none;
+  color: #333;
+}
+
+.genreList:hover{
+  color: rgba(255, 155, 25, 0.808);
 }
 
 .slider.slick-initialized{

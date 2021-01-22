@@ -105,9 +105,10 @@ header{
 }
 
 .genre_list{
-  width: 400px;
+  width: 250px;
   list-style: none;
   padding: 0;
+  border-right: 1px solid rgba(0,0,255,0.3);
 }
 
 .genre_list > h1{
@@ -126,4 +127,15 @@ header{
 
 .slider.slick-initialized{
   opacity: 1; /*slick-initializedが付与されたら表示*/
+}
+
+.backTop{
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(0,0,0,0.9);
+  display: inline-block;
+  text-align: center;
+  padding-top: 10px;
 }

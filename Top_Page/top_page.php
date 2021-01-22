@@ -97,7 +97,7 @@ $book["popular"] = array();
             ?>
           </ul>
 
-          <p class="bookTitle" hidden>おすすめ</p>
+          <!-- <p class="bookTitle" hidden>おすすめ</p>
           <ul class="slider multiple-item recommended">
             <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
             <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
@@ -109,7 +109,7 @@ $book["popular"] = array();
             <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
             <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
             <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-          </ul>
+          </ul> -->
 
           <script>
             // const userTag = document.getElementById("userName");
@@ -150,7 +150,7 @@ $book["popular"] = array();
               function make_booklist() {
                 let i = 1;
                 for (i; i <= 10; i++) {
-                  $('.popular').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><p></p><p></p><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');
+                  $('.popular').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');
                 }
 
                 for (i; i <= 20; i++) {
@@ -165,8 +165,8 @@ $book["popular"] = array();
   </main>
 
   <footer>
+    <a href="#" class="backTop">Back Top</a>
     <div class="footer_contents">
-
     </div>
   </footer>
 </body>
