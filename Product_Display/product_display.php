@@ -18,6 +18,7 @@ $result = $myself->search($genre_id);
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link href="../Css/slick-theme.css" rel="stylesheet" type="text/css">
   <link href="../Css/slick.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="../image/icon.png">
   <link rel="stylesheet" href="../Css/book_display.css">
   <script src="../js/slick.min.js"></script>
   <title></title>

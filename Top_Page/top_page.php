@@ -20,6 +20,7 @@ $book["popular"] = array();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link href="../Css/slick-theme.css" rel="stylesheet" type="text/css">
   <link href="../Css/slick.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="../image/icon.png">
   <link rel="stylesheet" href="../Css/top.css">
   <script src="../js/slick.min.js"></script>
   <title>intelli_base</title>
@@ -29,6 +30,10 @@ $book["popular"] = array();
   <label class="all_body"></label>
   <header>
     <div class="header_contents">
+      <div class="icon">
+        <img src="../image/icon.png" width="50px" height="50px">
+        <p class="iconTitle">intelli_base</p>
+      </div>
       <form action="../Search/search.php" method="POST">
         <div class="search">
           <input type="text" id="search_bar" name="title" placeholder="検索">
@@ -112,9 +117,6 @@ $book["popular"] = array();
           </ul> -->
 
           <script>
-            // const userTag = document.getElementById("userName");
-            // addEventListener()
-
             $(function() {
               $('.book_contents').find('p').hide().fadeIn(2000);
 

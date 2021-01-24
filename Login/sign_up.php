@@ -1,5 +1,9 @@
 <?php
 session_start();
+if($_SESSION["message"] != ""){
+  print("<script>alert('$_SESSION[message]');</script>");
+  unset($_SESSION["message"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +13,7 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Css/sign_up.css">
+  <link rel="icon" type="image/png" href="../image/icon.png">
   <title>新規会員登録</title>
 </head>
 
@@ -56,4 +61,5 @@ session_start();
   </footer>
 </body>
 
+<script></script>
 </html>

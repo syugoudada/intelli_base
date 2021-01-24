@@ -6,6 +6,7 @@ session_start();
 <head>
   <title>ログインフォーム</title>
   <link rel="stylesheet" href="../Css/login_form.css">
+  <link rel="icon" type="image/png" href="../image/icon.png">
 </head>
 
 <body>

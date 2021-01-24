@@ -21,6 +21,7 @@ $genre = $myself->genre();
   <script src="../js/jquery.raty.js"></script>
   <link rel="stylesheet" href="../Css/search.css">
   <link rel="stylesheet" href="../Css/pagination.css">
+  <link rel="icon" type="image/png" href="../image/icon.png">
   <title>intelli_base</title>
 </head>
 
@@ -28,12 +29,10 @@ $genre = $myself->genre();
   <label class="all_body"></label>
   <header>
     <div class="header_contents">
-      <form action="../Search/search.php" method="POST">
-        <div class="search">
-          <input type="text" id="search_bar" name="title" placeholder="検索">
-          <input type="submit" id="submit" name="sub" value="🔍">
-        </div>
-      </form>
+      <div class="search">
+        <input type="text" id="search_bar" name="title" placeholder="検索">
+        <input type="submit" id="submit" name="sub" value="🔍">
+      </div>
       <nav class="login_tag">
         <a href="../Login/login_form.php">こんにちは、ログイン</a>
         <ul class="userContents">
@@ -185,7 +184,10 @@ $genre = $myself->genre();
 
 
   <footer>
+    <a href="#" class="backTop">Back Top</a>
+    <div class="footerContents">
 
+    </div>
   </footer>
 
 </body>

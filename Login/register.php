@@ -14,12 +14,14 @@ if (filter_var($must_login['email'],FILTER_VALIDATE_EMAIL) && $must_login['name'
     header("Location:login_form.php");
   }else{
     if($myself->account_save($must_login['email'],$must_login['name'],$must_login['password'])){
-      print("登録完了");
+      $_SESSION['message'] = "登録できました";
+      print '<script type="text/javascript">history.back();</script>';
     }else{
-      print("失敗");
+      $_SESSION['message'] = "登録に失敗しました";
+      print '<script type="text/javascript">history.back();</script>';
     }
   }
 } else {
-  print '<script type="text/javascript">alert("正しい形式で入力してください");
-    history.back();</script>';
+  $_SESSION['message'] = "正しい形式で入力してください";
+  print '<script type="text/javascript">history.back();</script>';
 }
