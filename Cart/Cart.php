@@ -24,6 +24,7 @@ if (empty($_SESSION['account']['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="icon" type="image/png" href="../image/icon.png">
     <link rel="stylesheet" href="../Css/cart.css">
     <title>intelli_base</title>
 </head>
@@ -92,7 +93,7 @@ if (empty($_SESSION['account']['id'])) {
                         <div class="purchase_infomation">
                             <div class="totalPrice">小計:￥<strong><?= $total ?></strong></div>
                             <div class="totalPoint">獲得ポイント:<?= $point ?>pt</div>
-                            <input type="submit" name="submit" class="purchaseButton" value="購入">
+                            <input type="submit" name="submit" id="purchaseButton" class="purchaseButton" value="購入">
                         </div>
                     </div>
                     <nav>
@@ -171,6 +172,15 @@ if (empty($_SESSION['account']['id'])) {
                     total = total - price;
                     let point = Math.round(total / 100);
                     makeHtml(total);
+                }
+
+                const button = document.getElementById("purchaseButton");
+                if(total == 0){
+                    button.disabled = true
+                    button.value = "商品がありません";
+                }else{
+                    button.disabled = false
+                    button.value = "購入";
                 }
             });
 
