@@ -13,6 +13,7 @@ $book_detail = $myself->book_find($book_id);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../image/icon.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="../js/jquery.raty.js"></script>
   <link rel="stylesheet" href="../Css/product_detail.css">
@@ -20,9 +21,13 @@ $book_detail = $myself->book_find($book_id);
 </head>
 
 <body>
-  <label class="all_body"></label>
+<label class="all_body"></label>
   <header>
     <div class="header_contents">
+      <div class="icon">
+        <img src="../image/icon.png" width="50px" height="50px">
+        <p class="iconTitle">intelli_base</p>
+      </div>
       <form action="../Search/search.php" method="POST">
         <div class="search">
           <input type="text" id="search_bar" name="title" placeholder="検索">
@@ -37,19 +42,19 @@ $book_detail = $myself->book_find($book_id);
           <li><a href="../Login/logout.php">ログアウト</a></li>
         </ul>
       </nav>
+      
+      <?php
+      if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
+        $name = $_SESSION["account"]["name"];
+        print("<script>$(function(){login_name('$name');});</script>");
+      }
+      ?>
+
       <div id="cart_tag">
-        <a href="../Cart/Cart.php">カート</a>
+        <a class="cart_a" href="../Cart/Cart.php">カート</a>
       </div>
     </div>
   </header>
-
-
-  <?php
-  if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
-    $name = $_SESSION["account"]["name"];
-    print("<script>$(function(){login_name('$name');});</script>");
-  }
-  ?>
 
   <script>
     function login_name(name) {
@@ -109,11 +114,8 @@ $book_detail = $myself->book_find($book_id);
       </div>
     </div>
   </main>
-
-
-
   <footer>
-    footer
+
   </footer>
 </body>
 

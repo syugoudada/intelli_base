@@ -16,10 +16,21 @@ header{
 }
 
 .header_contents{
-  width: 800px;
+  width: 1000px;
   display: flex;
   margin: 0 auto;
   justify-content: space-around;
+}
+
+.icon{
+  width: 300px;
+  display: flex;
+}
+
+.iconTitle{
+  font-size: 30px;
+  margin: 0px;
+  margin-left: 20px;
 }
 
 .all_body{
@@ -29,16 +40,25 @@ header{
   z-index: 1;
 }
 
+.userName:hover{
+  border: 1px solid rgb(241, 255, 41);
+}
 
 .userContents{
   list-style: none;
   position: absolute;
   top: -250px;
-  right: 500px;
+  right: 320px;
   margin: 0;
   background-color: #ffffff;
   width: 180px;
+  padding-right: 15px;
   z-index: 2;
+}
+
+.userContents > li > a:hover{
+  color: rgba(255, 155, 25, 0.808);
+  border-bottom: 1px solid rgba(255, 155, 25, 0.808);
 }
 
 .userContents:before{
@@ -67,6 +87,10 @@ header{
   padding-left: 40px;
 }
 
+.userName,.cart_a{
+  font-size: 20px;
+}
+
 .contents{
   display: flex;
 }
@@ -83,7 +107,13 @@ header{
   margin-left: 20px;
 }
 
-.genre_a{
+.genre_list > h1{
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+
+a{
   text-decoration: none;
   color: #333;
 }

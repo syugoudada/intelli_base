@@ -33,6 +33,10 @@ if (empty($_SESSION['account']['id'])) {
     <label class="all_body"></label>
     <header>
         <div class="header_contents">
+            <div class="icon">
+                <img src="../image/icon.png" width="50px" height="50px">
+                <p class="iconTitle">intelli_base</p>
+            </div>
             <form action="../Search/search.php" method="POST">
                 <div class="search">
                     <input type="text" id="search_bar" name="title" placeholder="検索">
@@ -47,6 +51,13 @@ if (empty($_SESSION['account']['id'])) {
                     <li><a href="../Login/logout.php">ログアウト</a></li>
                 </ul>
             </nav>
+
+            <?php
+            if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
+                $name = $_SESSION["account"]["name"];
+                print("<script>$(function(){login_name('$name');});</script>");
+            }
+            ?>
         </div>
     </header>
 
@@ -75,7 +86,12 @@ if (empty($_SESSION['account']['id'])) {
                     if ($cart) {
                         foreach ($cart as $index => $value) {
                             $total = $total + $value["price"];
-                            print("<div class='books' id='$value[id]'><span name='check'><input type='checkbox' class='check_box' id='check$value[id]' name='book$index' value='$value[id]' checked></span><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px' alt='本'><div class='book_info'><p class='title'>$value[title]</p><p class='price$value[id]'>$value[price]円</p><p class='name'>$value[name]</p><button class='delete' type='button' value='$value[id]'>削除</button></div></div>");
+                            print("<div class='books' id='$value[id]'><span name='check'><input type='checkbox' class='check_box' id='check$value[id]' name='book$index' value='$value[id]' checked></span><img src='../uploadedData/thumbnail/thumbnail$value[id].png' width='100px' height='120px' alt='本'><div class='book_info'><p class='title'>$value[title]</p><p class='price$value[id]'>$value[price]円</p><p class='name'>$value[name]</p><button class='delete' type='button' value='$value[id]'>削除</button></div></div>");
+                        }
+                        if (isset($_SESSION["total"]) && $_SESSION["total"] != "") {
+                            $notsend = $total - $_SESSION["total"];
+                            $total = $total - $notsend;
+                            unset($_SESSION["total"]);
                         }
                         $count = count($cart);
                         print("<script>let total = $total; let count = $count</script>");
@@ -110,6 +126,10 @@ if (empty($_SESSION['account']['id'])) {
     <aside></aside>
 
     <script>
+        const flagTotal = total;
+
+        console.log(flagTotal);
+
         $(function() {
             if (count == 0) {
                 sizeChange();
@@ -137,7 +157,7 @@ if (empty($_SESSION['account']['id'])) {
 
             $('.userName').hover(
                 function() {
-                    $(".userContents").css("top", "50px");
+                    $(".userContents").css("top", "70px");
                     $(".all_body").css("width", "100%").css("height", "100%");
                 },
                 function() {
@@ -148,7 +168,7 @@ if (empty($_SESSION['account']['id'])) {
 
             $('.userContents').hover(
                 function() {
-                    $(".userContents").css("top", "50px");
+                    $(".userContents").css("top", "70px");
                     $(".all_body").css("width", "100%").css("height", "100%");
                 },
                 function() {
@@ -175,10 +195,10 @@ if (empty($_SESSION['account']['id'])) {
                 }
 
                 const button = document.getElementById("purchaseButton");
-                if(total == 0){
+                if (total == 0) {
                     button.disabled = true
                     button.value = "商品がありません";
-                }else{
+                } else {
                     button.disabled = false
                     button.value = "購入";
                 }
@@ -212,16 +232,18 @@ if (empty($_SESSION['account']['id'])) {
         }
 
         function makeHtml(total) {
-            const point = Math.round(total / 100)
-            $(".totalPrice").html('<div class="totalPrice">小計:￥<strong>' + total + '</strong></div>');
+            const point = Math.round(total / 100);
+            $(".totalPrice").html('<div class="totalPrice">小計:￥<strong>' + total.toLocaleString() + '</strong></div>');
             $(".totalPoint").html('<div class="totalPoint">獲得ポイント:<strong>' + point + '</strong>pt</div>');
-            $(".undertotal").text(total);
+            $(".undertotal").text(total.toLocaleString());
             $(".subPoint").text(point);
         }
     </script>
 
     <footer>
-        footer
+        <a href="#" class="backTop">Back Top</a>
+        <div class="footer_contents">
+        </div>
     </footer>
 
 </body>

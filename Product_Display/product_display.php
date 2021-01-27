@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('../Repository/db_config.php');
 require_once('../Repository/Product_Display_Repository.php');
 require_once('../Repository/Product_Registration_Repository.php');
@@ -25,23 +26,44 @@ $result = $myself->search($genre_id);
 </head>
 
 <body>
-<label class="all_body"></label>
+  <label class="all_body"></label>
   <header>
     <div class="header_contents">
+      <div class="icon">
+        <img src="../image/icon.png" width="50px" height="50px">
+        <p class="iconTitle">intelli_base</p>
+      </div>
       <form action="../Search/search.php" method="POST">
         <div class="search">
           <input type="text" id="search_bar" name="title" placeholder="検索">
           <input type="submit" id="submit" name="sub" value="🔍">
         </div>
       </form>
-    </div>
-  </header>
+      <nav class="login_tag">
+        <a href="../Login/login_form.php">こんにちは、ログイン</a>
+        <ul class="userContents">
+          <li><a href="../Password_Change/change.php">パスワード変更</a></li>
+          <li><a href="../Product_Register/Register.php">商品登録</a></li>
+          <li><a href="../Login/logout.php">ログアウト</a></li>
+        </ul>
+      </nav>
+      <script>
+        function login_name(name) {
+          $('.login_tag').children('a').html("<a  class='userName' id='userName' href='#'>" + name + "さんようこそ</a>");
+        }
+      </script>
 
-  <script>
-    function login_name(name) {
-      $('.login_tag').children('a').html("<a  class='userName' id='userName' href='#'>" + name + "さんようこそ</a>");
-    }
-  </script>
+      <?php
+      if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
+        $name = $_SESSION["account"]["name"];
+        print("<script>$(function(){login_name('$name');});</script>");
+      }
+      ?>
+
+      <div id="cart_tag">
+        <a class="cart_a" href="../Cart/Cart.php">カート</a>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -59,8 +81,8 @@ $result = $myself->search($genre_id);
               }
             }
             ?>
-          </div>
-          </ul>
+        </div>
+        </ul>
         <div class="book_list">
           <ul class="slider multiple-item popular">
             <?php
@@ -83,18 +105,18 @@ $result = $myself->search($genre_id);
 
         $('.userName').hover(
           function() {
-            $(".userContents").css("top", "50px");
+            $(".userContents").css("top", "65px");
             $(".all_body").css("width", "100%").css("height", "100%");
           },
           function() {
             $(".userContents").css("top", "-250px");
             $(".all_body").css("width", "0%").css("height", "0%");
           },
-        );
+        )
 
         $('.userContents').hover(
           function() {
-            $(".userContents").css("top", "50px");
+            $(".userContents").css("top", "65px");
             $(".all_body").css("width", "100%").css("height", "100%");
           },
           function() {

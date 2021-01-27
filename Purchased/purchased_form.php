@@ -64,10 +64,10 @@ $myself->login();
               $item = $myself->book_find($value);
               foreach ($item as $value) {
                 $total += $value['price'];
-                print("<div class='book_list'><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px'><div><p>$value[title]</p><p>$value[price]円</p></div><input type='text' name='id$index' value = '$value[id]' hidden></div><hr>");
+                print("<div class='book_list'><img src='../uploadedData/thumbnail/thumbnail$value[id].png' width='100px' height='120px'><div><p>$value[title]</p><p>$value[price]円</p></div><input type='text' name='id$index' value = '$value[id]' hidden></div><hr>");
               }
             }
-
+            $_SESSION["total"] = $total;
             ?>
           </div>
           <div class="total_price">

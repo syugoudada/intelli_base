@@ -62,7 +62,7 @@ $book["popular"] = array();
       ?>
 
       <div id="cart_tag">
-        <a href="../Cart/Cart.php">カート</a>
+        <a class="cart_a" href="../Cart/Cart.php">カート</a>
       </div>
     </div>
   </header>
@@ -101,20 +101,6 @@ $book["popular"] = array();
             }
             ?>
           </ul>
-
-          <!-- <p class="bookTitle" hidden>おすすめ</p>
-          <ul class="slider multiple-item recommended">
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-            <li><a href="#"><img src="../uploadedData/thumbnail/thumbnail1.png"></a></li>
-          </ul> -->
 
           <script>
             $(function() {

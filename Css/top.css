@@ -5,17 +5,6 @@
   margin: 0 auto;
 }
 
-.userContents{
-  /* list-style:none;
-  margin: 0;
-  position: fixed;
-  z-index: 1;
-  top:-250px;
-  padding-left: 170px; */
-  /* right: 350px; */
-  /* display: none; */
-}
-
 header{
   background-color: rgba(102, 102, 102, 0.096);
   height: 100px;
@@ -92,6 +81,11 @@ header{
 
 #cart_tag{
   padding-left: 40px;
+}
+
+.userName,.cart_a{
+  font-size: 20px;
+  text-decoration: none;
 }
 
 .main_contents{

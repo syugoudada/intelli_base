@@ -29,10 +29,16 @@ $genre = $myself->genre();
   <label class="all_body"></label>
   <header>
     <div class="header_contents">
-      <div class="search">
-        <input type="text" id="search_bar" name="title" placeholder="検索">
-        <input type="submit" id="submit" name="sub" value="🔍">
+      <div class="icon">
+        <img src="../image/icon.png" width="50px" height="50px">
+        <p class="iconTitle">intelli_base</p>
       </div>
+      <form action="../Search/search.php" method="POST">
+        <div class="search">
+          <input type="text" id="search_bar" name="title" placeholder="検索">
+          <input type="submit" id="submit" name="sub" value="🔍">
+        </div>
+      </form>
       <nav class="login_tag">
         <a href="../Login/login_form.php">こんにちは、ログイン</a>
         <ul class="userContents">
@@ -55,7 +61,7 @@ $genre = $myself->genre();
       ?>
 
       <div id="cart_tag">
-        <a href="../Cart/Cart.php">カート</a>
+        <a  class="cart_a" href="../Cart/Cart.php">カート</a>
       </div>
     </div>
   </header>

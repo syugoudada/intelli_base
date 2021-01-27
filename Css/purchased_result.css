@@ -21,28 +21,54 @@ body{
 header{
   grid-area: header;
   background-color: rgba(102, 102, 102, 0.096);
-}
-
-.header_contents{
-  width: 900px;
-  display: flex;
-  margin: 0 auto;
-  justify-content: center;
+  height: 100px;
   padding-top: 20px;
 }
 
-.login_tag > a{
-  margin-left: 30px;
+.header_contents{
+  width: 1000px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+
+.icon{
+  width: 300px;
+  display: flex;
+}
+
+.iconTitle{
+  font-size: 30px;
+  margin: 0px;
+  margin-left: 20px;
+}
+
+.all_body{
+  position: absolute;
+  margin-top: 90px;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.userName:hover{
+  border: 1px solid rgb(241, 255, 41);
 }
 
 .userContents{
   list-style: none;
   position: absolute;
   top: -250px;
-  right: 400px;
+  right: 320px;
   margin: 0;
   background-color: #ffffff;
   width: 180px;
+  padding-right: 15px;
+  z-index: 2;
+}
+
+.userContents > li > a:hover{
+  color: rgba(255, 155, 25, 0.808);
+  border-bottom: 1px solid rgba(255, 155, 25, 0.808);
 }
 
 .userContents:before{
@@ -56,7 +82,7 @@ header{
 }
 
 .userContents > li{
-  padding: 10px;
+  padding: 10px 0;
 }
 
 #search_bar{
@@ -65,6 +91,20 @@ header{
 
 #submit{
   padding: 10px;
+}
+
+#cart_tag{
+  padding-left: 40px;
+}
+
+.userName,.cart_a{
+  font-size: 20px;
+  text-decoration: none;
+}
+
+a{
+  color: #333;
+  text-decoration: none;
 }
 
 main{
