@@ -1,12 +1,12 @@
-<?php
-session_start();
-?>
-<html lang="ja">
 
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-  <title>ログインフォーム</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Css/login_form.css">
   <link rel="icon" type="image/png" href="../image/icon.png">
+  <title>intelli_base</title>
 </head>
 
 <body>
@@ -51,11 +51,16 @@ session_start();
       </div>
     </form>
   </main>
-
-
   <footer>
     
   </footer>
 </body>
-
 </html>
+
+<?php
+session_start();
+if($_SESSION["message"] != ""){
+  print("<script>alert('$_SESSION[message]');</script>");
+  unset($_SESSION["message"]);
+}
+?>

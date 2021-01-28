@@ -1,0 +1,134 @@
+body{
+  margin: 0px;
+  display: grid;
+  grid-template: 
+  "...... ...... ...... ...... ......"
+  "header header header header header"  150px
+  "...... ...... ...... ...... ......"
+  "...... center center center ......"  450px
+  "...... ...... ...... ...... ......"
+  "...... footer footer footer ......"  150px
+  "...... ...... ...... ...... ......"
+  / auto  auto   minmax(400px,450px)   auto   auto;
+}
+
+a{
+  color: #333;
+  text-decoration:none;
+}
+
+header{
+  grid-area: header;
+  background-color: rgba(102, 102, 102, 0.096);
+}
+
+.all_body{
+  position: absolute;
+  margin-top: 90px;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.header_contents{
+  display: flex;
+  justify-content: space-around;
+  width: 800px;
+  margin: 0 auto;
+}
+
+header{
+  background-color: rgba(102, 102, 102, 0.096);
+  height: 100px;
+  padding-top: 20px;
+}
+
+.header_contents{
+  width: 1000px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+
+.icon{
+  width: 300px;
+  display: flex;
+}
+
+.iconTitle{
+  font-size: 30px;
+  margin: 0px;
+  margin-left: 20px;
+}
+
+.all_body{
+  position: absolute;
+  margin-top: 90px;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.userName:hover{
+  border: 1px solid rgb(241, 255, 41);
+}
+
+.userName{
+  font-size: 20px;
+}
+
+.userContents{
+  list-style: none;
+  position: absolute;
+  top: -250px;
+  right: 180px;
+  margin: 0;
+  background-color: #ffffff;
+  width: 180px;
+  padding-right: 15px;
+  z-index: 2;
+}
+
+.userContents > li > a:hover{
+  color: rgba(255, 155, 25, 0.808);
+  border-bottom: 1px solid rgba(255, 155, 25, 0.808);
+}
+
+.userContents:before{
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 30%;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-bottom: 15px solid #ffffff;
+}
+
+.userContents > li{
+  padding: 10px 0;
+}
+
+#search_bar{
+  padding: 10px 15px;
+}
+
+#submit{
+  padding: 10px;
+}
+
+main{
+  grid-area: center;
+}
+
+input[type="text"]{
+  padding: 10px;
+  margin: 10px 20px;
+}
+
+
+
+textarea{
+  width: 300px;
+  margin: 10px 20px;
+}
+
+footer{
+  grid-area: footer;
+}

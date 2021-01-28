@@ -2,14 +2,14 @@ body{
   margin:0;
   display: grid;
   grid-template: 
-  "...... ...... ...... ...... ......"
-  "...... header header header ......"  50px
-  "...... ...... ...... ...... ......"
-  "...... center center center ......"  450px
-  "...... ...... ...... ...... ......"
-  "...... footer footer footer ......"  300px
-  "...... ...... ...... ...... ......"
-  / auto  auto   minmax(400px,450px)   auto   auto;
+  "... ...... ...... ...... ...... ...... ..." 
+  "... header header header header header ..." 100px 
+  "... ...... ...... ...... ...... ...... ..." 
+  "... left   ...... center ...... right  ..."  1fr
+  "... ...... ...... ...... ...... ...... ..." 
+  "... footer footer footer footer footer ..." 50px
+  "... ...... ...... ...... ...... ...... ..." 
+  /auto 100px auto minmax(400px,1fr) auto 100px auto;
 }
 
 header{

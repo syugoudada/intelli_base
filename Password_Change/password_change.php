@@ -8,10 +8,10 @@ $account_id = $_SESSION["account"]["id"];
 
 if ($myself->update($account_id, $_POST['oldpass'], $_POST['newpass'],TODAY)) {
   $_SESSION["message"] = "パスワードを変更しました";
-  header("Location:password_change.php");
+  header("Location:change.php");
 } else {
   $_SESSION["message"] = "パスワードが違います";
-  header("Location:password_change.php");
+  header("Location:change.php");
 }
 
 ?>

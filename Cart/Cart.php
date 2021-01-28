@@ -112,11 +112,15 @@ if (empty($_SESSION['account']['id'])) {
                             <input type="submit" name="submit" id="purchaseButton" class="purchaseButton" value="購入">
                         </div>
                     </div>
+
                     <nav>
                         <ul class="RecommendeBooks">
-                            <li><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px' alt="本"></li>
-                            <li><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px' alt="本"></li>
-                            <li><img src='../uploadedData/thumbnail/thumbnail1.png' width='100px' height='120px' alt="本"></li>
+                            <?php
+                            $books = $myself->find_book();
+                            foreach ($books as $book) {
+                                print("<li class='book'><img src='../uploadedData/thumbnail/thumbnail$book[id].png' width='100px' height='120px' alt='本'><div><p>$book[title]</p><p>$book[name]</p></div></li>");
+                            }
+                            ?>
                         </ul>
                     </nav>
                 </div>
@@ -127,9 +131,6 @@ if (empty($_SESSION['account']['id'])) {
 
     <script>
         const flagTotal = total;
-
-        console.log(flagTotal);
-
         $(function() {
             if (count == 0) {
                 sizeChange();
@@ -245,7 +246,6 @@ if (empty($_SESSION['account']['id'])) {
         <div class="footer_contents">
         </div>
     </footer>
-
 </body>
 
 </html>

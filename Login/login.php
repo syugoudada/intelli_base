@@ -42,11 +42,11 @@
         header('Location:../Top_Page/top_page.php');
       }
     }else{
-      $_SESSION['message'] = "失敗";
+      $_SESSION['message'] = "パスワードが違います";
       print("<script>history.back();</script>");
     }
   }else{
-    $_SESSION['message'] = "失敗";
+    $_SESSION['message'] = "ユーザが登録されていません";
     print("<script>history.back();</script>");
   }
 ?>

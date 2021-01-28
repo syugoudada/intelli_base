@@ -29,7 +29,7 @@ $myself->login();
   <link rel="stylesheet" href="../Css/purchase.css">
   <link rel="icon" type="image/png" href="../image/icon.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <title>購入</title>
+  <title>intelli_base</title>
 </head>
 
 <body>
@@ -64,7 +64,7 @@ $myself->login();
               $item = $myself->book_find($value);
               foreach ($item as $value) {
                 $total += $value['price'];
-                print("<div class='book_list'><img src='../uploadedData/thumbnail/thumbnail$value[id].png' width='100px' height='120px'><div><p>$value[title]</p><p>$value[price]円</p></div><input type='text' name='id$index' value = '$value[id]' hidden></div><hr>");
+                print("<div class='book_list'><img src='../uploadedData/thumbnail/thumbnail$value[id].png' width='100px' height='120px'><div><p>$value[title]</p><p>$value[price]円</p></div><input type='text' name='id$index' value = '$value[id]' hidden></div>");
               }
             }
             $_SESSION["total"] = $total;

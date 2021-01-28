@@ -43,7 +43,6 @@ class Cart_Repository extends Repository
     public function NoUsergetsBooksData($book_ids){
         $result = array();
         foreach($book_ids as $id){
-            // $sql = "select id, title, price from books where id = '$id'";
             $sql = "select id, title, price,name from book_infomation where id = '$id'";
             $book = parent::find($sql);
             array_push($result, $book[0]);
@@ -63,7 +62,6 @@ class Cart_Repository extends Repository
         $book_ids = json_decode($json[0]["cart_json"],true);
         $result = array();
         foreach($book_ids as $id){
-            // $sql = "select id, title, price from books where id = '$id[id]'";
             $sql = "select id, title, price,name from book_infomation where id = '$id[id]'";
             $book = parent::find($sql);
             array_push($result, $book[0]);
@@ -71,7 +69,13 @@ class Cart_Repository extends Repository
         return $result;
     }
 
-    public function find_book($id){
-        $sql = "select id, title, price,name from book_infomation where id = $id";
+
+    /**
+     * 本の情報取得
+     */
+    public function find_book(){
+        $sql = "select id, title,name from book_infomation where id BETWEEN 1 AND 3";
+        $result = parent::find($sql);
+        return $result;
     }
 }

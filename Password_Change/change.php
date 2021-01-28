@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,13 +6,13 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Css/passwordChange.css">
   <link rel="icon" type="image/png" href="../image/icon.png">
-  <title>Document</title>
+  <title>intelli_base</title>
 </head>
 
 <body>
 
   <header>
-    header
+    
   </header>
 
   <main>
@@ -30,8 +27,15 @@ session_start();
   </main>
 
   <footer>
-    footer
   </footer>
 </body>
 
 </html>
+
+<?php
+session_start();
+if($_SESSION["message"] != ""){
+  print("<script>alert('$_SESSION[message]');</script>");
+  unset($_SESSION["message"]);
+}
+?>

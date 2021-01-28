@@ -45,6 +45,11 @@ aside{
   margin: 20px 0;
 }
 
+.book_items .book_list:not(:last-child){
+  border-bottom: 1px solid rgba(0,0,0,0.7);
+  padding-bottom: 30px;
+}
+
 .book_items{
   border: 1.5px solid rgba(0,0,255,0.3);
   border-radius: 5%;
