@@ -12,13 +12,6 @@ class Product_Display_Repository extends Repository{
    * @return array $result 本の内容
    */
 
-  // public function search(string $id){
-  //   $parent_id = $this->parent_id($id);
-  //   $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where genre_id = '$id' || genre_id = '$parent_id'";
-  //   $result = parent::find($sql);
-  //   return $result;
-  // }
-
   public function search(string $id){
     $parent_id = $this->parent_id($id);
     $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where genre_id = '$id'";
@@ -48,16 +41,6 @@ class Product_Display_Repository extends Repository{
    * @param $id 
    */
 
-  // function parent_id($id){
-  //   $sql = "SELECT id from genres where parent_id = '$id'";
-  //   $result = parent::find($sql);
-  //   if(!$result){
-  //     return 0;
-  //   }else{
-  //     return $result[0]['id'];
-  //   }
-  // }
-
   function parent_id($id){
     $sql = "SELECT id from genres where parent_id = '$id'";
     $result = parent::find($sql);
@@ -66,5 +49,17 @@ class Product_Display_Repository extends Repository{
     }else{
       return $result;
     }
+  }
+
+  /**
+   * ジャンル名取得
+   * @param string $id
+   * @return array $result
+   */
+
+  function genreName($id){
+    $sql = "SELECT name from genres where id = $id";
+    $result = parent::find($sql);
+    return $result;
   }
 }

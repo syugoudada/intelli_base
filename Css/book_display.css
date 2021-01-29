@@ -109,11 +109,18 @@ a{
   padding-bottom: 10px;
 }
 
+h2{
+  margin-left: 20px;
+}
+
+.genre{
+  width: 300px;
+  border-right: 1px solid rgba(0,0,255,0.3);
+}
+
 .sub_genre{
-  width: 330px;
   list-style: none;
   padding: 0px;
-  border-right: 1px solid rgba(0,0,255,0.3);
 }
 
 .genreList{
@@ -123,6 +130,11 @@ a{
 
 .genreList:hover{
   color: rgba(255, 155, 25, 0.808);
+}
+
+.genreTitle{
+  font-size: 30px;
+  margin-left: 20px;
 }
 
 .slider.slick-initialized{

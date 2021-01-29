@@ -8,6 +8,7 @@ $genre_self = new Product_Registration_Repository(DB_USER, DB_PASS);
 $myself->login();
 $genre_id = $_POST['genre_id'];
 $result = $myself->search($genre_id);
+$genreName = $myself->genreName($genre_id);
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +71,7 @@ $result = $myself->search($genre_id);
     <div class="main_contents">
       <div class="book_contents">
         <div class="genre">
+          <h2>ジャンル</h2>
           <ul class="sub_genre">
             <?php
             $genre_self->login();
@@ -84,6 +86,7 @@ $result = $myself->search($genre_id);
         </div>
         </ul>
         <div class="book_list">
+          <p class="genreTitle"><?= $genreName[0]["name"]; ?></p>
           <ul class="slider multiple-item popular">
             <?php
             foreach ($result as $value) {
