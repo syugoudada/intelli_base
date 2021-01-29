@@ -33,14 +33,12 @@ $genre = $myself->genre();
         <img src="../image/icon.png" width="50px" height="50px">
         <p class="iconTitle">intelli_base</p>
       </div>
-      <form action="../Search/search.php" method="POST">
         <div class="search">
           <input type="text" id="search_bar" name="title" placeholder="検索">
           <input type="submit" id="submit" name="sub" value="🔍">
         </div>
-      </form>
       <nav class="login_tag">
-        <a href="../Login/login_form.php">こんにちは、ログイン</a>
+        <a href="../Login/login_form.php" class="noLog">こんにちは、ログイン</a>
         <ul class="userContents">
           <li><a href="../Password_Change/change.php">パスワード変更</a></li>
           <li><a href="../Product_Register/Register.php">商品登録</a></li>
@@ -61,7 +59,7 @@ $genre = $myself->genre();
       ?>
 
       <div id="cart_tag">
-        <a  class="cart_a" href="../Cart/Cart.php">カート</a>
+        <a class="cart_a" href="../Cart/Cart.php">カート</a>
       </div>
     </div>
   </header>
@@ -97,7 +95,7 @@ $genre = $myself->genre();
           $(".userContents").css("top", "-250px");
           $(".all_body").css("width", "0%").css("height", "0%");
         },
-      )
+      );
 
       $('.userContents').hover(
         function() {
@@ -115,7 +113,7 @@ $genre = $myself->genre();
         book_list = [];
         if ($('#search_bar').val() != "") {
           $('.product-part').remove();
-          let title = {
+          const title = {
             "title": $('#search_bar').val()
           };
           ajax(title);
@@ -123,7 +121,8 @@ $genre = $myself->genre();
         }
       });
 
-      <?php if ($_POST['title'] != "") {
+      <?php
+      if ($_POST['title'] != "") {
         $title = str_replace("\"", "", $_POST['title']);
         $title = str_replace("'", "", $title);
         print("let title = {\"title\":\"$title\"};ajax(title);$('#diary-all-pager').hide().fadeIn(500);");
@@ -168,7 +167,7 @@ $genre = $myself->genre();
       }
 
       function make_obj(content, index) {
-        const htmlContent = ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"  rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/book1.jpg" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" value="Cart"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
+        const htmlContent = ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"  rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/thumbnail' + content["id"][index] + '.png" height="200px" width="200px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" value="Cartに入れる"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
         star(content, index);
         return htmlContent;
       }

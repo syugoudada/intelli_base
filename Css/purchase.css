@@ -3,18 +3,19 @@ body{
   display: grid;
   grid-template: 
   "...... ...... ...... ...... ......"
-  "...... header header header ......"  50px
+  "...... header header header ......"  120px
   "...... ...... ...... ...... ......"
   "...... center center center ......"  450px
   "...... ...... ...... ...... ......"
   "...... footer footer footer ......"  150px
   "...... ...... ...... ...... ......"
   / auto  auto   minmax(400px,450px)   auto   auto;
-  background-color: rgba(102, 102, 102, 0.096);
+  /* background-color: rgba(102, 102, 102, 0.096); */
 }
 
 header{
   grid-area: header;
+  margin: auto;
 }
 
 main{
@@ -56,6 +57,10 @@ aside{
   padding: 25px;
   margin-right: 40px;
   background-color: #fff;
+}
+
+.bookInfo > p{
+  font-size: 20px;
 }
 
 .total_price{

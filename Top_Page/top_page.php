@@ -31,7 +31,7 @@ $book["popular"] = array();
   <header>
     <div class="header_contents">
       <div class="icon">
-        <img src="../image/icon.png" width="50px" height="50px">
+        <img src="../image/icon.png" class="iconImage" width="50px" height="50px">
         <p class="iconTitle">intelli_base</p>
       </div>
       <form action="../Search/search.php" method="POST">
@@ -41,7 +41,7 @@ $book["popular"] = array();
         </div>
       </form>
       <nav class="login_tag">
-        <a href="../Login/login_form.php">こんにちは、ログイン</a>
+        <a class="noLog" href="../Login/login_form.php">こんにちは、ログイン</a>
         <ul class="userContents">
           <li><a href="../Password_Change/change.php">パスワード変更</a></li>
           <li><a href="../Product_Register/Register.php">商品登録</a></li>

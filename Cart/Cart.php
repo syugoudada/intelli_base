@@ -44,7 +44,7 @@ if (empty($_SESSION['account']['id'])) {
                 </div>
             </form>
             <nav class="login_tag">
-                <a href="../Login/login_form.php">こんにちは、ログイン</a>
+                <a href="../Login/login_form.php" class="noLog">こんにちは、ログイン</a>
                 <ul class="userContents">
                     <li><a href="../Password_Change/change.php">パスワード変更</a></li>
                     <li><a href="../Product_Register/Register.php">商品登録</a></li>

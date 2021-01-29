@@ -88,6 +88,14 @@ header{
   text-decoration: none;
 }
 
+.noLog{
+  font-size: 20px;
+}
+
+.noLog:hover{
+  color: rgba(202, 191, 88, 0.973);
+}
+
 .main_contents{
   display: flex;
 }

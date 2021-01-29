@@ -60,6 +60,10 @@ header{
   margin-left: 20px;
 }
 
+.noLog{
+  font-size: 20px;
+}
+
 .all_body{
   position: absolute;
   margin-top: 90px;
