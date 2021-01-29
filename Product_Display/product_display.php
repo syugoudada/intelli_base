@@ -22,7 +22,7 @@ $result = $myself->search($genre_id);
   <link rel="icon" type="image/png" href="../image/icon.png">
   <link rel="stylesheet" href="../Css/book_display.css">
   <script src="../js/slick.min.js"></script>
-  <title></title>
+  <title>Intelli_Base</title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@ $result = $myself->search($genre_id);
     <div class="header_contents">
       <div class="icon">
         <img src="../image/icon.png" width="50px" height="50px">
-        <p class="iconTitle">intelli_base</p>
+        <p class="iconTitle">Intelli_Base</p>
       </div>
       <form action="../Search/search.php" method="POST">
         <div class="search">

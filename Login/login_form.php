@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Css/login_form.css">
   <link rel="icon" type="image/png" href="../image/icon.png">
-  <title>intelli_base</title>
+  <title>Intelli_Base</title>
 </head>
 
 <body>
@@ -41,11 +41,11 @@
           </div>
 
           <div class="a-divider">
-            intelli_baseは初めてご利用ですか？
+            Intelli_Baseは初めてご利用ですか？
           </div>
 
           <span class="a-button-inner">
-            <a href="sign_up.php" class="createAccountSubmit" role="button">intelli_baseアカウントを作成する</a>
+            <a href="sign_up.php" class="createAccountSubmit" role="button">Intelli_Baseアカウントを作成する</a>
           </span>
         </div>
       </div>

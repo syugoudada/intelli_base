@@ -7,7 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="../js/jquery.raty.js"></script>
   <link rel="stylesheet" href="../Css/search_bar.css">
-  <title>intelli_base</title>
+  <title>Intelli_Base</title>
 </head>
 
 <body>

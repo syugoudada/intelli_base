@@ -17,7 +17,7 @@ $book_detail = $myself->book_find($book_id);
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="../js/jquery.raty.js"></script>
   <link rel="stylesheet" href="../Css/product_detail.css">
-  <title>intelli_base</title>
+  <title>Intelli_Base</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@ $book_detail = $myself->book_find($book_id);
     <div class="header_contents">
       <div class="icon">
         <img src="../image/icon.png" width="50px" height="50px">
-        <p class="iconTitle">intelli_base</p>
+        <p class="iconTitle">Intelli_Base</p>
       </div>
       <form action="../Search/search.php" method="POST">
         <div class="search">

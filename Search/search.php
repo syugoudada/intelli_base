@@ -22,7 +22,7 @@ $genre = $myself->genre();
   <link rel="stylesheet" href="../Css/search.css">
   <link rel="stylesheet" href="../Css/pagination.css">
   <link rel="icon" type="image/png" href="../image/icon.png">
-  <title>intelli_base</title>
+  <title>Intelli_Base</title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@ $genre = $myself->genre();
     <div class="header_contents">
       <div class="icon">
         <img src="../image/icon.png" width="50px" height="50px">
-        <p class="iconTitle">intelli_base</p>
+        <p class="iconTitle">Intelli_Base</p>
       </div>
         <div class="search">
           <input type="text" id="search_bar" name="title" placeholder="検索">

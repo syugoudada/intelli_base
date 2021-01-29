@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Css/sign_up.css">
   <link rel="icon" type="image/png" href="../image/icon.png">
-  <title>intelli_base</title>
+  <title>Intelli_Base</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
             <input type="password" name="confirm" class="confirm input_form" required>
           </label>
         </div>
-        <button type="submit" name="register" class="make-Account">intelli_baseアカウントを作成する</button>
+        <button type="submit" name="register" class="make-Account">Intelli_Baseアカウントを作成する</button>
       </form>
       <p>既に登録済みの人は<a href="login_form.php">こちら</a></p>
     </div>

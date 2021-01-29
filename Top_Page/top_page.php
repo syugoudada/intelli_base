@@ -23,7 +23,7 @@ $book["popular"] = array();
   <link rel="icon" type="image/png" href="../image/icon.png">
   <link rel="stylesheet" href="../Css/top.css">
   <script src="../js/slick.min.js"></script>
-  <title>intelli_base</title>
+  <title>Intelli_Base</title>
 </head>
 
 <body>
@@ -32,7 +32,7 @@ $book["popular"] = array();
     <div class="header_contents">
       <div class="icon">
         <img src="../image/icon.png" class="iconImage" width="50px" height="50px">
-        <p class="iconTitle">intelli_base</p>
+        <p class="iconTitle">Intelli_Base</p>
       </div>
       <form action="../Search/search.php" method="POST">
         <div class="search">

@@ -29,7 +29,7 @@ $myself->login();
   <link rel="stylesheet" href="../Css/purchase.css">
   <link rel="icon" type="image/png" href="../image/icon.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <title>intelli_base</title>
+  <title>Intelli_Base</title>
 </head>
 
 <body>
@@ -81,7 +81,7 @@ $myself->login();
           }
           ?>
           <aside>
-            intelli_baseの利用規約、プライバシーに関するお知らせ、商品の詳細ページとキャンペーンページに記載されているその他の販売条件、同意した上で商品を注文できます。料金と注文の合計。
+            Intelli_Baseの利用規約、プライバシーに関するお知らせ、商品の詳細ページとキャンペーンページに記載されているその他の販売条件、同意した上で商品を注文できます。料金と注文の合計。
           </aside>
         </div>
       </div>

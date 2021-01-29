@@ -26,7 +26,7 @@ if (empty($_SESSION['account']['id'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="icon" type="image/png" href="../image/icon.png">
     <link rel="stylesheet" href="../Css/cart.css">
-    <title>intelli_base</title>
+    <title>Intelli_Base</title>
 </head>
 
 <body>
@@ -35,7 +35,7 @@ if (empty($_SESSION['account']['id'])) {
         <div class="header_contents">
             <div class="icon">
                 <img src="../image/icon.png" width="50px" height="50px">
-                <p class="iconTitle">intelli_base</p>
+                <p class="iconTitle">Intelli_Base</p>
             </div>
             <form action="../Search/search.php" method="POST">
                 <div class="search">
@@ -229,7 +229,7 @@ if (empty($_SESSION['account']['id'])) {
 
         function makeObject() {
             $(".subTotal").remove();
-            $(".cart_contents").append("<div class='noCart'><img src=\'../image/Clean.png\' width=300px height=250px><div class=\'cart-info\'><p>intelli_baseカートは商品がありません</p></div></div>");
+            $(".cart_contents").append("<div class='noCart'><img src=\'../image/Clean.png\' width=300px height=250px><div class=\'cart-info\'><p>Intelli_Baseカートは商品がありません</p></div></div>");
             $(".subItems").remove();
         }
 
