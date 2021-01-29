@@ -60,8 +60,8 @@ header{
   z-index: 1;
 }
 
-.userName:hover{
-  border: 1px solid rgb(241, 255, 41);
+.userName:hover,.cart_a:hover{
+  color: rgba(255, 155, 25, 0.808);
 }
 
 .userContents{
