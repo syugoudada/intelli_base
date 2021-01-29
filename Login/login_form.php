@@ -20,8 +20,8 @@
         <div class="loginForm">
           <h1>ログイン</h1>
           <div class="email-form">
-            <label for="email"><strong>ユーザー</strong><br>
-              <input type="text" name="email" class="user-input input_form" value="<?php
+            <label for="mail"><strong>ユーザー</strong><br>
+              <input type="email" name="mail" class="user-input input_form" value="<?php
           if (isset($_COOKIE['email']) && $_COOKIE['email'] !== "") {
             print($_COOKIE['email']);
           }

@@ -37,8 +37,8 @@ main{
   height: 30px;
 }
 
-.input_form:active{
-  outline: solid 1px olivedrab;
+.input_form:focus{
+  outline: solid 2px #ff6a00;
 }
 
 .login-Button{
@@ -83,7 +83,6 @@ main{
 
 .createAccountSubmit{
   font-size: 20px;
-  color: 000;
   text-decoration: none;
 }
 
