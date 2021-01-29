@@ -13,7 +13,7 @@
       $_SESSION["account"]["id"] = $account[0]["id"];
       $_SESSION["account"]["name"] = $account[0]['name'];
       //Cartからのログイン
-      if($_POST['http'] == "http://localhost/intelli_base/Cart/Cart.php"){
+      if($_POST['http'] == "http://localhost/Intelli_Base/Cart/Cart.php"){
         $cart_json = $myself->find_cart($account[0]["id"]);
         $cart_now = json_decode($cart_json[0]["cart_json"],true); 
         //同一判定(無ければ追加)
