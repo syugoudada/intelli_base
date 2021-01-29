@@ -88,10 +88,10 @@ if (empty($_SESSION['account']['id'])) {
                             $total = $total + $value["price"];
                             print("<div class='books' id='$value[id]'><span name='check'><input type='checkbox' class='check_box' id='check$value[id]' name='book$index' value='$value[id]' checked></span><img src='../uploadedData/thumbnail/thumbnail$value[id].png' width='100px' height='120px' alt='本'><div class='book_info'><p class='title'>$value[title]</p><p class='price$value[id]'>$value[price]円</p><p class='name'>$value[name]</p><button class='delete' type='button' value='$value[id]'>削除</button></div></div>");
                         }
-                        if (isset($_SESSION["total"]) && $_SESSION["total"] != "") {
-                            $notsend = $total - $_SESSION["total"];
+                        if (isset($_SESSION["sendTotal"]) && $_SESSION["sendTotal"] != "") {
+                            $notsend = $total - $_SESSION["sendTotal"];
                             $total = $total - $notsend;
-                            unset($_SESSION["total"]);
+                            unset($_SESSION["sendTotal"]);
                         }
                         $count = count($cart);
                         print("<script>let total = $total; let count = $count</script>");
@@ -137,6 +137,8 @@ if (empty($_SESSION['account']['id'])) {
                 $(".subItems").remove();
             } else if (count == 1) {
                 sizeChange();
+            } else if (count == 2){
+                sizeChange2();
             }
 
             $('.delete').click(function() {
@@ -153,7 +155,10 @@ if (empty($_SESSION['account']['id'])) {
                     sizeChange();
                 } else if (count - 1 == 1) {
                     sizeChange();
+                } else if (count - 1 === 2){
+                    sizeChange2();
                 }
+                count -= 1;
             });
 
             $('.userName').hover(
@@ -232,6 +237,10 @@ if (empty($_SESSION['account']['id'])) {
             $(".cart_contents").css("height", "360px");
         }
 
+        function sizeChange2() {
+            $(".cart_contents").css("height", "600px");
+        }
+
         function makeHtml(total) {
             const point = Math.round(total / 100);
             $(".totalPrice").html('<div class="totalPrice">小計:￥<strong>' + total.toLocaleString() + '</strong></div>');
@@ -242,9 +251,9 @@ if (empty($_SESSION['account']['id'])) {
     </script>
 
     <footer>
-        <a href="#" class="backTop">Back Top</a>
+        <!-- <a href="#" class="backTop">Back Top</a>
         <div class="footer_contents">
-        </div>
+        </div> -->
     </footer>
 </body>
 

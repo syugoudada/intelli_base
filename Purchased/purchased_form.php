@@ -69,13 +69,16 @@ $myself->login();
               print("<div class='book_list'><img src='../uploadedData/thumbnail/thumbnail$value[id].png' width='100px' height='120px'><div class='bookInfo'><p>$value[title]</p><p>$value[price]円</p></div><input type='text' name='id$index' value = '$value[id]' hidden></div>");
             }
           }
-          $_SESSION["total"] = $total;
+          
           ?>
         </div>
         <div class="total_price">
           <input type="submit" name="submit" class="purchaseButton" value="購入します">
           <?php
           print("<p>小計:$total 円</p><p id='chose_point'>消費ポイント:0pt</p><p id='total'>合計:$total 円</p><input type='text' name='total' value = '$total' id='hid_total' hidden>");
+          if(isset($_SESSION['account']['id']) && $_SESSION['account']['id'] != ""){
+            $_SESSION["sendTotal"] = $total;
+          }
           ?>
           <aside>
             intelli_baseの利用規約、プライバシーに関するお知らせ、商品の詳細ページとキャンペーンページに記載されているその他の販売条件、同意した上で商品を注文できます。料金と注文の合計。
