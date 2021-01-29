@@ -1,36 +1,66 @@
-<?php
-  session_start();
-  //ページ分けで使う
-  var_dump($_SERVER['HTTP_REFERER']);
-?>
 
+<!DOCTYPE html>
 <html lang="ja">
-  <head></head>
-  <body>
-    <h1>ログインページ</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../Css/login_form.css">
+  <link rel="icon" type="image/png" href="../image/icon.png">
+  <title>intelli_base</title>
+</head>
+
+<body>
+  <header>
+  
+  </header>
+
+  <main>
     <form action="login.php" method="POST">
-      <div>
-        <label for="email">ユーザー
-          <input type="text" name="email" value="<?php
-            if(isset($_COOKIE['email']) && $_COOKIE['email'] !== ""){
-              print($_COOKIE['email']);
-            }
-          ?>"required>
-        </label>
-      </div>
+      <div class="login-Info">
+        <div class="loginForm">
+          <h1>ログイン</h1>
+          <div class="email-form">
+            <label for="email"><strong>ユーザー</strong><br>
+              <input type="text" name="email" class="user-input input_form" value="<?php
+          if (isset($_COOKIE['email']) && $_COOKIE['email'] !== "") {
+            print($_COOKIE['email']);
+          }
+          ?>" style="text-align:left" required>
+            </label>
+          </div>
 
-      <div>
-        <label for="pass">パスワード
-          <input type="pass" name="pass" required>
-        </lable>
-      </div>
+          <div class="password">
+            <label for="pass"><strong>パスワード</strong><br>
+              <input type="password" name="pass" class="pass-input input_form" required>
+              </lable>
+          </div>
 
-      <?= print("<input type='hidden' name='http' value='$_SERVER[HTTP_REFERER]'"); ?>
-      <div>
-        <button type="submit">Login</button>
-      </div>
+          <?= print("<input type='hidden' name='http' value='$_SERVER[HTTP_REFERER]'"); ?>
+          <div>
+            <button type="submit" class="login-Button">Login</button>
+          </div>
 
-      <a href="sign_up.php">新規登録</a>
+          <div class="a-divider">
+            intelli_baseは初めてご利用ですか？
+          </div>
+
+          <span class="a-button-inner">
+            <a href="sign_up.php" class="createAccountSubmit" role="button">intelli_baseアカウントを作成する</a>
+          </span>
+        </div>
+      </div>
     </form>
-  </body>
+  </main>
+  <footer>
+    
+  </footer>
+</body>
 </html>
+
+<?php
+session_start();
+if($_SESSION["message"] != ""){
+  print("<script>alert('$_SESSION[message]');</script>");
+  unset($_SESSION["message"]);
+}
+?>

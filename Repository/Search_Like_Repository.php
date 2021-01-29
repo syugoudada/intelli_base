@@ -13,7 +13,7 @@ class Search_Like_Repository extends Repository{
    */
 
   public function search(string $title){
-    $sql = "SELECT id,title,price,evaluation_avg,name from book_infomation where title LIKE '%$title%' OR name LIKE '%$title%'";
+    $sql = "SELECT id,title,price,evaluation_avg,name,description from book_infomation where title LIKE '%$title%' OR name LIKE '%$title%'";
     $result = parent::find($sql);
     return $result;
   }

@@ -58,4 +58,29 @@ class Purchase_Repository extends Repository{
     return $result;
   }
 
+  /**
+     * カートの配列
+     * @param array $user 購入商品
+     * @return boolean
+     */
+
+    public function updateCartJson(string $account_id, string $json_cart){
+      $sql = "UPDATE accounts SET cart_json = '$json_cart' where id = '$account_id'";
+      $result = parent::save($sql);
+      return $result;
+  }
+
+  /**
+   * dbのjsonデータ取得
+   * 
+   * @param integer $string
+   * @return array json
+   */
+  public function find_cart(string $account_id){
+      $sql = "select cart_json from accounts where id = '$account_id'";
+      $result = parent::find($sql);
+      return $result;
+  }
+
+
 }

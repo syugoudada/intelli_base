@@ -1,5 +1,44 @@
+body{
+  margin: 0;
+  display: grid;
+  grid-template: 
+  "...... ...... ...... ...... ......"
+  "...... header header header ......"  120px
+  "...... ...... ...... ...... ......"
+  "...... center center center ......"  450px
+  "...... ...... ...... ...... ......"
+  "...... footer footer footer ......"  150px
+  "...... ...... ...... ...... ......"
+  / auto  auto   minmax(400px,450px)   auto   auto;
+  /* background-color: rgba(102, 102, 102, 0.096); */
+}
+
+header{
+  grid-area: header;
+  margin: auto;
+}
+
+main{
+  grid-area: center;
+}
+
+.paymentForm{
+  border: 1.5px solid rgba(0,0,255,0.3);
+  border-radius: 3%;
+  margin: 20px auto;
+  width: 600px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+}
+
+aside{
+  margin-top: 30px;
+}
+
 .book_contents{
   display: flex;
+  justify-content: center;
 }
 
 .book_list{
@@ -7,14 +46,48 @@
   margin: 20px 0;
 }
 
-.all_contents{
-  width: 1000px;
-  margin: 0  auto;
+.book_items .book_list:not(:last-child){
+  border-bottom: 1px solid rgba(0,0,0,0.7);
+  padding-bottom: 30px;
 }
 
 .book_items{
   border: 1.5px solid rgba(0,0,255,0.3);
   border-radius: 5%;
-  width: 600px;
+  padding: 25px;
+  margin-right: 40px;
+  background-color: #fff;
+}
+
+.bookInfo > p{
+  font-size: 20px;
+}
+
+.total_price{
+  border: 1.5px solid rgba(0,0,255,0.3);
+  border-radius: 5%;
+  width: 20%;
+  padding: 30px;
+  height: 350px;
+  background-color: #fff;
+}
+
+.total_price > p{
+  font-size: 30px;
+}
+
+#chose_point{
+  border-bottom: 2px solid rgba(255, 117, 117, 0.664);
+}
+
+.purchaseButton{
+  width: 150px;
+  height: 45px;
+  margin: 0 50px 5px 50px;
+  font-size: 18px;
+}
+
+footer{
+  grid-area: footer;
 }
 

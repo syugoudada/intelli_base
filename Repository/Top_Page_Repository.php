@@ -16,7 +16,7 @@ class Top_Page_Repository extends Repository
    */
   function rank_book()
   {
-    $sql = "SELECT id,title,name,price,evaluation_avg from book_infomation WHERE evaluation_avg > 3.5 LIMIT 20";
+    $sql = "SELECT id,title,name,price,evaluation_avg from book_infomation WHERE evaluation_avg > 3.5 LIMIT 10";
     $result = parent::find($sql);
     return $result;
   }
@@ -27,7 +27,7 @@ class Top_Page_Repository extends Repository
 
   function popular_count()
   {
-    $sql = "SELECT book_id from purchases GROUP By book_id HAVING (COUNT(*) >= 5) ORDER BY COUNT(*) DESC LIMIT 20";
+    $sql = "SELECT book_id from purchases GROUP By book_id HAVING (COUNT(*) >= 5) ORDER BY COUNT(*) DESC LIMIT 10";
     $result = parent::find($sql);
     return $result;
   }
