@@ -27,7 +27,7 @@ class Repository implements IuserRepository
   {
     $this->name = $name;
     $this->password = $password;
-    $this->dns = "mysql:host=mysql;dbname=intelli_base_version2;dbport=3306;charset=utf8";
+    $this->dns = "mysql:host=mysql;dbname=intelli_base;dbport=3306;charset=utf8";
   }
 
   public function login()
