@@ -12,6 +12,7 @@
       $account = $myself->find($email);
       $_SESSION["account"]["id"] = $account[0]["id"];
       $_SESSION["account"]["name"] = $account[0]['name'];
+      var_dump($_POST['http']);
       //Cartからのログイン
       if($_POST['http'] == "http://localhost/Intelli_Base/Cart/Cart.php"){
         $cart_json = $myself->find_cart($account[0]["id"]);

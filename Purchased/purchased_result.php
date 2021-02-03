@@ -28,8 +28,10 @@ foreach ($_SESSION["account"]["purchased"] as $book_id) {
   <header>
     <div class="header_contents">
       <div class="icon">
+      <a href="../Top_Page/top_page.php" class="topBack">
         <img src="../image/icon.png" width="50px" height="50px">
         <p class="iconTitle">Intelli_Base</p>
+      </a>
       </div>
       <form action="../Search/search.php" method="POST">
         <div class="search">

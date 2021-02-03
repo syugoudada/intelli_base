@@ -22,15 +22,19 @@ header{
   justify-content: space-around;
 }
 
+.topBack{
+  display: flex;
+}
+
 .icon{
   width: 300px;
-  display: flex;
 }
 
 .iconTitle{
   font-size: 30px;
   margin: 0px;
   margin-left: 20px;
+  padding-bottom: 20px;
 }
 
 .noLog{

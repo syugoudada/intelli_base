@@ -18,6 +18,11 @@ if(isset($_SESSION["account"]["id"])){
   $json_cart = json_encode($cart);
   $myself->updateCartJson($account_id,$json_cart);
 }else{
+  foreach($_SESSION["cart"] as $key => $book){
+    if($book == $book_id){
+      unset($_SESSION["cart"][$key]);
+    }
+  }
   array_push($cart,array("message"=>"delete"));
 }
 

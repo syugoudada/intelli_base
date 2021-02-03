@@ -34,8 +34,10 @@ if (empty($_SESSION['account']['id'])) {
     <header>
         <div class="header_contents">
             <div class="icon">
-                <img src="../image/icon.png" width="50px" height="50px">
-                <p class="iconTitle">Intelli_Base</p>
+                <a href="../Top_Page/top_page.php" class="topBack">
+                    <img src="../image/icon.png" width="50px" height="50px">
+                    <p class="iconTitle">Intelli_Base</p>
+                </a>
             </div>
             <form action="../Search/search.php" method="POST">
                 <div class="search">
@@ -137,7 +139,7 @@ if (empty($_SESSION['account']['id'])) {
                 $(".subItems").remove();
             } else if (count == 1) {
                 sizeChange();
-            } else if (count == 2){
+            } else if (count == 2) {
                 sizeChange2();
             }
 
@@ -155,7 +157,7 @@ if (empty($_SESSION['account']['id'])) {
                     sizeChange();
                 } else if (count - 1 == 1) {
                     sizeChange();
-                } else if (count - 1 === 2){
+                } else if (count - 1 === 2) {
                     sizeChange2();
                 }
                 count -= 1;
@@ -251,9 +253,6 @@ if (empty($_SESSION['account']['id'])) {
     </script>
 
     <footer>
-        <!-- <a href="#" class="backTop">Back Top</a>
-        <div class="footer_contents">
-        </div> -->
     </footer>
 </body>
 
