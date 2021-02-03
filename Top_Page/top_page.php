@@ -75,7 +75,7 @@ $book["popular"] = array();
             <h1>ジャンル</h1>
             <?php
             foreach ($genre as $value) {
-              print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' class='genre_a' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
+              print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='GET'><li value='$value[id]'><a href='#' class='genre_a' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
             }
             ?>
           </ul>
@@ -87,7 +87,7 @@ $book["popular"] = array();
             foreach ($book["popular_count"] as $value) {
               $book["popular"] = $myself->popular_book($value['book_id']);
               foreach ($book["popular"] as $value2) {
-                print("<li><form action='../Search/product_detail.php' name='product$value2[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value2[id].png' width='131'><p>$value2[title]</p><p>$value2[name]</p><input type='text' name = book_id hidden value = $value2[id]></form></li>");
+                print("<li><form action='../Search/product_detail.php' name='product$value2[id]' method='GET' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value2[id].png' width='131'><p>$value2[title]</p><p>$value2[name]</p><input type='text' name = book_id hidden value = $value2[id]></form></li>");
               }
             }
             ?>
@@ -97,7 +97,7 @@ $book["popular"] = array();
           <ul class="slider multiple-item rank">
             <?php
             foreach ($book["rank"] as $value) {
-              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='131'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
+              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='GET' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='131'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
             }
             ?>
           </ul>

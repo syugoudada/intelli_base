@@ -6,7 +6,7 @@ require_once('../Repository/Product_Registration_Repository.php');
 $myself = new Product_Display_Repository(DB_USER, DB_PASS);
 $genre_self = new Product_Registration_Repository(DB_USER, DB_PASS);
 $myself->login();
-$genre_id = $_POST['genre_id'];
+$genre_id = $_GET['genre_id'];
 $result = $myself->search($genre_id);
 $genreName = $myself->genreName($genre_id);
 ?>
@@ -31,8 +31,10 @@ $genreName = $myself->genreName($genre_id);
   <header>
     <div class="header_contents">
       <div class="icon">
-        <img src="../image/icon.png" width="50px" height="50px">
-        <p class="iconTitle">Intelli_Base</p>
+        <a href="../Top_Page/top_page.php" class="topBack">
+          <img src="../image/icon.png" width="50px" height="50px">
+          <p class="iconTitle">Intelli_Base</p>
+        </a>
       </div>
       <form action="../Search/search.php" method="POST">
         <div class="search">
@@ -41,7 +43,7 @@ $genreName = $myself->genreName($genre_id);
         </div>
       </form>
       <nav class="login_tag">
-        <a href="../Login/login_form.php">こんにちは、ログイン</a>
+        <a class="noLog" href="../Login/login_form.php">こんにちは、ログイン</a>
         <ul class="userContents">
           <li><a href="../Password_Change/change.php">パスワード変更</a></li>
           <li><a href="../Product_Register/Register.php">商品登録</a></li>
@@ -75,11 +77,11 @@ $genreName = $myself->genreName($genre_id);
           <ul class="sub_genre">
             <?php
             $genre_self->login();
-            $genre_id = $_POST["genre_id"];
+            $genre_id = $_GET["genre_id"];
             $genre = $genre_self->sub_genre($genre_id);
             if (!empty($genre)) {
               foreach ($genre as $value) {
-                print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li class='subList' value='$value[id]'><a href='#' class='genreList' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
+                print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='GET'><li class='subList' value='$value[id]'><a href='#' class='genreList' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
               }
             }
             ?>
@@ -90,7 +92,7 @@ $genreName = $myself->genreName($genre_id);
           <ul class="slider multiple-item popular">
             <?php
             foreach ($result as $value) {
-              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='POST' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='120'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
+              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='GET' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='120'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
             }
             ?>
           </ul>

@@ -42,9 +42,12 @@ header{
   justify-content: space-around;
 }
 
+.topBack{
+  display: flex;
+}
+
 .icon{
   width: 300px;
-  display: flex;
 }
 
 .iconTitle{
