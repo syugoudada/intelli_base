@@ -4,7 +4,7 @@ require_once("../Repository/Search_Like_Repository.php");
 require_once("../Repository/db_config.php");
 $myself = new Search_Like_Repository(DB_USER, DB_PASS);
 $myself->login();
-$book_id = $_POST['book_id'];
+$book_id = $_GET['book_id'];
 $book_detail = $myself->book_find($book_id);
 ?>
 
@@ -21,12 +21,14 @@ $book_detail = $myself->book_find($book_id);
 </head>
 
 <body>
-<label class="all_body"></label>
+  <label class="all_body"></label>
   <header>
     <div class="header_contents">
       <div class="icon">
-        <img src="../image/icon.png" width="50px" height="50px">
-        <p class="iconTitle">Intelli_Base</p>
+        <a href="../Top_Page/top_page.php" class="topBack">
+          <img src="../image/icon.png" width="50px" height="50px">
+          <p class="iconTitle">Intelli_Base</p>
+        </a>
       </div>
       <form action="../Search/search.php" method="POST">
         <div class="search">
@@ -42,7 +44,7 @@ $book_detail = $myself->book_find($book_id);
           <li><a href="../Login/logout.php">ログアウト</a></li>
         </ul>
       </nav>
-      
+
       <?php
       if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
         $name = $_SESSION["account"]["name"];

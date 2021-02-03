@@ -30,8 +30,10 @@ $genre = $myself->genre();
   <header>
     <div class="header_contents">
       <div class="icon">
+      <a href="../Top_Page/top_page.php" class="topBack">
         <img src="../image/icon.png" width="50px" height="50px">
         <p class="iconTitle">Intelli_Base</p>
+      </a>
       </div>
         <div class="search">
           <input type="text" id="search_bar" name="title" placeholder="検索">
@@ -168,7 +170,7 @@ $genre = $myself->genre();
       }
 
       function make_obj(content, index) {
-        const htmlContent = ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="POST"  rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/thumbnail' + content["id"][index] + '.png" height="250px" width="230px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" class="cartButton" value="Cartに入れる"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
+        const htmlContent = ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="GET"  rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/thumbnail' + content["id"][index] + '.png" height="250px" width="230px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" class="cartButton" value="Cartに入れる"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
         
         return htmlContent;
       }
