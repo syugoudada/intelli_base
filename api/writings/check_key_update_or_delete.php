@@ -31,17 +31,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->select('SELECT id FROM writings WHERE share_key = ?', [$share_key]);
+    $value = $db->select('SELECT id, account_id, local_writing_id, book_id FROM writings WHERE share_key = ?', [$share_key]);
     if (!$value) {
         // 一致する共有キーがなかった場合
         if (!$db->select('SELECT id FROM writings WHERE account_id = ? AND local_writing_id = ? AND book_id = ?', [$account_id, $local_writing_id, $book_id])) {
-            // 共有キーと日付情報意外が一致するデータがあった場合（共有キーがアップデートされた）
+            // 共有キーと日付情報意外が一致するデータが無い
             $response['content'] = ['status' => 'shareRejected'];
         } else {
+            // 共有キーと日付情報意外が一致するデータが有る（共有キーがアップデートされた）
             $response['content'] = ['status' => 'keyChanged'];
         }
     } else {
-        $response['content'] = ['status' => 'noChange'];
+        // 共有キーが一致するデータの内容が
+        if ($value[0]['account_id'] == $account_id && $value[0]['local_writing_id'] == $local_writing_id && $value[0]['book_id'] == $book_id) {
+            // 一致
+            $response['content'] = ['status' => 'noChange'];
+        } else {
+            // 不一致
+            $response['content'] = ['status' => 'shareRejected'];
+        }
     }
 } else {
     $response['error'] = true;
