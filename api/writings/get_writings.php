@@ -22,13 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../../includes/DbOperation.php';
     $db = new DbOparation();
 
-    $value = $db->select('SELECT id FROM writings WHERE share_key = ?', [$share_key]);
+    $value = $db->select('SELECT id, account_id, book_id, local_writing_id FROM writings WHERE share_key = ?', [$share_key]);
     if (!$value) {
         $response['error'] = true;
         $response['message'] = 'Statement error on select';
         $response['content'] = null;
     } else {
-        $response['content'] = ['writing_id' => $value[0]['id']];
+        $response['content'] = [
+            'writing_id' => $value[0]['id'],
+            'account_id' => $value[0]['account_id'],
+            'book_id' => $value[0]['book_id'],
+            'local_writing_id' => $value[0]['local_writing_id'],
+        ];
     }
 } else {
     $response['error'] = true;
