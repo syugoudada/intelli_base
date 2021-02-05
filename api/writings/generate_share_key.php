@@ -72,5 +72,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     $response['messgae'] = 'あなたは承認されていません';
 }
 
-var_dump($response);
-// echo json_encode($response);
+echo json_encode($response);
