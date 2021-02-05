@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
             $response['messgae'] = 'writingsテーブルの整合性が保たれていません';
         }
     }
-    $response['content'] = $new_share_key;
+    $response['content'] = ['share_key' => $new_share_key];
 } else {
     $response['error'] = true;
     $response['messgae'] = 'あなたは承認されていません';
