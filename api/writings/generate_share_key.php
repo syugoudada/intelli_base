@@ -39,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         // 日付
         $dateInt = (new DateTime())->format('YmdHis'); //-> yyyymmddhhiiss
         // Insert
-        var_dump("INSERT INTO writings (`account_id`, `book_id`, `local_writing_id`, `update_date`, `share_key`) VALUES ($account_id, $book_id, $local_writing_id, $dateInt, $new_share_key)");
         if (!$db->insert('INSERT INTO writings (`account_id`, `book_id`, `local_writing_id`, `update_date`, `share_key`) VALUES (?, ?, ?, ?, ?)', [$account_id, $book_id, $local_writing_id, $dateInt, $new_share_key])) {
             // insert error
             $response['error'] = true;
