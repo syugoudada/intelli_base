@@ -1,4 +1,5 @@
 uploadedData/book/*
 uploadedData/note/*
-# uploadedData/thumbnail/*
+uploadedData/thumbnail/*
+uploadedData/writing/*
 uploadedData/.DS_Store
