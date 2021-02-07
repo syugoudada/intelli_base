@@ -22,11 +22,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     require_once '../../includes/DbOperation.php';
     $db = new DbOparation();
 
-    if (!$db->insert('DELETE FROM writings WHERE share_key = ?', [$share_key])) {
+    $shared_writing_id = $db->select('SELECT id FROM writings WHERE share_key = ?', [$share_key]);
+
+    if (!$db->insert('DELETE FROM writings WHERE share_key = ?', [$share_key]) && is_bool($shared_writing_id)) {
         $response['error'] = true;
         $response['message'] = 'Statement error on delete';
     } else {
         $response['content'] = true;
+
+        $fileName = "../../uploadedData/writing/writing{$shared_writing_id[0]['id']}_*";
+
+        //アップロードされたファイルを削除する
+        foreach (glob($fileName) as $file) {
+            unlink($file);
+        }
     }
 } else {
     $response['error'] = true;
