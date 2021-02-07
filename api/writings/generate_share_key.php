@@ -65,7 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
             $response['messgae'] = 'writingsテーブルの整合性が保たれていません';
         }
     }
-    $response['content'] = ['share_key' => $new_share_key];
+    $useRow = $db->select('SELECT id FROM writings WHERE share_key = ?', [$new_share_key]);
+    if (!$useRow) {
+        $response['error'] = true;
+        $response['messgae'] = 'Statement error at select inserted or updated row.';
+    } else {
+        $response['content'][0] = ['id' => $useRow[0]['id'], 'share_key' => $new_share_key];
+    }
 } else {
     $response['error'] = true;
     $response['messgae'] = 'あなたは承認されていません';
