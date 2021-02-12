@@ -30,10 +30,10 @@ $book_detail = $myself->book_find($book_id);
           <p class="iconTitle">Intelli_Base</p>
         </a>
       </div>
-      <form action="../Search/search.php" method="POST">
+      <form action="../Search/search.php" method="GET">
         <div class="search">
           <input type="text" id="search_bar" name="title" placeholder="検索">
-          <input type="submit" id="submit" name="sub" value="🔍">
+          <input type="submit" id="submit" value="🔍">
         </div>
       </form>
       <nav class="login_tag">

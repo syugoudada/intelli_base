@@ -134,6 +134,12 @@ main{
   font-size: 30px;
 }
 
+.book-image{
+  height: 250px;
+  width: 200px;
+  box-shadow: 0 10px 25px 0 rgba(110, 110, 110, 0.5);
+}
+
 .name{
   color: rgb(0, 184, 174);
 }
@@ -175,5 +181,22 @@ main{
 
 footer{
   grid-area: footer;
-  /* background-color: rgba(102, 102, 102, 0.096); */
+  background-color: rgba(102, 102, 102, 0.096);
+}
+
+@media (min-width:1800px){
+  body{
+    /* background-color: gold; */
+    grid-template: 
+    "header header header header header"  100px
+    "...... ...... ...... ...... ......"  50px   
+    "...... center center center ......"  600px
+    "...... ...... ...... ...... ......"  50px
+    "footer footer footer footer footer"  170px
+    / auto  auto   minmax(600px,650px)  auto auto;
+  }
+
+  .title{
+    width: 550px;
+  }
 }
