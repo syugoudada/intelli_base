@@ -36,10 +36,10 @@ $genreName = $myself->genreName($genre_id);
           <p class="iconTitle">Intelli_Base</p>
         </a>
       </div>
-      <form action="../Search/search.php" method="POST">
+      <form action="../Search/search.php" method="GET">
         <div class="search">
           <input type="text" id="search_bar" name="title" placeholder="検索">
-          <input type="submit" id="submit" name="sub" value="🔍">
+          <input type="submit" id="submit" value="🔍">
         </div>
       </form>
       <nav class="login_tag">
@@ -92,7 +92,7 @@ $genreName = $myself->genreName($genre_id);
           <ul class="slider multiple-item popular">
             <?php
             foreach ($result as $value) {
-              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='GET' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='120'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
+              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='GET' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='120'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
             }
             ?>
           </ul>

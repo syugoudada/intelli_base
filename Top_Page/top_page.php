@@ -34,15 +34,15 @@ $book["popular"] = array();
         <img src="../image/icon.png" class="iconImage" width="50px" height="50px">
         <p class="iconTitle">Intelli_Base</p>
       </div>
-      <form action="../Search/search.php" method="POST">
+      <form action="../Search/search.php" method="GET">
         <div class="search">
           <input type="text" id="search_bar" name="title" placeholder="検索">
-          <input type="submit" id="submit" name="sub" value="🔍">
+          <input type="submit" id="submit" value="🔍">
         </div>
       </form>
       <nav class="login_tag">
         <a class="noLog" href="../Login/login_form.php">こんにちは、ログイン</a>
-        <ul class="userContents">
+        <ul class="userContents" id="userContents">
           <li><a href="../Password_Change/change.php">パスワード変更</a></li>
           <li><a href="../Product_Register/Register.php">商品登録</a></li>
           <li><a href="../Login/logout.php">ログアウト</a></li>
@@ -87,7 +87,7 @@ $book["popular"] = array();
             foreach ($book["popular_count"] as $value) {
               $book["popular"] = $myself->popular_book($value['book_id']);
               foreach ($book["popular"] as $value2) {
-                print("<li><form action='../Search/product_detail.php' name='product$value2[id]' method='GET' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value2[id].png' width='131'><p>$value2[title]</p><p>$value2[name]</p><input type='text' name = book_id hidden value = $value2[id]></form></li>");
+                print("<li><form action='../Search/product_detail.php' name='product$value2[id]' method='GET' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value2[id].png' width='131'><p>$value2[title]</p><p>$value2[name]</p><input type='text' name = book_id hidden value = $value2[id]></form></li>");
               }
             }
             ?>
@@ -97,7 +97,7 @@ $book["popular"] = array();
           <ul class="slider multiple-item rank">
             <?php
             foreach ($book["rank"] as $value) {
-              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='GET' target='_blank' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='131'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
+              print("<li><form action='../Search/product_detail.php' name='product$value[id]' method='GET' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value[id].png' width='131'><p>$value[title]</p><p>$value[name]</p><input type='text' name = book_id hidden value = $value[id]></form></li>");
             }
             ?>
           </ul>
@@ -113,36 +113,54 @@ $book["popular"] = array();
                 slidesToScroll: 6,
               });
 
-              $('.userName').hover(
-                function() {
-                  $(".userContents").css("top", "65px");
-                  $(".all_body").css("width", "100%").css("height", "100%");
-                },
-                function() {
-                  $(".userContents").css("top", "-250px");
-                  $(".all_body").css("width", "0%").css("height", "0%");
-                },
-              )
-
-              $('.userContents').hover(
-                function() {
-                  $(".userContents").css("top", "65px");
-                  $(".all_body").css("width", "100%").css("height", "100%");
-                },
-                function() {
-                  $(".userContents").css("top", "-250px");
-                  $(".all_body").css("width", "0%").css("height", "0%");
+              let screenWidth = screen.width;
+              const userContents = document.getElementById("userName");
+              userContents.addEventListener("mouseover", () => {
+                screenWidth = screen.width;
+                if (screenWidth < 1800) {
+                  $('.userName').hover(
+                    function() {
+                      $(".userContents").css("top", "65px").css("right","320px");
+                      $(".all_body").css("width", "100%").css("height", "100%");
+                    },
+                    function() {
+                      $(".userContents").css("top", "-250px");
+                      $(".all_body").css("width", "0%").css("height", "0%");
+                    },
+                  )
+                } else {
+                  $('.userName').hover(
+                    function() {
+                      $(".userContents").css("top", "65px").css("right", "620px");
+                      $(".all_body").css("width", "100%").css("height", "100%");
+                    },
+                    function() {
+                      $(".userContents").css("top", "-250px");
+                      $(".all_body").css("width", "0%").css("height", "0%");
+                    },
+                  )
                 }
-              );
+                $('.userContents').hover(
+                  function() {
+                    $(".userContents").css("top", "65px");
+                    $(".all_body").css("width", "100%").css("height", "100%");
+                  },
+                  function() {
+                    $(".userContents").css("top", "-250px");
+                    $(".all_body").css("width", "0%").css("height", "0%");
+                  }
+                );
+              });
+
 
               function make_booklist() {
                 let i = 1;
                 for (i; i <= 10; i++) {
-                  $('.popular').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');
+                  $('.popular').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST"  rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');
                 }
 
                 for (i; i <= 20; i++) {
-                  $('.rank').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST" target="_blank" rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');
+                  $('.rank').append('<li><form action="../Search/product_detail.php" name="product' + i + '" method="POST"  rel="noopener noreferrer"><input type ="image" src="../uploadedData/thumbnail/thumbnail' + i + '.png" width="120" ><input type="text" name = book_id hidden value  = "' + i + '"></form></li>');
                 }
               }
             });

@@ -147,6 +147,10 @@ main{
   margin-left: 30px;
 }
 
+.main_contents img{
+  box-shadow: 0 10px 25px 0 rgba(110, 110, 110, 0.5);
+}
+
 .cart_contents{
   border: 1.5px solid rgba(0,0,255,0.3);
   padding-bottom: 10px;
@@ -155,6 +159,23 @@ main{
 
 .cart-info{
   padding-top: 50px;
+}
+
+.delete{
+  background-color: #fff;
+  color:rgb(112, 112, 253);
+  border: none;
+  outline: none;
+}
+
+.delete:hover{
+  /* padding-bottom: 3px; */
+  text-decoration: underline solid 2px  rgb(212, 209, 255);
+  /* font-size: 30px; */
+}
+
+.delete:active{
+  outline: none;
 }
 
 .subTotal{
@@ -181,6 +202,7 @@ main{
 
 .purchase_infomation{
   margin: 10px;
+  line-height: 3em;
 }
 
 .totalPrice,.totalPoint{
@@ -229,4 +251,14 @@ footer{
   display: inline-block;
   text-align: center;
   padding-top: 10px;
+}
+
+@media (min-width:1800px){
+  .purchase_infomation{
+    margin-top: 40px;
+  }
+
+  .subItems{
+    margin-right: 60px;
+  }
 }

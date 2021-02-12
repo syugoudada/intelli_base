@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_POST['title'] == "") {
+if ($_GET['title'] == "") {
   print("<script>history.back();</script>");
 }
 require_once("../Repository/db_config.php");
@@ -124,8 +124,8 @@ $genre = $myself->genre();
       });
 
       <?php
-      if ($_POST['title'] != "") {
-        $title = str_replace("\"", "", $_POST['title']);
+      if ($_GET['title'] != "") {
+        $title = str_replace("\"", "", $_GET['title']);
         $title = str_replace("'", "", $title);
         print("let title = {\"title\":\"$title\"};ajax(title);$('#diary-all-pager').hide().fadeIn(500);");
       } ?>
