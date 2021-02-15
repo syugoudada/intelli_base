@@ -8,17 +8,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     $response['message'] = '承認';
 
     //値の取得
-    if (isset($_POST['account_id']) && isset($_POST['local_writing_id']) && isset($_POST['book_id'])) {
+    if (isset($_POST['account_id']) && isset($_POST['local_writing_id']) && isset($_POST['local_writing_title']) && isset($_POST['book_id'])) {
         $account_id = $_POST['account_id'];
         $local_writing_id = $_POST['local_writing_id'];
+        $local_writing_title = $_POST['local_writing_title'];
         $book_id = $_POST['book_id'];
-    } else if (isset($_GET['account_id']) && isset($_GET['local_writing_id']) && isset($_GET['book_id'])) {
+    } else if (isset($_GET['account_id']) && isset($_GET['local_writing_id']) && isset($_GET['local_writing_title']) && isset($_GET['book_id'])) {
         $account_id = $_GET['account_id'];
         $local_writing_id = $_GET['local_writing_id'];
+        $local_writing_title = $_GET['local_writing_title'];
         $book_id = $_GET['book_id'];
     } else {
         $account_id = 518;
         $local_writing_id = 1;
+        $local_writing_title = "Sample";
         $book_id = 260;
         $response['error'] = true;
         $response['message'] = 'post parameter error';
@@ -39,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         // 日付
         $dateInt = (new DateTime())->format('YmdHis'); //-> yyyymmddhhiiss
         // Insert
-        if (!$db->insert('INSERT INTO writings (`account_id`, `book_id`, `local_writing_id`, `update_date`, `share_key`) VALUES (?, ?, ?, ?, ?)', [$account_id, $book_id, $local_writing_id, $dateInt, $new_share_key])) {
+        if (!$db->insert('INSERT INTO writings (`account_id`, `book_id`, `local_writing_id`, `local_writing_title`, `update_date`, `share_key`) VALUES (?, ?, ?, ?, ?, ?)', [$account_id, $book_id, $local_writing_id, $local_writing_title, $dateInt, $new_share_key])) {
             // insert error
             $response['error'] = true;
             $response['messgae'] = 'Stetement error';
