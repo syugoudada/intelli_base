@@ -8,14 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
     $response['message'] = '承認';
 
     //値の取得
-    if (isset($_POST['update_date']) && isset($_POST['share_key'])) {
-        $update_date = $_POST['update_date'];
+    if (isset($_POST['share_key'])) {
         $share_key = $_POST['share_key'];
-    } else if (isset($_GET['update_date']) && isset($_GET['share_key'])) {
-        $update_date = $_GET['update_date'];
+    } else if (isset($_GET['share_key'])) {
         $share_key = $_GET['share_key'];
     } else {
-        $update_date = 20210205095937;
         $share_key = "601d15c7a4998";
         $response['error'] = true;
         $response['message'] = 'post parameter error';
@@ -30,11 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         $response['error'] = true;
         $response['message'] = 'Statement error on select';
     } else {
-        if ($update_date < $value[0]['update_date']) {
-            $response['content'][0] = ['updated' => true];
-        } else {
-            $response['content'][0] = ['updated' => false];
-        }
+        $response['content'][0] = ['date' => $value[0]['udpate_date']];
     }
 } else {
     $response['error'] = true;
