@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         $response['error'] = true;
         $response['message'] = 'Statement error on select';
     } else {
-        $response['content'][0] = ['date' => $value[0]['udpate_date']];
+        $response['content'][0] = ['date' => $value[0]['update_date']];
     }
 } else {
     $response['error'] = true;
