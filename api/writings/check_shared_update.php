@@ -31,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         $response['message'] = 'Statement error on select';
     } else {
         if ($update_date < $value[0]['update_date']) {
-            $response['content'] = ['updated' => true];
+            $response['content'][0] = ['updated' => true];
         } else {
-            $response['content'] = ['updated' => false];
+            $response['content'][0] = ['updated' => false];
         }
     }
 } else {

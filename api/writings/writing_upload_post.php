@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // ファイルを指定したパスへ保存する
         if (move_uploaded_file($_FILES['file']['tmp_name'], "../../uploadedData/writing/{$_FILES['file']['name']}")) {
-            $response['content'] = 'アップロードされたファイルを保存しました。';
+            $response['content'][0] = ['status' => 'アップロードされたファイルを保存しました。'];
         } else {
-            $response['content'] = 'アップロードされたファイルの保存に失敗しました。';
+            $response['content'][0] = ['status' => 'アップロードされたファイルの保存に失敗しました。'];
         }
     }
 }

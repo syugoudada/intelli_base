@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         }
     }
 
-    $response['content'] = !$response['error'];
+    $response['content'][0] = ['status' => !$response['error']];
 } else {
     $response['error'] = true;
     $response['messgae'] = 'あなたは承認されていません';

@@ -45,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         // 共有キーが一致するデータの内容が
         if ($value[0]['account_id'] == $account_id && $value[0]['local_writing_id'] == $local_writing_id && $value[0]['book_id'] == $book_id) {
             // 一致
-            $response['content'] = ['status' => 'noChange'];
+            $response['content'][0] = ['status' => 'noChange'];
         } else {
             // 不一致
-            $response['content'] = ['status' => 'shareRejected'];
+            $response['content'][0] = ['status' => 'shareRejected'];
         }
     }
 } else {

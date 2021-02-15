@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['test'])) {
         $response['error'] = true;
         $response['message'] = 'Statement error on delete';
     } else {
-        $response['content'] = true;
+        $response['content'][0] = ['status' => true];
 
         $fileName = "../../uploadedData/writing/writing{$shared_writing_id[0]['id']}_*";
 
