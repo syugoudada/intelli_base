@@ -7,7 +7,7 @@ body{
   "...... ...... ...... ...... ......"
   "...... center center center ......"  400px
   "...... ...... ...... ...... ......"
-  "footer footer footer footer footer"  100px
+  "footer footer footer footer footer"  120px
   / auto  auto   minmax(400px,450px)  auto auto;
 }
 
@@ -70,10 +70,9 @@ header{
 .userContents{
   list-style: none;
   position: absolute;
-  top: -250px;
-  right: 320px;
   margin: 0;
   background-color: #ffffff;
+  top: -250px;
   width: 180px;
   padding-right: 15px;
   z-index: 2;
@@ -184,6 +183,13 @@ footer{
   background-color: rgba(102, 102, 102, 0.096);
 }
 
+footer p{
+  width: 400px;
+  font-size: 2rem;
+  margin:0 auto;
+  padding-top: 30px;
+}
+
 @media (min-width:1800px){
   body{
     /* background-color: gold; */
@@ -192,8 +198,12 @@ footer{
     "...... ...... ...... ...... ......"  50px   
     "...... center center center ......"  600px
     "...... ...... ...... ...... ......"  50px
-    "footer footer footer footer footer"  170px
+    "footer footer footer footer footer"  155px
     / auto  auto   minmax(600px,650px)  auto auto;
+  }
+
+  .book-part{
+    margin-top: 75px;
   }
 
   .title{

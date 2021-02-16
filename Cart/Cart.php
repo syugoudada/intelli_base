@@ -46,8 +46,8 @@ if (empty($_SESSION['account']['id'])) {
                 </div>
             </form>
             <nav class="login_tag">
-                <a href="../Login/login_form.php" class="noLog">こんにちは、ログイン</a>
-                <ul class="userContents">
+                <a class="noLog" href="../Login/login_form.php">こんにちは、ログイン</a>
+                <ul class="userContents" id="userContents">
                     <li><a href="../Password_Change/change.php">パスワード変更</a></li>
                     <li><a href="../Product_Register/Register.php">商品登録</a></li>
                     <li><a href="../Login/logout.php">ログアウト</a></li>
@@ -76,7 +76,7 @@ if (empty($_SESSION['account']['id'])) {
         <form action="../Purchased/purchased_form.php" method="POST">
             <div class="main_contents">
                 <div class="cart_contents">
-                    <p>Shoping Cart</p>
+                    <p class="cart-title">商品カート</p>
                     <hr>
                     <?php
                     if ($_SESSION["account"]["name"] != "" && isset($_SESSION["account"]["name"])) {
@@ -109,7 +109,7 @@ if (empty($_SESSION['account']['id'])) {
                 <div class="subItems">
                     <div class="purchase">
                         <div class="purchase_infomation">
-                            <div class="totalPrice">小計:￥<strong><?= $total ?></strong></div>
+                            <div class="totalPrice">小計:￥<?= $total ?></div>
                             <div class="totalPoint">獲得ポイント:<?= $point ?>pt</div>
                             <input type="submit" name="submit" id="purchaseButton" class="purchaseButton" value="購入">
                         </div>
@@ -120,7 +120,7 @@ if (empty($_SESSION['account']['id'])) {
                             <?php
                             $books = $myself->find_book();
                             foreach ($books as $book) {
-                                print("<li class='book'><img src='../uploadedData/thumbnail/thumbnail$book[id].png' width='100px' height='120px' alt='本'><div><p>$book[title]</p><p>$book[name]</p></div></li>");
+                                print("<li class='book'><img src='../uploadedData/thumbnail/thumbnail$book[id].png' width='100px' height='120px' alt='本'><div class='desc'><p>$book[title]</p><p>$book[name]</p></div></li>");
                             }
                             ?>
                         </ul>
@@ -163,20 +163,20 @@ if (empty($_SESSION['account']['id'])) {
                 count -= 1;
             });
 
-            $('.userName').hover(
+            $('.userContents').hover(
                 function() {
-                    $(".userContents").css("top", "70px");
+                    $(".userContents").css("top", "55px");
                     $(".all_body").css("width", "100%").css("height", "100%");
                 },
                 function() {
                     $(".userContents").css("top", "-250px");
                     $(".all_body").css("width", "0%").css("height", "0%");
-                },
-            )
+                }
+            );
 
-            $('.userContents').hover(
+            $('.userName').hover(
                 function() {
-                    $(".userContents").css("top", "70px");
+                    $(".userContents").css("top", "55px")
                     $(".all_body").css("width", "100%").css("height", "100%");
                 },
                 function() {
@@ -231,7 +231,7 @@ if (empty($_SESSION['account']['id'])) {
 
         function makeObject() {
             $(".subTotal").remove();
-            $(".cart_contents").append("<div class='noCart'><img src=\'../image/Clean.png\' width=300px height=250px><div class=\'cart-info\'><p>Intelli_Baseカートは商品がありません</p></div></div>");
+            $(".cart_contents").append("<div class='noCart'><img src=\'../image/Clean.png\' width=300px height=250px style='box-shadow:none'><div class=\'cart-info\'><p>Intelli_Baseカートは商品がありません</p></div></div>");
             $(".subItems").remove();
         }
 
@@ -245,8 +245,8 @@ if (empty($_SESSION['account']['id'])) {
 
         function makeHtml(total) {
             const point = Math.round(total / 100);
-            $(".totalPrice").html('<div class="totalPrice">小計:￥<strong>' + total.toLocaleString() + '</strong></div>');
-            $(".totalPoint").html('<div class="totalPoint">獲得ポイント:<strong>' + point + '</strong>pt</div>');
+            $(".totalPrice").html('<div class="totalPrice">小計:￥' + total.toLocaleString() + '</div>');
+            $(".totalPoint").html('<div class="totalPoint">獲得ポイント:' + point + 'pt</div>');
             $(".undertotal").text(total.toLocaleString());
             $(".subPoint").text(point);
         }

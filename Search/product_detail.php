@@ -17,6 +17,7 @@ $book_detail = $myself->book_find($book_id);
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="../js/jquery.raty.js"></script>
   <link rel="stylesheet" href="../Css/product_detail.css">
+  <script src="https://kit.fontawesome.com/f3d03e8132.js" crossorigin="anonymous"></script>
   <title>Intelli_Base</title>
 </head>
 
@@ -53,7 +54,7 @@ $book_detail = $myself->book_find($book_id);
       ?>
 
       <div id="cart_tag">
-        <a class="cart_a" href="../Cart/Cart.php">カート</a>
+        <a class="cart_a" href="../Cart/Cart.php"><i class="fas fa-shopping-cart"></i>カート</a>
       </div>
     </div>
   </header>
@@ -117,7 +118,7 @@ $book_detail = $myself->book_find($book_id);
     </div>
   </main>
   <footer>
-
+    <p><small>&copy;Intelli_Base</small></p>
   </footer>
 </body>
 

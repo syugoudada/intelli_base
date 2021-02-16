@@ -73,7 +73,6 @@ $myself->login();
           ?>
         </div>
         <div class="total_price">
-          <input type="submit" name="submit" class="purchaseButton" value="購入します">
           <?php
           print("<p>小計:$total 円</p><p id='chose_point'>消費ポイント:0pt</p><p id='total'>合計:$total 円</p><input type='text' name='total' value = '$total' id='hid_total' hidden>");
           if(isset($_SESSION['account']['id']) && $_SESSION['account']['id'] != ""){
@@ -83,6 +82,7 @@ $myself->login();
           <aside>
             Intelli_Baseの利用規約、プライバシーに関するお知らせ、商品の詳細ページとキャンペーンページに記載されているその他の販売条件、同意した上で商品を注文できます。料金と注文の合計。
           </aside>
+          <input type="submit" name="submit" class="purchaseButton" value="購入">
         </div>
       </div>
     </form>
