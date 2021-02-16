@@ -22,6 +22,7 @@ $genre = $myself->genre();
   <link rel="stylesheet" href="../Css/search.css">
   <link rel="stylesheet" href="../Css/pagination.css">
   <link rel="icon" type="image/png" href="../image/icon.png">
+  <script src="https://kit.fontawesome.com/f3d03e8132.js" crossorigin="anonymous"></script>
   <title>Intelli_Base</title>
 </head>
 
@@ -30,15 +31,15 @@ $genre = $myself->genre();
   <header>
     <div class="header_contents">
       <div class="icon">
-      <a href="../Top_Page/top_page.php" class="topBack">
-        <img src="../image/icon.png" width="50px" height="50px">
-        <p class="iconTitle">Intelli_Base</p>
-      </a>
+        <a href="../Top_Page/top_page.php" class="topBack">
+          <img src="../image/icon.png" width="50px" height="50px">
+          <p class="iconTitle">Intelli_Base</p>
+        </a>
       </div>
-        <div class="search">
-          <input type="text" id="search_bar" name="title" placeholder="検索">
-          <input type="submit" id="submit" name="sub" value="🔍">
-        </div>
+      <div class="search">
+        <input type="text" id="search_bar" name="title" placeholder="検索">
+        <input type="submit" id="submit" name="sub" value="🔍">
+      </div>
       <nav class="login_tag">
         <a href="../Login/login_form.php" class="noLog">こんにちは、ログイン</a>
         <ul class="userContents">
@@ -61,7 +62,7 @@ $genre = $myself->genre();
       ?>
 
       <div id="cart_tag">
-        <a class="cart_a" href="../Cart/Cart.php">カート</a>
+        <a class="cart_a" href="../Cart/Cart.php"><i class="fas fa-shopping-cart"></i>カート</a>
       </div>
     </div>
   </header>
@@ -88,20 +89,21 @@ $genre = $myself->genre();
 
   <script>
     $(function() {
-      $('.userName').hover(
+      $('.userContents').hover(
         function() {
-          $(".userContents").css("top", "65px");
+          $(".userContents").css("top", "55px");
           $(".all_body").css("width", "100%").css("height", "100%");
         },
         function() {
           $(".userContents").css("top", "-250px");
           $(".all_body").css("width", "0%").css("height", "0%");
-        },
+        }
       );
 
-      $('.userContents').hover(
+      $('.userName').hover(
         function() {
-          $(".userContents").css("top", "65px");
+          console.log(3);
+          $(".userContents").css("top", "55px")
           $(".all_body").css("width", "100%").css("height", "100%");
         },
         function() {
@@ -171,7 +173,7 @@ $genre = $myself->genre();
 
       function make_obj(content, index) {
         const htmlContent = ' <div class="product-part"><div class="product_image"><form action="product_detail.php" name="product_submit' + index + '" method="GET"  rel="noopener noreferrer"><a href="#" onclick="document.product_submit' + index + '.submit();"><img src="../uploadedData/thumbnail/thumbnail' + content["id"][index] + '.png" height="250px" width="230px"></a><input type="text" name = book_id hidden value  = "' + content["id"][index] + '"></form></div><div class="description"><div class="title">' + content["title"][index] + '</div><p id="star' + index + '"></p><div class="price">' + content["price"][index] + '円</div><form action="../Cart/Cart_add.php" method="POST"><input type="submit" name="cart" class="cartButton" value="Cartに入れる"><input type="text" name="book_id" value="' + content["id"][index] + '" hidden></form></div></div>';
-        
+
         return htmlContent;
       }
 

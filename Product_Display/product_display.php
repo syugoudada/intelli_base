@@ -23,6 +23,7 @@ $genreName = $myself->genreName($genre_id);
   <link rel="icon" type="image/png" href="../image/icon.png">
   <link rel="stylesheet" href="../Css/book_display.css">
   <script src="../js/slick.min.js"></script>
+  <script src="https://kit.fontawesome.com/f3d03e8132.js" crossorigin="anonymous"></script>
   <title>Intelli_Base</title>
 </head>
 
@@ -64,7 +65,7 @@ $genreName = $myself->genreName($genre_id);
       ?>
 
       <div id="cart_tag">
-        <a class="cart_a" href="../Cart/Cart.php">カート</a>
+        <a class="cart_a" href="../Cart/Cart.php"><i class="fas fa-shopping-cart"></i>カート</a>
       </div>
     </div>
   </header>
@@ -108,20 +109,21 @@ $genreName = $myself->genreName($genre_id);
           slidesToScroll: 5
         });
 
-        $('.userName').hover(
+        $('.userContents').hover(
           function() {
-            $(".userContents").css("top", "65px");
+            $(".userContents").css("top", "55px");
             $(".all_body").css("width", "100%").css("height", "100%");
           },
           function() {
             $(".userContents").css("top", "-250px");
             $(".all_body").css("width", "0%").css("height", "0%");
-          },
-        )
+          }
+        );
 
-        $('.userContents').hover(
+        $('.userName').hover(
           function() {
-            $(".userContents").css("top", "65px");
+            console.log(3);
+            $(".userContents").css("top", "55px")
             $(".all_body").css("width", "100%").css("height", "100%");
           },
           function() {

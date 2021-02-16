@@ -22,6 +22,10 @@ header{
   justify-content: space-around;
 }
 
+.userName:hover,.cart_a:hover{
+  color: rgba(255, 155, 25, 0.808);
+}
+
 .topBack{
   display: flex;
 }
@@ -48,17 +52,12 @@ header{
   z-index: 1;
 }
 
-.userName:hover{
-  border: 1px solid rgb(241, 255, 41);
-}
-
 .userContents{
   list-style: none;
   position: absolute;
-  top: -250px;
-  right: 320px;
   margin: 0;
   background-color: #ffffff;
+  top: -250px;
   width: 180px;
   padding-right: 15px;
   z-index: 2;

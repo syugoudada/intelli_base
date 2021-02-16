@@ -23,6 +23,7 @@ $book["popular"] = array();
   <link rel="icon" type="image/png" href="../image/icon.png">
   <link rel="stylesheet" href="../Css/top.css">
   <script src="../js/slick.min.js"></script>
+  <script src="https://kit.fontawesome.com/f3d03e8132.js" crossorigin="anonymous"></script>
   <title>Intelli_Base</title>
 </head>
 
@@ -62,7 +63,7 @@ $book["popular"] = array();
       ?>
 
       <div id="cart_tag">
-        <a class="cart_a" href="../Cart/Cart.php">カート</a>
+        <a class="cart_a" href="../Cart/Cart.php"><i class="fas fa-shopping-cart"></i>カート</a>
       </div>
     </div>
   </header>
@@ -113,45 +114,27 @@ $book["popular"] = array();
                 slidesToScroll: 6,
               });
 
-              let screenWidth = screen.width;
-              const userContents = document.getElementById("userName");
-              userContents.addEventListener("mouseover", () => {
-                screenWidth = screen.width;
-                if (screenWidth < 1800) {
-                  $('.userName').hover(
-                    function() {
-                      $(".userContents").css("top", "65px").css("right","320px");
-                      $(".all_body").css("width", "100%").css("height", "100%");
-                    },
-                    function() {
-                      $(".userContents").css("top", "-250px");
-                      $(".all_body").css("width", "0%").css("height", "0%");
-                    },
-                  )
-                } else {
-                  $('.userName').hover(
-                    function() {
-                      $(".userContents").css("top", "65px").css("right", "620px");
-                      $(".all_body").css("width", "100%").css("height", "100%");
-                    },
-                    function() {
-                      $(".userContents").css("top", "-250px");
-                      $(".all_body").css("width", "0%").css("height", "0%");
-                    },
-                  )
+              $('.userContents').hover(
+                function() {
+                  $(".userContents").css("top", "35px");
+                  $(".all_body").css("width", "100%").css("height", "100%");
+                },
+                function() {
+                  $(".userContents").css("top", "-250px");
+                  $(".all_body").css("width", "0%").css("height", "0%");
                 }
-                $('.userContents').hover(
-                  function() {
-                    $(".userContents").css("top", "65px");
-                    $(".all_body").css("width", "100%").css("height", "100%");
-                  },
-                  function() {
-                    $(".userContents").css("top", "-250px");
-                    $(".all_body").css("width", "0%").css("height", "0%");
-                  }
-                );
-              });
+              );
 
+              $('.userName').hover(
+                function() {
+                  $(".userContents").css("top", "35px")
+                  $(".all_body").css("width", "100%").css("height", "100%");
+                },
+                function() {
+                  $(".userContents").css("top", "-250px");
+                  $(".all_body").css("width", "0%").css("height", "0%");
+                }
+              );
 
               function make_booklist() {
                 let i = 1;
