@@ -9,7 +9,7 @@ body{
   "...... ...... ...... ...... ......"
   "...... footer footer footer ......"  150px
   "...... ...... ...... ...... ......"
-  / auto  auto   minmax(400px,450px)   auto   auto;
+  / auto  auto   minmax(400px,800px)   auto   auto;
 }
 
 a{
@@ -53,7 +53,14 @@ header{
 }
 
 .icon{
-  width: 300px;
+  display: flex;
+  padding: 5px;
+}
+
+.iconTitle{
+  font-size: 30px;
+  margin: 0px;
+  margin-left: 20px;
 }
 
 .iconTitle{
@@ -69,12 +76,12 @@ header{
   z-index: 1;
 }
 
-.userName:hover{
-  border: 1px solid rgb(241, 255, 41);
-}
-
 .userName{
   font-size: 20px;
+}
+
+.userName:hover,.cart_a:hover{
+  color: rgba(255, 155, 25, 0.808);
 }
 
 .userContents{
@@ -108,6 +115,10 @@ header{
   padding: 10px 0;
 }
 
+.login_tag{
+  position: relative;
+}
+
 #search_bar{
   padding: 10px 15px;
 }
@@ -118,6 +129,7 @@ header{
 
 main{
   grid-area: center;
+
 }
 
 input[type="text"]{
@@ -125,11 +137,13 @@ input[type="text"]{
   margin: 10px 20px;
 }
 
-
-
 textarea{
   width: 300px;
   margin: 10px 20px;
+}
+
+.new_genre{
+  display: inline;
 }
 
 footer{

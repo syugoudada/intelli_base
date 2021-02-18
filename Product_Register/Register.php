@@ -17,6 +17,7 @@ if ($_SESSION['product']['message'] != "") {
   <link rel="stylesheet" href="../Css/register.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <title>Intelli_Base</title>
+  <script src="https://kit.fontawesome.com/f3d03e8132.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -24,10 +25,10 @@ if ($_SESSION['product']['message'] != "") {
   <header>
     <div class="header_contents">
       <div class="icon">
-      <a href="../Top_Page/top_page.php" class="topBack">
-        <img src="../image/icon.png" width="50px" height="50px">
-        <p class="iconTitle">Intelli_Base</p>
-      </a>
+        <a href="../Top_Page/top_page.php" class="topBack">
+          <img src="../image/icon.png" width="50px" height="50px">
+          <p class="iconTitle">Intelli_Base</p>
+        </a>
       </div>
       <form action="../Search/search.php" method="GET">
         <div class="search">
@@ -36,8 +37,8 @@ if ($_SESSION['product']['message'] != "") {
         </div>
       </form>
       <nav class="login_tag">
-        <a href="../Login/login_form.php">こんにちは、ログイン</a>
-        <ul class="userContents">
+        <a class="noLog" href="../Login/login_form.php">こんにちは、ログイン</a>
+        <ul class="userContents" id="userContents">
           <li><a href="../Password_Change/change.php">パスワード変更</a></li>
           <li><a href="../Product_Register/Register.php">商品登録</a></li>
           <li><a href="../Login/logout.php">ログアウト</a></li>
@@ -57,16 +58,14 @@ if ($_SESSION['product']['message'] != "") {
       ?>
 
       <div id="cart_tag">
-        <a class="cart_a" href="../Cart/Cart.php">カート</a>
+        <a class="cart_a" href="../Cart/Cart.php"><i class="fas fa-shopping-cart"></i>カート</a>
       </div>
     </div>
   </header>
 
   <main>
     <div class="mainContents">
-      <h1>
-        <商品登録>
-      </h1>
+      <h1 class="title">商品登録</h1>
       <form method="POST" enctype="multipart/form-data" action="register_service.php">
         タイトル:<input type="text" name="title" required>
         著者名:<input type="text" name="name" required><br>
@@ -121,6 +120,29 @@ if ($_SESSION['product']['message'] != "") {
                 };
                 ajax(sub_genre);
               });
+
+              $('.userContents').hover(
+                function() {
+                  $(".userContents").css("top", "40px").css("left","10px");
+                  $(".all_body").css("width", "100%").css("height", "100%");
+                },
+                function() {
+                  $(".userContents").css("top", "-250px");
+                  $(".all_body").css("width", "0%").css("height", "0%");
+                }
+              );
+
+              $('.userName').hover(
+                function() {
+                  $(".userContents").css("top", "40px").css("left","10px");
+                  $(".all_body").css("width", "100%").css("height", "100%");
+                },
+                function() {
+                  $(".userContents").css("top", "-250px");
+                  $(".all_body").css("width", "0%").css("height", "0%");
+                }
+              );
+
             });
           </script>
           <select name="sub_genre" id="sub_genre" class="sub_genre">
@@ -132,8 +154,7 @@ if ($_SESSION['product']['message'] != "") {
             ?>
             <option value='add'>新規追加</option>
           </select>
-          <input type="text" class="new_genre" name="new_genre" placeholder="新規登録してください" hidden>
-          <br>
+          <input type="text" class="new_genre" name="new_genre" placeholder="新規登録してください" hidden>      
         </div>
         価格:<input type="text" name="price" required><br>
         引用:<input type="text" name="url"><br>

@@ -19,7 +19,7 @@
 
         <div>
           <label for="email"><strong>メール</strong><br>
-            <input type="text" name="email" class="email input_form" required>
+            <input type="email" name="email" class="email input_form" required>
           </label>
         </div>
 

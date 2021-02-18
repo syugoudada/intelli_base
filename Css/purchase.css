@@ -1,3 +1,7 @@
+html{
+  font-size: 100%;
+}
+
 body{
   margin: 0;
   display: grid;
@@ -10,6 +14,8 @@ body{
   "...... footer footer footer ......"  150px
   "...... ...... ...... ...... ......"
   / auto  auto   minmax(400px,1000px)   auto   auto;
+  font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体",
+  "ヒラギノ角ゴ Pro W3", sans-serif;
   /* background-color: rgba(102, 102, 102, 0.096); */
 }
 
@@ -43,6 +49,7 @@ aside{
 .book_list{
   display: flex;
   margin: 20px 0;
+  width: 360px;
 }
 
 .book_items .book_list:not(:last-child){
@@ -56,6 +63,10 @@ aside{
   padding: 25px;
   margin-right: 40px;
   background-color: #fff;
+}
+
+.bookInfo{
+  margin-left: 20px;
 }
 
 .bookInfo > p{
@@ -84,6 +95,15 @@ aside{
   height: 45px;
   margin-top: 20px;
   font-size: 18px;
+  border: 1px solid rgb(150, 150, 255);
+  color: rgb(10, 10, 255);
+  outline: none;
+  background-color: #fff;
+}
+
+.purchaseButton:focus{
+  outline: none;
+  border: 3px solid rgba(0,0,255,0.3);
 }
 
 footer{
