@@ -72,7 +72,6 @@ if (empty($_SESSION['account']['id'])) {
     <nav></nav>
 
     <main>
-
         <form action="../Purchased/purchased_form.php" method="POST">
             <div class="main_contents">
                 <div class="cart_contents">
@@ -101,7 +100,7 @@ if (empty($_SESSION['account']['id'])) {
                         $total = number_format($total);
                         print("<div class='subTotal'><p>小計:￥<span class='undertotal'>$total<span></p><p>獲得ポイント:<span class='subPoint'>$point</span> pt</p></div>");
                     } else {
-                        print('<script>let count = 0; $(function(){makeObject();});</script>');
+                        print("<script>let total = $total; let count = 0; $(function(){makeObject();});</script>");
                     }
                     ?>
 

@@ -35,10 +35,10 @@ main{
 }
 
 .make-Account{
-  background-color: rgb(250, 203, 117);
+  /* background-color: rgb(250, 203, 117); */
   font-size: 18px;
   width: 300px;
-  border: orange solid 1px ;
+  /* border: orange solid 1px ; */
   outline: none;
   margin-top: 20px;
 

@@ -31,14 +31,17 @@ header{
 }
 
 .icon{
-  width: 300px;
+  padding: 5px;
+}
+
+.icon:hover{
+  border: solid 1px rgba(0,0,0,0.5);
 }
 
 .iconTitle{
   font-size: 30px;
   margin: 0px;
-  margin-left: 20px;
-  padding-bottom: 20px;
+  margin-left: 10px;
 }
 
 .noLog{
@@ -66,6 +69,10 @@ header{
 .userContents > li > a:hover{
   color: rgba(255, 155, 25, 0.808);
   border-bottom: 1px solid rgba(255, 155, 25, 0.808);
+}
+
+.noLog:hover{
+  color:rgba(255, 155, 25, 0.808);
 }
 
 .userContents:before{
@@ -148,17 +155,17 @@ a{
 }
 
 .cartButton{
-  background-color: rgb(250, 203, 117);
+  /* background-color: rgb(250, 203, 117); */
   box-shadow: inset 0 10px 25px rgba(241, 241, 241, 0.8);
   font-size: 25px;
   width: 200px;
-  border: orange solid 1px ;
+  /* border: orange solid 1px ; */
   outline: none;
 }
 
-.cartButton:hover{
+/* .cartButton:hover{
   background-color: rgba(250, 203, 117,0.7);
-}
+} */
 
 .pager{
   position: relative;
