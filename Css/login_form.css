@@ -20,6 +20,10 @@ main{
   grid-area: center;
 }
 
+a{
+  color: #000;
+}
+
 .login-Info{
   max-width: 400px;
   margin: 0 auto;
@@ -38,14 +42,14 @@ main{
 }
 
 .input_form:focus{
-  outline: solid 2px #ff6a00;
+  /* outline: solid 2px #ff6a00; */
 }
 
 .login-Button{
-  background-color: rgb(250, 203, 117);
+  /* background-color: rgb(250, 203, 117); */
   font-size: 25px;
   width: 300px;
-  border: orange solid 1px ;
+  /* border: orange solid 1px ; */
   outline: none;
   margin-top: 20px;
 }

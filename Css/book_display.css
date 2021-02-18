@@ -23,7 +23,11 @@ header{
 }
 
 .icon{
-  width: 300px;
+  padding: 5px;
+}
+
+.icon:hover{
+  border: solid 1px rgba(0,0,0,0.5);
 }
 
 .iconTitle{

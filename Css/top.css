@@ -19,8 +19,8 @@ header{
 }
 
 .icon{
-  width: 300px;
   display: flex;
+  padding: 5px;
 }
 
 .iconTitle{
@@ -98,7 +98,7 @@ header{
 }
 
 .noLog:hover{
-  color: rgba(255, 134, 118, 0.795);
+  color:rgba(255, 155, 25, 0.808);
 }
 
 .main_contents{

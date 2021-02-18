@@ -73,7 +73,7 @@ $genre = $myself->genre();
         <h1>ジャンル</h1>
         <?php
         foreach ($genre as $value) {
-          print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='POST'><li value='$value[id]'><a href='#' class='genre_a' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
+          print("<form action='../Product_Display/product_display.php' name='genre" . $value['id'] . "' method='GET'><li value='$value[id]'><a href='#' class='genre_a' onclick='document.genre" . $value['id'] . ".submit();'>$value[name]</a></li><input type='text' name = 'genre_id' value='$value[id]' hidden></form>");
         }
         ?>
       </ul>

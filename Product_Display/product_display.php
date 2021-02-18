@@ -122,7 +122,6 @@ $genreName = $myself->genreName($genre_id);
 
         $('.userName').hover(
           function() {
-            console.log(3);
             $(".userContents").css("top", "55px")
             $(".all_body").css("width", "100%").css("height", "100%");
           },
