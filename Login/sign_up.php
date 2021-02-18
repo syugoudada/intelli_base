@@ -1,3 +1,11 @@
+<?php
+session_start();
+if($_SESSION["message"] != ""){
+  print("<script>alert('$_SESSION[message]');</script>");
+  unset($_SESSION["message"]);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -51,11 +59,3 @@
 </body>
 
 </html>
-
-<?php
-session_start();
-if($_SESSION["message"] != ""){
-  print("<script>alert('$_SESSION[message]');</script>");
-  unset($_SESSION["message"]);
-}
-?>

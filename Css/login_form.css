@@ -47,10 +47,6 @@ a{
   height: 30px;
 }
 
-.input_form:focus{
-  /* outline: solid 2px #ff6a00; */
-}
-
 .login-Button{
   /* background-color: rgb(250, 203, 117); */
   font-size: 25px;
