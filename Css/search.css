@@ -1,5 +1,11 @@
+html{
+  font-size: 100%;
+}
+
 body{
   margin:0px;
+  font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体",
+  "ヒラギノ角ゴ Pro W3", sans-serif;
 }
 
 .header_contents{
@@ -159,13 +165,16 @@ a{
   box-shadow: inset 0 10px 25px rgba(241, 241, 241, 0.8);
   font-size: 25px;
   width: 200px;
-  /* border: orange solid 1px ; */
+  background-color: #fff;
+  border: 1px solid rgb(150, 150, 255);
+  color: rgb(10, 10, 255);
   outline: none;
 }
 
-/* .cartButton:hover{
-  background-color: rgba(250, 203, 117,0.7);
-} */
+.cartButton:hover{
+  outline: none;
+  border: 3px solid rgba(0,0,255,0.3);
+}
 
 .pager{
   position: relative;
