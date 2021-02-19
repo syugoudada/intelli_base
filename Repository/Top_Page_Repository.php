@@ -28,7 +28,7 @@ class Top_Page_Repository extends Repository
   function popular_count()
   {
     // $sql = "SELECT book_id from purchases GROUP By book_id HAVING (COUNT(*) >= 5) ORDER BY COUNT(*) DESC LIMIT 10";
-    $sql = "SELECT book_id from purchases where book_id BETWEEN 260 AND 269";
+    $sql = "SELECT id from books where id BETWEEN 260 AND 269";
     $result = parent::find($sql);
     return $result;
   }
@@ -39,9 +39,9 @@ class Top_Page_Repository extends Repository
    *@return array $result 本の情報
    */
 
-  function  popular_book($book_id)
+  function  popular_book()
   {
-    $sql = "SELECT id,title,name,price,evaluation_avg from book_infomation where id = $book_id";
+    $sql = "SELECT id,title,name,price,evaluation_avg from book_infomation where id BETWEEN 260 AND 269";
     $result = parent::find($sql);
     return $result;
   }

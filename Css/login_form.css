@@ -8,7 +8,7 @@ body{
   grid-template: 
   "... ...... ...... ...... ...... ...... ..." 
   "... header header header header header ..." 100px 
-  "... ...... ...... ...... ...... ...... ..." 
+  "... ...... ...... ...... ...... ...... ..."  100px
   "... left   ...... center ...... right  ..."  1fr
   "... ...... ...... ...... ...... ...... ..." 
   "... footer footer footer footer footer ..." 50px

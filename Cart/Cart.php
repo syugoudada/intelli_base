@@ -235,7 +235,7 @@ if (empty($_SESSION['account']['id'])) {
         }
 
         function sizeChange() {
-            $(".cart_contents").css("height", "360px");
+            $(".cart_contents").css("height", "380px");
         }
 
         function sizeChange2() {

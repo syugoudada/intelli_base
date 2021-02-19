@@ -200,8 +200,8 @@ footer{
 footer p{
   /* width: 400px;
   font-size: 2rem;
-  margin:0 auto;
-  padding-top: 30px; */
+  margin:0 auto; */
+  padding-top: 30px;
   text-align: center;
 } 
 
@@ -212,8 +212,8 @@ footer p{
     "header header header header header"  100px
     "...... ...... ...... ...... ......"  80px   
     "...... center center center ......"  600px
-    "...... ...... ...... ...... ......"  80px
-    "footer footer footer footer footer"  100px
+    "...... ...... ...... ...... ......"  150px
+    "footer footer footer footer footer"  150px
     / auto  auto   minmax(600px,650px)  auto auto;
   }
 
