@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start();
 require_once('../Repository/Product_Registration_Repository.php');
 require_once('../Repository/Top_Page_Repository.php');
@@ -7,8 +7,7 @@ $myself = new Top_Page_Repository(DB_USER, DB_PASS);
 $myself->login();
 $genre = $myself->genre();
 $book["rank"] = $myself->rank_book();
-$book["popular_count"] = $myself->popular_count();
-$book["popular"] = array();
+$book["popular"] = $myself->popular_book();
 ?>
 
 <!DOCTYPE html>
@@ -85,12 +84,9 @@ $book["popular"] = array();
           <p class="bookTitle" hidden>人気タイトル</p>
           <ul class="slider multiple-item popular">
             <?php
-            foreach ($book["popular_count"] as $value) {
-              $book["popular"] = $myself->popular_book($value['book_id']);
               foreach ($book["popular"] as $value2) {
                 print("<li><form action='../Search/product_detail.php' name='product$value2[id]' method='GET' rel='noopener noreferrer'><input type ='image' src='../uploadedData/thumbnail/thumbnail$value2[id].png' width='131'><p>$value2[title]</p><p>$value2[name]</p><input type='text' name = book_id hidden value = $value2[id]></form></li>");
               }
-            }
             ?>
           </ul>
 
