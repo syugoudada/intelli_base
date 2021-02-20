@@ -215,6 +215,7 @@ footer p{
     "...... ...... ...... ...... ......"  150px
     "footer footer footer footer footer"  150px
     / auto  auto   minmax(600px,650px)  auto auto;
+    background-color: #e7eaf3 !important;
   }
 
   .book-part{
