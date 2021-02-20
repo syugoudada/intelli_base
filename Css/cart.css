@@ -16,6 +16,7 @@ body{
   /auto 100px auto minmax(400px,1fr) 100px 100px auto;
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体",
     "ヒラギノ角ゴ Pro W3", sans-serif;
+  background-color: #e7eaf3 !important;
   /* background-color: rgba(102, 102, 102, 0.096); */
 }
 
